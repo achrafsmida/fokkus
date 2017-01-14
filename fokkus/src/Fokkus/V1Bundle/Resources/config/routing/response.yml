@@ -1,0 +1,24 @@
+response_index:
+    path:     /
+    defaults: { _controller: "FokkusV1Bundle:response:index" }
+    methods:  GET
+
+response_show:
+    path:     /{id}/show
+    defaults: { _controller: "FokkusV1Bundle:response:show" }
+    methods:  GET
+
+response_new:
+    path:     /new
+    defaults: { _controller: "FokkusV1Bundle:response:new" }
+    methods:  [GET, POST]
+
+response_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "FokkusV1Bundle:response:edit" }
+    methods:  [GET, POST]
+
+response_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "FokkusV1Bundle:response:delete" }
+    methods:  DELETE

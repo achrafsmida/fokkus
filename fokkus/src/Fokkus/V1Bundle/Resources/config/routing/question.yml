@@ -1,0 +1,29 @@
+question_index:
+    path:     /
+    defaults: { _controller: "FokkusV1Bundle:question:index" }
+    methods:  GET
+add_question:
+    path:     /add_question
+    defaults: { _controller: "FokkusV1Bundle:question:add_question" }
+visualitation:
+    path:     /visualitation
+    defaults: { _controller: "FokkusV1Bundle:question:visualitation" }
+question_show:
+    path:     /{id}/show
+    defaults: { _controller: "FokkusV1Bundle:question:show" }
+    methods:  GET
+
+question_new:
+    path:     /new
+    defaults: { _controller: "FokkusV1Bundle:question:new" }
+    methods:  [GET, POST]
+
+question_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "FokkusV1Bundle:question:edit" }
+    methods:  [GET, POST]
+
+question_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "FokkusV1Bundle:question:delete" }
+    methods:  DELETE

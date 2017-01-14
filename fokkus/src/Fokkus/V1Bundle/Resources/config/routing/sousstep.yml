@@ -1,0 +1,26 @@
+sousstep_index:
+    path:     /{step}/index
+    defaults: { _controller: "FokkusV1Bundle:sousstep:index" }
+    methods:  GET
+sousstep_visualitation :
+    path:     /{step}/sousstep_visualitation
+    defaults: { _controller: "FokkusV1Bundle:sousstep:sousstepvisualitation" }
+sousstep_show:
+    path:     /{id}/show
+    defaults: { _controller: "FokkusV1Bundle:sousstep:show" }
+    methods:  GET
+
+sousstep_new:
+    path:     /new
+    defaults: { _controller: "FokkusV1Bundle:sousstep:new" }
+    methods:  [GET, POST]
+
+sousstep_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "FokkusV1Bundle:sousstep:edit" }
+    methods:  [GET, POST]
+
+sousstep_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "FokkusV1Bundle:sousstep:delete" }
+    methods:  DELETE
