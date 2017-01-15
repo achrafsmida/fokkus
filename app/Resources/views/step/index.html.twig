@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    
+          <div class="row">
+                  <div class="col-lg-12">
+                     <div class="panel panel-default">
+                        <div class="panel-heading">
+                           TIME LINE |
+                           <small>{{ app.session.get('typestring')}}</small>
+                                       <a class="btn btn-success btn-xs pull-right" href="{{ path('step_new') }}">Create a new step</a>
+                                       <a class="btn btn-success btn-xs pull-right" href="{{ path('step_visualtion') }}">Visulation</a>
+
+                        </div>
+                        <div class="panel-body">
+                           <table id="datatable2" class="table table-striped table-hover">
+                              <thead>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Date created</th>
+                                    <th>Date updated</th>
+                                    <th>Actions</th>
+                              </thead>
+                              <tbody>
+                                 {% for step in steps %}
+            <tr>
+                <td><a href="{{ path('step_show', { 'id': step.id }) }}">{{ step.id }}</a></td>
+                <td>{{ step.name }}</td>
+                <td>{{ step.description }}</td>
+                <td>{% if step.datecreated %}{{ step.datecreated|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if step.dateupdated %}{{ step.dateupdated|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    
+                        
+                            <a class="btn btn-info" href="{{ path('step_edit', { 'id': step.id }) }}">edit</a>
+                            <a class="btn btn-success" href="{{ path('sousstep_index', { 'step': step.id }) }}">sub step list</a>
+
+                </td>
+            </tr>
+        {% endfor %}
+                              </tbody>
+                             
+                           </table>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+           
+    
+    
+   
+{% endblock %}

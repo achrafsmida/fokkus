@@ -169,4 +169,8 @@ class Groups
     {
         return $this->network;
     }
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }

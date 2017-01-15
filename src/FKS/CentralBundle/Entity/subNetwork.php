@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="sub_network")
  * @ORM\Entity(repositoryClass="FKS\CentralBundle\Repository\StartupRepository")
  */
-class SubNetwork
+class subNetwork
 {
     /**
      * @var int
@@ -383,5 +383,9 @@ class SubNetwork
     public function getNetwork()
     {
         return $this->network;
+    }
+    public function __toString()
+    {
+        return $this->getLastName();
     }
 }

@@ -214,4 +214,5 @@ class Network
     {
         return $this->haveUser;
     }
+   
 }

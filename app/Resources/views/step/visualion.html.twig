@@ -1,0 +1,42 @@
+  {% extends 'base.html.twig' %}
+
+{% block body %}
+
+<section>
+         <!-- Page content-->
+         <div class="content-wrapper">
+            <h3>Steps</h3>
+            <div class="panel panel-default">
+               <div class="panel-heading">Steps</div>
+               <div class="panel-body">
+                  <form id="example-form" action="#">
+                     <div>
+                              {% for step in steps %}
+
+                        <h4>{{step.name}}
+                           <br>
+                           <small></small>
+                        </h4>
+                        <fieldset>
+                         {{step.description}}
+                         
+                         </br>    
+                         
+   <a class="btn btn-info" href="{{ path('sousstep_visualitation', { 'step': step.id }) }}">Sub Step  List</a>
+   
+                        </fieldset>
+                          {% endfor  %}
+
+                     </div>
+                  </form>
+               </div>
+            </div>
+           
+         
+      </section>
+       <script src="{{ asset('bundles/fokkusv1/vendor/jquery-validation/dist/jquery.validate.js') }}"></script>
+
+       <script src="{{ asset('bundles/fokkusv1/vendor/jquery.steps/build/jquery.steps.js') }}"></script>
+   <!-- Demo-->
+   <script src="{{ asset('bundles/fokkusv1/app/js/demo/demo-wizard.js') }}"></script>
+    {% endblock %}

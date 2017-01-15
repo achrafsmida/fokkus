@@ -1,0 +1,18 @@
+fokkus_v1_groupe:
+    resource: "@FokkusV1Bundle/Resources/config/routing/groupe.yml"
+    prefix:   /groupe
+fokkus_v1_sousstep:
+    resource: "@FokkusV1Bundle/Resources/config/routing/sousstep.yml"
+    prefix:   /sousstep
+fokkus_v1_step:
+    resource: "@FokkusV1Bundle/Resources/config/routing/step.yml"
+    prefix:   /step
+fokkus_v1_question:
+    resource: "@FokkusV1Bundle/Resources/config/routing/question.yml"
+    prefix:   /question
+fokkus_v1_response:
+    resource: "@FokkusV1Bundle/Resources/config/routing/response.yml"
+    prefix:   /response
+fokkus_v1_homepage:
+    path:     /
+    defaults: { _controller: FokkusV1Bundle:Default:index }

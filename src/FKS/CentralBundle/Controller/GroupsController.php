@@ -33,7 +33,7 @@ class GroupsController extends Controller
      */
     public function newAction(Request $request)
     {
-        $group = new Group();
+        $group = new Groups();
         $form = $this->createForm('FKS\CentralBundle\Form\GroupsType', $group);
         $form->handleRequest($request);
 

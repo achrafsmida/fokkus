@@ -1,7 +1,15 @@
 fks_central_subpartener:
     resource: "@FKSCentralBundle/Resources/config/routing/subpartener.yml"
     prefix:   /subpartener
-
+fks_central_newtwork:
+    resource: "@FKSCentralBundle/Resources/config/routing/network.yml"
+    prefix:   /network
+fks_central_subNetwork:
+    resource: "@FKSCentralBundle/Resources/config/routing/subNetwork.yml"
+    prefix:   /subNetwork
+fks_central_partner:
+    resource: "@FKSCentralBundle/Resources/config/routing/groups.yml"
+    prefix:   /groups
 fks_central_homepage:
     path:     /
     defaults: { _controller: FKSCentralBundle:Default:index }
