@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Networks list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+                <th>Haveuser</th>
+                <th>Createddate</th>
+                <th>Updateddate</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for network in networks %}
+            <tr>
+                <td><a href="{{ path('network_show', { 'id': network.id }) }}">{{ network.id }}</a></td>
+                <td>{{ network.type }}</td>
+                <td>{% if network.haveUser %}Yes{% else %}No{% endif %}</td>
+                <td>{% if network.createdDate %}{{ network.createdDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if network.updatedDate %}{{ network.updatedDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('network_show', { 'id': network.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('network_edit', { 'id': network.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('network_new') }}">Create a new network</a>
+        </li>
+    </ul>
+{% endblock %}

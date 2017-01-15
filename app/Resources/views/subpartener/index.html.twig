@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Subparteners list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Lastname</th>
+                <th>Firstname</th>
+                <th>Mail</th>
+                <th>Twitter</th>
+                <th>Society</th>
+                <th>Createddate</th>
+                <th>Updateddate</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for subPartener in subParteners %}
+            <tr>
+                <td><a href="{{ path('subpartener_show', { 'id': subPartener.id }) }}">{{ subPartener.id }}</a></td>
+                <td>{{ subPartener.lastName }}</td>
+                <td>{{ subPartener.firstName }}</td>
+                <td>{{ subPartener.mail }}</td>
+                <td>{{ subPartener.twitter }}</td>
+                <td>{{ subPartener.society }}</td>
+                <td>{{ subPartener.createdDate }}</td>
+                <td>{% if subPartener.updatedDate %}{{ subPartener.updatedDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('subpartener_show', { 'id': subPartener.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('subpartener_edit', { 'id': subPartener.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('subpartener_new') }}">Create a new subPartener</a>
+        </li>
+    </ul>
+{% endblock %}

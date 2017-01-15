@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Network</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ network.id }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ network.type }}</td>
+            </tr>
+            <tr>
+                <th>Haveuser</th>
+                <td>{% if network.haveUser %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Createddate</th>
+                <td>{% if network.createdDate %}{{ network.createdDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Updateddate</th>
+                <td>{% if network.updatedDate %}{{ network.updatedDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('network_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('network_edit', { 'id': network.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

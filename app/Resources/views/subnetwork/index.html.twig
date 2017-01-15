@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Subnetworks list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Mail</th>
+                <th>Society</th>
+                <th>Fix</th>
+                <th>Mobile</th>
+                <th>Twitter</th>
+                <th>Site</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for subNetwork in subNetworks %}
+            <tr>
+                <td><a href="{{ path('subnetwork_show', { 'id': subNetwork.id }) }}">{{ subNetwork.id }}</a></td>
+                <td>{{ subNetwork.firstName }}</td>
+                <td>{{ subNetwork.lastName }}</td>
+                <td>{{ subNetwork.mail }}</td>
+                <td>{{ subNetwork.society }}</td>
+                <td>{{ subNetwork.fix }}</td>
+                <td>{{ subNetwork.mobile }}</td>
+                <td>{{ subNetwork.twitter }}</td>
+                <td>{{ subNetwork.site }}</td>
+                <td>{{ subNetwork.description }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('subnetwork_show', { 'id': subNetwork.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('subnetwork_edit', { 'id': subNetwork.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('subnetwork_new') }}">Create a new subNetwork</a>
+        </li>
+    </ul>
+{% endblock %}

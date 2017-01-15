@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Subnetwork</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ subNetwork.id }}</td>
+            </tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ subNetwork.firstName }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ subNetwork.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Mail</th>
+                <td>{{ subNetwork.mail }}</td>
+            </tr>
+            <tr>
+                <th>Society</th>
+                <td>{{ subNetwork.society }}</td>
+            </tr>
+            <tr>
+                <th>Fix</th>
+                <td>{{ subNetwork.fix }}</td>
+            </tr>
+            <tr>
+                <th>Mobile</th>
+                <td>{{ subNetwork.mobile }}</td>
+            </tr>
+            <tr>
+                <th>Twitter</th>
+                <td>{{ subNetwork.twitter }}</td>
+            </tr>
+            <tr>
+                <th>Site</th>
+                <td>{{ subNetwork.site }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ subNetwork.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('subnetwork_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('subnetwork_edit', { 'id': subNetwork.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
