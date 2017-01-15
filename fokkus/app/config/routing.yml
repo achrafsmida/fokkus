@@ -1,6 +1,0 @@
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
-fokkus_v1:
-    resource: "@FokkusV1Bundle/Resources/config/routing.yml"
-    prefix:   /
