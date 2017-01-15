@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Subpartener</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ subPartener.id }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ subPartener.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ subPartener.firstName }}</td>
+            </tr>
+            <tr>
+                <th>Mail</th>
+                <td>{{ subPartener.mail }}</td>
+            </tr>
+            <tr>
+                <th>Twitter</th>
+                <td>{{ subPartener.twitter }}</td>
+            </tr>
+            <tr>
+                <th>Society</th>
+                <td>{{ subPartener.society }}</td>
+            </tr>
+            <tr>
+                <th>Createddate</th>
+                <td>{{ subPartener.createdDate }}</td>
+            </tr>
+            <tr>
+                <th>Updateddate</th>
+                <td>{% if subPartener.updatedDate %}{{ subPartener.updatedDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('subpartener_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('subpartener_edit', { 'id': subPartener.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

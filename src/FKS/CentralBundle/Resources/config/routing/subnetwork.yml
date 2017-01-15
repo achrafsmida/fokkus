@@ -1,0 +1,24 @@
+subnetwork_index:
+    path:     /
+    defaults: { _controller: "FKSCentralBundle:subNetwork:index" }
+    methods:  GET
+
+subnetwork_show:
+    path:     /{id}/show
+    defaults: { _controller: "FKSCentralBundle:subNetwork:show" }
+    methods:  GET
+
+subnetwork_new:
+    path:     /new
+    defaults: { _controller: "FKSCentralBundle:subNetwork:new" }
+    methods:  [GET, POST]
+
+subnetwork_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "FKSCentralBundle:subNetwork:edit" }
+    methods:  [GET, POST]
+
+subnetwork_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "FKSCentralBundle:subNetwork:delete" }
+    methods:  DELETE
