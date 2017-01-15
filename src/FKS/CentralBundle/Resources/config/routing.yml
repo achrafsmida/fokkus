@@ -1,0 +1,7 @@
+fks_central_subpartener:
+    resource: "@FKSCentralBundle/Resources/config/routing/subpartener.yml"
+    prefix:   /subpartener
+
+fks_central_homepage:
+    path:     /
+    defaults: { _controller: FKSCentralBundle:Default:index }

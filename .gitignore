@@ -1,1 +1,15 @@
-/fokkus/nbproject/private/
+app/config/parameters.yml
+build/
+var/cache/*
+var/logs/*
+var/sessions/*
+var/SymfonyRequirements.php
+vendor/
+web/bundles/
+web/compiled/
+README.md
+.idea/*
+node_modules
+qa/*
+var/bootstrap.php.cache
+*~

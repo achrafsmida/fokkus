@@ -1,0 +1,24 @@
+subpartener_index:
+    path:     /
+    defaults: { _controller: "FKSCentralBundle:subPartener:index" }
+    methods:  GET
+
+subpartener_show:
+    path:     /{id}/show
+    defaults: { _controller: "FKSCentralBundle:subPartener:show" }
+    methods:  GET
+
+subpartener_new:
+    path:     /new
+    defaults: { _controller: "FKSCentralBundle:subPartener:new" }
+    methods:  [GET, POST]
+
+subpartener_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "FKSCentralBundle:subPartener:edit" }
+    methods:  [GET, POST]
+
+subpartener_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "FKSCentralBundle:subPartener:delete" }
+    methods:  DELETE

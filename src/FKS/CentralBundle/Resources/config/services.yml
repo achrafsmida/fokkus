@@ -1,0 +1,4 @@
+services:
+#    fks_central.example:
+#        class: FKS\CentralBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
