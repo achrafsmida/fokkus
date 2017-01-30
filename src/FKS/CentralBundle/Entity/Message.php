@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Message
  *
  * @ORM\Table(name="message")
+ * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="FKS\CentralBundle\Repository\MessageRepository")
  */
 class Message
@@ -29,17 +30,61 @@ class Message
     private $subject;
 
     /**
+     * @ORM\ManyToOne(targetEntity="FKS\CentralBundle\Entity\User")
+     * @ORM\JoinColumn(name="sender_id", referencedColumnName="id", nullable=false)
+     */
+    protected $sender;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="readed", type="boolean")
+     */
+    private $readed;
+    
+    /**
      * @var string
      *
      * @ORM\Column(name="message", type="text")
      */
     private $message;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="FKS\CentralBundle\Entity\User", inversedBy="messages")
+     * @ORM\JoinTable(name="users_messages",
+     *     joinColumns={@ORM\JoinColumn(name="message_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
+     * )
+     */
+    private $users;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="createdDate", type="datetime")
+     */
+    private $createdDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updatedDate", type="datetime")
+     */
+    private $updatedDate;
+    
+  
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -71,6 +116,30 @@ class Message
     }
 
     /**
+     * Set read
+     *
+     * @param boolean $read
+     *
+     * @return Message
+     */
+    public function setReaded($readed)
+    {
+        $this->readed = $readed;
+
+        return $this;
+    }
+
+    /**
+     * Get read
+     *
+     * @return boolean
+     */
+    public function getReaded()
+    {
+        return $this->readed;
+    }
+
+    /**
      * Set message
      *
      * @param string $message
@@ -93,5 +162,128 @@ class Message
     {
         return $this->message;
     }
-}
 
+    /**
+     * Set createdDate
+     *
+     * @param \DateTime $createdDate
+     *
+     * @return Message
+     */
+    public function setCreatedDate($createdDate)
+    {
+        $this->createdDate = $createdDate;
+
+        return $this;
+    }
+
+    /**
+     * Get createdDate
+     *
+     * @return \DateTime
+     */
+    public function getCreatedDate()
+    {
+        return $this->createdDate;
+    }
+
+    /**
+     * Set updatedDate
+     *
+     * @param \DateTime $updatedDate
+     *
+     * @return Message
+     */
+    public function setUpdatedDate($updatedDate)
+    {
+        $this->updatedDate = $updatedDate;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedDate
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedDate()
+    {
+        return $this->updatedDate;
+    }
+
+    /**
+     * Add user
+     *
+     * @param \FKS\CentralBundle\Entity\User $user
+     *
+     * @return Message
+     */
+    public function addUser(\FKS\CentralBundle\Entity\User $user)
+    {
+        $this->users[] = $user;
+
+        return $this;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param \FKS\CentralBundle\Entity\User $user
+     */
+    public function removeUser(\FKS\CentralBundle\Entity\User $user)
+    {
+        $this->users->removeElement($user);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * Set sender
+     *
+     * @param \FKS\CentralBundle\Entity\User $sender
+     *
+     * @return Message
+     */
+    public function setSender(\FKS\CentralBundle\Entity\User $sender)
+    {
+        $this->sender = $sender;
+
+        return $this;
+    }
+
+    /**
+     * Get sender
+     *
+     * @return \FKS\CentralBundle\Entity\User
+     */
+    public function getSender()
+    {
+        return $this->sender;
+    }
+    /**
+     * @ORM\PreUpdate
+     */
+    public function updatedDate()
+    {
+        $this->setUpdatedDate(new \Datetime());
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+
+    public function addDate()
+    {
+        $this->setUpdatedDate(new \Datetime());
+        $this->setCreatedDate(new \Datetime());
+    }
+
+}

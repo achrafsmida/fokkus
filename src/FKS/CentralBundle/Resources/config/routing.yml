@@ -13,3 +13,12 @@ fks_central_partner:
 fks_central_homepage:
     path:     /
     defaults: { _controller: FKSCentralBundle:Default:index }
+fks_central_partener:
+        resource: "@FKSCentralBundle/Resources/config/routing/partener.yml"
+        prefix:   /partener
+fks_central_user:
+        resource: "@FKSCentralBundle/Resources/config/routing/user.yml"
+        prefix:   /user
+fks_central_message:
+        resource: "@FKSCentralBundle/Resources/config/routing/message.yml"
+        prefix:   /message

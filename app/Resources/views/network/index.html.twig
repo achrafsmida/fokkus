@@ -1,42 +1,150 @@
-{% extends 'base.html.twig' %}
+
+
+
+{#{% for network in networks %}#}
+
+
+        {#<h3 style="padding-right: 5px">{{ network.type }}</h3>#}
+
+
+
+        {#{% for sub in network.subNetwork %}#}
+
+
+            {#<a href="#" onclick="display({{ sub.id }})">{{ sub.lastName }}</a>#}
+            {#<br>#}
+
+            {#</tr>{% endfor %} {% endfor %}#}
+
+{#<body>#}
+{#<h4 class="name"></h4>#}
+{#</body>#}
+    {#<script src="{{ asset('bundles/js/jquery.min.js') }}"></script>#}
+
+    {#<script>function display(id) {#}
+            {#var id = id;#}
+            {#console.log('---', id);#}
+            {#// var content = $('#test'+id).val();#}
+
+            {#var url = '{{ path("sub_show", {'id': 'id' }) }}';#}
+            {#url = url.replace("id", id);#}
+
+
+            {#//alert  (content);#}
+            {#$.ajax({#}
+
+                {#url: url,#}
+                {#type: 'POST',#}
+                {#data: {'id': id},#}
+                {#dataType: 'JSON',#}
+                {#success: function (result) {#}
+                   {#console.log(result.sub)// quand la réponse de la requete arrive#}
+{#//                    $( ".container" ).append( result.sub );#}
+{#//                   $( ".link" ).append( "<a>contacter</a>");#}
+                    {#//var $newdiv1 = $( "<div class='object1' style='style=border: dotted'>result.sub</div>" );#}
+                    {#var $button = $( "<a class='object2' href='#' '>contacter</a>" );#}
+                    {#var $br = $( "<br>" );#}
+
+                    {#$( ".name" ).append( result.sub );#}
+                    {#$( "body" ).append( $button );#}
+
+
+
+                {#}#}
+            {#});#}
+        {#}#}
+
+    {#</script>#}
+
+
+    {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Networks list</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Type</th>
-                <th>Haveuser</th>
-                <th>Createddate</th>
-                <th>Updateddate</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for network in networks %}
-            <tr>
 
-                <td>{{ network.sub.lastName }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('network_show', { 'id': network.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('network_edit', { 'id': network.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+<div class="row">
 
-    <ul>
-        <li>
-            <a href="{{ path('network_new') }}">Create a new network</a>
-        </li>
-    </ul>
+    {% for network in networks %}
+
+        <div class="col-md-4">
+            <h4 class="mv-lg pv-lg text-dark">{{ network.type }}</h4>
+            <div id="accordion1" class="panel-group">
+
+                {% for sub in network.subNetwork %}
+
+                    <div class="panel panel-default b0">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion1" href="#{{ sub.id }}">
+                                    <small>
+                                        <em class="fa fa-plus text-primary mr"></em>
+                                    </small>
+                                    <span>{{ sub.lastName }}</span>
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="{{ sub.id }}" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <p>{{ sub.lastName }} {{ sub.firstName }}</p>
+                                <div class="pull-right">
+                                    <small class="text-muted mr">Contacter</small>
+                                    <button type="button" class="btn btn-default btn-xs">
+                                        <em class="fa fa-thumbs-up text-muted"></em>
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                {% endfor %}
+
+            </div>
+
+        </div>
+    {% endfor %}
+
+</div>
+
+
+{#<body>#}
+    {#<h4 class="name"></h4>#}
+    {#</body>#}
+    {#<script src="{{ asset('bundles/js/jquery.min.js') }}"></script>#}
+
+    {#<script>function display(id) {#}
+    {#var id = id;#}
+    {#console.log('---', id);#}
+    {#// var content = $('#test'+id).val();#}
+
+    {#var url = '{{ path("sub_show", {'id': 'id' }) }}';#}
+    {#url = url.replace("id", id);#}
+
+
+    {#//alert  (content);#}
+    {#$.ajax({#}
+
+    {#url: url,#}
+    {#type: 'POST',#}
+    {#data: {'id': id},#}
+    {#dataType: 'JSON',#}
+    {#success: function (result) {#}
+    {#console.log(result.sub)// quand la réponse de la requete arrive#}
+    {#//                    $( ".container" ).append( result.sub );#}
+    {#//                   $( ".link" ).append( "<a>contacter</a>");#}
+    {#//var $newdiv1 = $( "<div class='object1' style='style=border: dotted'>result.sub</div>" );#}
+    {#var $button = $( "<a class='object2' href='#' '>contacter</a>" );#}
+    {#var $br = $( "<br>" );#}
+
+    {#$( ".name" ).append( result.sub );#}
+    {#$( "body" ).append( $button );#}
+
+
+
+    {#}#}
+    {#});#}
+    {#}#}
+
+</script>
+
 {% endblock %}

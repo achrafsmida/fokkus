@@ -1,0 +1,61 @@
+{% extends "base.html.twig" %}
+{% block main_breadcrumb %}
+    <li class=""><a href="{{ path('message_index') }}"> {{ 'admin.navigationBar.userList'|trans }}</a></li>
+    <li class="last-li-active"> Details</li>
+{% endblock %}
+    {% block body %}
+        <div class="col-sm-12 col-md-12">
+            <h3 class="heading">Message</h3>
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <div class="vcard">
+                        {#{% if user.getWebPath is not null %}#}
+                        {#<img class="thumbnail" src="{{ asset(user.getWebPath()) }}">#}
+                        {#<img class="thumbnail" src="  {% if user.getWebPath is not null %}#}
+                                     {#{{ asset(user.getWebPath()) }}#}
+                                     {#{% else %}{{ asset("/back/img/thumbnail_icone.png") }}#}
+                                     {#{% endif %}" alt="">#}
+                        <ul>
+                                Detail
+
+                            {% if message.subject is not null %}
+                                    <span class="item-key">Subject</span>
+                                    <div class="vcard-item">{{ message.subject }}</div>
+                            {% endif %}
+                            {% if message.message is not null %}
+
+                                    <span class="item-key">Message</span>
+                                    <div class="vcard-item">{{ message.message }}</div>
+                            {% endif %}
+                            {% if message.sender is not null %}
+                                    <span class="item-key">sender</span>
+                                    <div class="vcard-item">{{ message.sender }}</div>
+                            {% endif %}
+                            <span class="item-key">Receivers</span>
+                            {% for user in message.users  %}
+
+
+                                    <div class="vcard-item">{{ user.username }}</div>
+                            {% endfor %}
+                    <div class="vcard">
+                        <ul>
+                            <div class="form-actions" style="display: inline-block">
+                                <a href="{{ app.request.headers.get('referer') }}" class="btn btn-default form-save-btn"
+                                   style="width: 150px">
+                                    return
+                                </a>
+                            </div>
+                            {#<div class="delete" style="display: inline-block;text-align: right">#}
+                                {#{{ form_start(delete_form) }}#}
+                                {#<input type="submit"#}
+                                       {#{% if user.enabled == true %}value="Disable"#}
+                                       {#style="width: 150px;background-color: #c9302c;border-color: #ac2925;color: whitesmoke" {% else %} value="Active" style="width: 150px;background-color: forestgreen;border-color: forestgreen;color: whitesmoke" {% endif %}#}
+                                       {#class="btn btn-default form-save-btn">#}
+                                {#{{ form_end(delete_form) }}#}
+                            {#</div>#}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}

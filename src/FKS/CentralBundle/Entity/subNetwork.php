@@ -77,6 +77,7 @@ class subNetwork
      */
     private $site;
 
+
     /**
      * @var string
      *
@@ -91,10 +92,25 @@ class subNetwork
     protected $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="FKS\CentralBundle\Entity\Network", mappedBy="sub")
+     * @ORM\ManyToOne(targetEntity="FKS\CentralBundle\Entity\Network")
+     * @ORM\JoinColumn(name="network_id", referencedColumnName="id", nullable=false)
      */
-    private $network;
+    protected $network;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="createdDate", type="datetime")
+     */
+    private $createdDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updatedDate", type="datetime")
+     */
+    private $updatedDate;
+    
     /**
      * Get id
      *
@@ -365,27 +381,81 @@ class subNetwork
         return $this;
     }
 
+   
+    public function __toString()
+    {
+        return $this->getLastName();
+    }
+
     /**
-     * Remove network
+     * Set network
      *
      * @param \FKS\CentralBundle\Entity\Network $network
+     *
+     * @return subNetwork
      */
-    public function removeNetwork(\FKS\CentralBundle\Entity\Network $network)
+    public function setNetwork(\FKS\CentralBundle\Entity\Network $network)
     {
-        $this->network->removeElement($network);
+        $this->network = $network;
+
+        return $this;
     }
 
     /**
      * Get network
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \FKS\CentralBundle\Entity\Network
      */
     public function getNetwork()
     {
         return $this->network;
     }
-    public function __toString()
+
+    /**
+     * Set createdDate
+     *
+     * @param \DateTime $createdDate
+     *
+     * @return subNetwork
+     */
+    public function setCreatedDate($createdDate)
     {
-        return $this->getLastName();
+        $this->createdDate = $createdDate;
+
+        return $this;
+    }
+
+    /**
+     * Get createdDate
+     *
+     * @return \DateTime
+     */
+    public function getCreatedDate()
+    {
+        return $this->createdDate;
+    }
+
+    /**
+     * Set updatedDate
+     *
+     * @param \DateTime $updatedDate
+     *
+     * @return subNetwork
+     */
+    public function setUpdatedDate($updatedDate)
+    {
+        $this->updatedDate = $updatedDate;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedDate
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedDate()
+    {
+        return $this->updatedDate;
     }
 }

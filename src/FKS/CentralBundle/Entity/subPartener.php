@@ -98,6 +98,12 @@ class subPartener
     private $description;
 
     /**
+     * @ORM\ManyToOne(targetEntity="FKS\CentralBundle\Entity\Partener")
+     * @ORM\JoinColumn(name="partener_id", referencedColumnName="id", nullable=false)
+     */
+    protected $partener;
+    
+    /**
      * Get id
      *
      * @return int
@@ -249,5 +255,148 @@ class subPartener
     {
         return $this->updatedDate;
     }
-}
 
+    /**
+     * Set createdDate
+     *
+     * @param \DateTime $createdDate
+     *
+     * @return subPartener
+     */
+    public function setCreatedDate($createdDate)
+    {
+        $this->createdDate = $createdDate;
+
+        return $this;
+    }
+
+    /**
+     * Get createdDate
+     *
+     * @return \DateTime
+     */
+    public function getCreatedDate()
+    {
+        return $this->createdDate;
+    }
+
+    /**
+     * Set fix
+     *
+     * @param string $fix
+     *
+     * @return subPartener
+     */
+    public function setFix($fix)
+    {
+        $this->fix = $fix;
+
+        return $this;
+    }
+
+    /**
+     * Get fix
+     *
+     * @return string
+     */
+    public function getFix()
+    {
+        return $this->fix;
+    }
+
+    /**
+     * Set mobile
+     *
+     * @param string $mobile
+     *
+     * @return subPartener
+     */
+    public function setMobile($mobile)
+    {
+        $this->mobile = $mobile;
+
+        return $this;
+    }
+
+    /**
+     * Get mobile
+     *
+     * @return string
+     */
+    public function getMobile()
+    {
+        return $this->mobile;
+    }
+
+    /**
+     * Set site
+     *
+     * @param string $site
+     *
+     * @return subPartener
+     */
+    public function setSite($site)
+    {
+        $this->site = $site;
+
+        return $this;
+    }
+
+    /**
+     * Get site
+     *
+     * @return string
+     */
+    public function getSite()
+    {
+        return $this->site;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return subPartener
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set partener
+     *
+     * @param \FKS\CentralBundle\Entity\Partener $partener
+     *
+     * @return subPartener
+     */
+    public function setPartener(\FKS\CentralBundle\Entity\Partener $partener)
+    {
+        $this->partener = $partener;
+
+        return $this;
+    }
+
+    /**
+     * Get partener
+     *
+     * @return \FKS\CentralBundle\Entity\Partener
+     */
+    public function getPartener()
+    {
+        return $this->partener;
+    }
+}

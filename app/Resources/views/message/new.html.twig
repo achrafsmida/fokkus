@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+{% block main_breadcrumb %}
+    <li class=""><a href="{{ path('message_index') }}"> List of messages </a></li>
+    <li class="last-li-active"> New message</li>
+{% endblock %}
+    {% block body %}
+        <div class="row">
+
+            <div class="col-sm-12 col-md-12">
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Add message</legend>
+
+                    <form action="{{ path('message_new') }}" method="post"
+                          enctype="multipart/form-data">
+                        <div class="formSep">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12">
+                                    <div class="formSep">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-6">
+                                                {{ form_label(form.subject) }}
+                                                {{ form_widget(form.subject,{'attr':{'class':'form-control'}}) }}
+                                                <div class="error-field">{{ form_errors(form.subject) }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="formSep">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-6">
+                                                message
+                                                {{ form_widget(form.message,{'attr':{'class':'form-control'}}) }}
+                                                <div class="error-field">{{ form_errors(form.message) }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="formSep">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-6">
+                                                {{ form_label(form.users) }}
+                                                {{ form_widget(form.users,{'attr':{'class':'form-control'}}) }}
+                                                <div class="error-field">{{ form_errors(form.users) }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{ form_rest(form) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions form-actions-btn" style="padding: 10px;">
+                            <input id="btnSubmit" value="save" type="submit"
+                                   class="right btn btn-danger form-save-btn">
+                            <a href="{{ path('message_index') }}" class="btn btn-default form-save-btn">
+                                return
+                            </a>
+                        </div>
+                        <div class="clear"></div>
+                        {{ form_rest(form) }}
+                    </form>
+
+                </fieldset>
+            </div>
+        </div>
+        <div>
+
+            <script src="{{ asset('bundles/chosen/chosen.jquery.min.js') }}"></script>
+            <link rel="stylesheet" href="{{ asset('bundles/chosen/chosen.css') }}"/>
+            <script>
+                    $("#fks_centralbundle_message_users").chosen({
+                            width: '100%'
+                    });
+            </script>
+    {% endblock %}

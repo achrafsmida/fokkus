@@ -2,8 +2,8 @@
 
 namespace FKS\CentralBundle\Controller;
 
-use FKS\CentralBundle\Entity\Network;
-use FKS\CentralBundle\Entity\subNetwork;
+use FKS\CentralBundle\Entity\Partener;
+use FKS\CentralBundle\Entity\subPartener;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,116 +14,116 @@ use Symfony\Component\OptionsResolver\Exception\AccessException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
- * Network controller.
+ * Partener controller.
  *
  */
-class NetworkController extends Controller
+class PartenerController extends Controller
 {
     /**
-     * Lists all network entities.
+     * Lists all partener entities.
      *
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $networks = $em->getRepository('FKSCentralBundle:Network')->findAll();
+        $parteners = $em->getRepository('FKSCentralBundle:Partener')->findAll();
 
-        return $this->render('network/index.html.twig', array(
-            'networks' => $networks,
+        return $this->render('partener/index.html.twig', array(
+            'parteners' => $parteners,
         ));
     }
 
     /**
-     * Creates a new network entity.
+     * Creates a new partener entity.
      *
      */
     public function newAction(Request $request)
     {
-        $network = new Network();
-        $form = $this->createForm('FKS\CentralBundle\Form\NetworkType', $network);
+        $partener = new Partener();
+        $form = $this->createForm('FKS\CentralBundle\Form\PartenerType', $partener);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($network);
-            $em->flush($network);
+            $em->persist($partener);
+            $em->flush($partener);
 
-            return $this->redirectToRoute('network_show', array('id' => $network->getId()));
+            return $this->redirectToRoute('partener_show', array('id' => $partener->getId()));
         }
 
-        return $this->render('network/new.html.twig', array(
-            'network' => $network,
+        return $this->render('partener/new.html.twig', array(
+            'partener' => $partener,
             'form' => $form->createView(),
         ));
     }
 
     /**
-     * Finds and displays a network entity.
+     * Finds and displays a partener entity.
      *
      */
-    public function showAction(Network $network)
+    public function showAction(Partener $partener)
     {
-        $deleteForm = $this->createDeleteForm($network);
+        $deleteForm = $this->createDeleteForm($partener);
 
-        return $this->render('network/show.html.twig', array(
-            'network' => $network,
+        return $this->render('partener/show.html.twig', array(
+            'partener' => $partener,
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Displays a form to edit an existing network entity.
+     * Displays a form to edit an existing partener entity.
      *
      */
-    public function editAction(Request $request, Network $network)
+    public function editAction(Request $request, Partener $partener)
     {
-        $deleteForm = $this->createDeleteForm($network);
-        $editForm = $this->createForm('FKS\CentralBundle\Form\NetworkType', $network);
+        $deleteForm = $this->createDeleteForm($partener);
+        $editForm = $this->createForm('FKS\CentralBundle\Form\PartenerType', $partener);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('network_edit', array('id' => $network->getId()));
+            return $this->redirectToRoute('partener_edit', array('id' => $partener->getId()));
         }
 
-        return $this->render('network/edit.html.twig', array(
-            'network' => $network,
+        return $this->render('partener/edit.html.twig', array(
+            'partener' => $partener,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Deletes a network entity.
+     * Deletes a partener entity.
      *
      */
-    public function deleteAction(Request $request, Network $network)
+    public function deleteAction(Request $request, Partener $partener)
     {
-        $form = $this->createDeleteForm($network);
+        $form = $this->createDeleteForm($partener);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->remove($network);
-            $em->flush($network);
+            $em->remove($partener);
+            $em->flush($partener);
         }
 
-        return $this->redirectToRoute('network_index');
+        return $this->redirectToRoute('partener_index');
     }
 
     /**
-     * Creates a form to delete a network entity.
+     * Creates a form to delete a partener entity.
      *
-     * @param Network $network The network entity
+     * @param Partener $partener The partener entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(Network $network)
+    private function createDeleteForm(Partener $partener)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('network_delete', array('id' => $network->getId())))
+            ->setAction($this->generateUrl('partener_delete', array('id' => $partener->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;
@@ -132,7 +132,7 @@ class NetworkController extends Controller
     /**
      * Edit status of request .
      *
-     * @Route("/{id}/display/", name="sub_show")
+     * @Route("/{id}/partener/display/", name="subPartener_show")
      *
      * @param string $id The bookingRequest ID
      * @param string $status The bookingRequest ID
@@ -141,7 +141,7 @@ class NetworkController extends Controller
      *
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException If bookingRequest doesn't exists
      */
-    public function showSubAction(subNetwork $sub, Request $request)
+    public function showSubAction(subPartener $sub, Request $request)
     {
         /** @var EntityManager $em */
         $em = $this->getDoctrine()->getManager();

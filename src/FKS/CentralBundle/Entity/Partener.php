@@ -42,6 +42,10 @@ class Partener
      */
     private $updatedDate;
 
+    /**
+     * @ORM\OneToMany(targetEntity="FKS\CentralBundle\Entity\subPartener", mappedBy="partener")
+     */
+    private $subPartener;
 
     /**
      * Get id
@@ -124,5 +128,50 @@ class Partener
     {
         return $this->updatedDate;
     }
-}
+    public function __toString()
+    {
+        return $this->getType();
+    }
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->subPartener = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add subPartener
+     *
+     * @param \FKS\CentralBundle\Entity\subPartener $subPartener
+     *
+     * @return Partener
+     */
+    public function addSubPartener(\FKS\CentralBundle\Entity\subPartener $subPartener)
+    {
+        $this->subPartener[] = $subPartener;
+
+        return $this;
+    }
+
+    /**
+     * Remove subPartener
+     *
+     * @param \FKS\CentralBundle\Entity\subPartener $subPartener
+     */
+    public function removeSubPartener(\FKS\CentralBundle\Entity\subPartener $subPartener)
+    {
+        $this->subPartener->removeElement($subPartener);
+    }
+
+    /**
+     * Get subPartener
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSubPartener()
+    {
+        return $this->subPartener;
+    }
+}

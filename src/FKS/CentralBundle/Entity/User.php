@@ -24,7 +24,17 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="FKS\CentralBundle\Entity\subNetwork", mappedBy="user")
      */
     private $subNetwork;
-    
+
+    /**
+     * @ORM\OneToMany(targetEntity="FKS\CentralBundle\Entity\Message", mappedBy="sender")
+     */
+    private $message;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="FKS\CentralBundle\Entity\Message", mappedBy="users")
+     */
+    private $messages;
+
     public function __construct()
     {
         parent::__construct();
@@ -34,11 +44,11 @@ class User extends BaseUser
     /**
      * Add subNetwork
      *
-     * @param \PxCore\CentralBundle\Entity\subNetwork $subNetwork
+     * @param \FKS\CentralBundle\Entity\subNetwork $subNetwork
      *
      * @return User
      */
-    public function addSubNetwork(\PxCore\CentralBundle\Entity\subNetwork $subNetwork)
+    public function addSubNetwork(\FKS\CentralBundle\Entity\subNetwork $subNetwork)
     {
         $this->subNetwork[] = $subNetwork;
 
@@ -48,9 +58,9 @@ class User extends BaseUser
     /**
      * Remove subNetwork
      *
-     * @param \PxCore\CentralBundle\Entity\subNetwork $subNetwork
+     * @param \FKS\CentralBundle\Entity\subNetwork $subNetwork
      */
-    public function removeSubNetwork(\PxCore\CentralBundle\Entity\subNetwork $subNetwork)
+    public function removeSubNetwork(\FKS\CentralBundle\Entity\subNetwork $subNetwork)
     {
         $this->subNetwork->removeElement($subNetwork);
     }
@@ -63,5 +73,51 @@ class User extends BaseUser
     public function getSubNetwork()
     {
         return $this->subNetwork;
+    }
+
+   
+
+    /**
+     * Add message
+     *
+     * @param \FKS\CentralBundle\Entity\Message $message
+     *
+     * @return User
+     */
+    public function addMessage(\FKS\CentralBundle\Entity\Message $message)
+    {
+        $this->messages[] = $message;
+
+        return $this;
+    }
+
+    /**
+     * Remove message
+     *
+     * @param \FKS\CentralBundle\Entity\Message $message
+     */
+    public function removeMessage(\FKS\CentralBundle\Entity\Message $message)
+    {
+        $this->messages->removeElement($message);
+    }
+
+    /**
+     * Get messages
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMessages()
+    {
+        return $this->messages;
+    }
+
+    /**
+     * Get message
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMessage()
+    {
+        return $this->message;
     }
 }

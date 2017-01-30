@@ -56,10 +56,9 @@ class Network
     protected $group;
 
     /**
-     * @ORM\ManyToOne(targetEntity="FKS\CentralBundle\Entity\subNetwork")
-     * @ORM\JoinColumn(name="sub_id", referencedColumnName="id", nullable=false)
+     * @ORM\OneToMany(targetEntity="FKS\CentralBundle\Entity\subNetwork", mappedBy="network")
      */
-    protected $sub;
+    private $subNetwork;
 
     /**
      * Get id
@@ -166,31 +165,7 @@ class Network
     {
         return $this->group;
     }
-
-    /**
-     * Set sub
-     *
-     * @param \FKS\CentralBundle\Entity\subNetwork $sub
-     *
-     * @return Network
-     */
-    public function setSub(\FKS\CentralBundle\Entity\subNetwork $sub)
-    {
-        $this->sub = $sub;
-
-        return $this;
-    }
-
-    /**
-     * Get sub
-     *
-     * @return \FKS\CentralBundle\Entity\subNetwork
-     */
-    public function getSub()
-    {
-        return $this->sub;
-    }
-
+    
     /**
      * Set haveUser
      *
@@ -215,4 +190,50 @@ class Network
         return $this->haveUser;
     }
    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->subNetwork = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add subNetwork
+     *
+     * @param \FKS\CentralBundle\Entity\subNetwork $subNetwork
+     *
+     * @return Network
+     */
+    public function addSubNetwork(\FKS\CentralBundle\Entity\subNetwork $subNetwork)
+    {
+        $this->subNetwork[] = $subNetwork;
+
+        return $this;
+    }
+
+    /**
+     * Remove subNetwork
+     *
+     * @param \FKS\CentralBundle\Entity\subNetwork $subNetwork
+     */
+    public function removeSubNetwork(\FKS\CentralBundle\Entity\subNetwork $subNetwork)
+    {
+        $this->subNetwork->removeElement($subNetwork);
+    }
+
+    /**
+     * Get subNetwork
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSubNetwork()
+    {
+        return $this->subNetwork;
+    }
+
+    public function __toString()
+    {
+        return $this->getType();
+    }
 }

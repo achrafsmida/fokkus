@@ -1,0 +1,57 @@
+
+
+
+{% for partener in parteners %}
+
+
+    <h3 style="padding-right: 5px">{{ partener.type }}</h3>
+
+
+
+    {% for sub in partener.subPartener %}
+
+
+        <a href="#" onclick="display({{ sub.id }})">{{ sub.lastName }}</a>
+        <br>
+
+        </tr>{% endfor %} {% endfor %}
+
+<body>
+<h4 class="name"></h4>
+</body>
+<script src="{{ asset('bundles/js/jquery.min.js') }}"></script>
+
+<script>function display(id) {
+        var id = id;
+        console.log('---', id);
+        // var content = $('#test'+id).val();
+
+        var url = '{{ path("subPartener_show", {'id': 'id' }) }}';
+        url = url.replace("id", id);
+
+
+        //alert  (content);
+        $.ajax({
+
+            url: url,
+            type: 'POST',
+            data: {'id': id},
+            dataType: 'JSON',
+            success: function (result) {
+                console.log(result.sub)// quand la réponse de la requete arrive
+//                    $( ".container" ).append( result.sub );
+//                   $( ".link" ).append( "<a>contacter</a>");
+                //var $newdiv1 = $( "<div class='object1' style='style=border: dotted'>result.sub</div>" );
+                var $button = $( "<a class='object2' href='#' '>contacter</a>" );
+                var $br = $( "<br>" );
+
+                $( ".name" ).append( result.sub );
+                $( "body" ).append( $button );
+
+
+
+            }
+        });
+    }
+
+</script>
