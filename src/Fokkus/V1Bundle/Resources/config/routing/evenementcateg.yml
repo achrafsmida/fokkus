@@ -1,0 +1,24 @@
+evenementcateg_index:
+    path:     /
+    defaults: { _controller: "FokkusV1Bundle:evenementcateg:index" }
+    methods:  GET
+
+evenementcateg_show:
+    path:     /{id}/show
+    defaults: { _controller: "FokkusV1Bundle:evenementcateg:show" }
+    methods:  GET
+
+evenementcateg_new:
+    path:     /new
+    defaults: { _controller: "FokkusV1Bundle:evenementcateg:new" }
+    methods:  [GET, POST]
+
+evenementcateg_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "FokkusV1Bundle:evenementcateg:edit" }
+    methods:  [GET, POST]
+
+evenementcateg_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "FokkusV1Bundle:evenementcateg:delete" }
+    methods:  DELETE

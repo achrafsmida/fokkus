@@ -1,7 +1,11 @@
   {% extends 'base.html.twig' %}
 
 {% block body %}
+  <script src="{{ asset('bundles/fokkusv1/vendor/jquery-validation/dist/jquery.validate.js') }}"></script>
 
+       <script src="{{ asset('bundles/fokkusv1/vendor/jquery.steps/build/jquery.steps.js') }}"></script>
+   <!-- Demo-->
+   <script src="{{ asset('bundles/fokkusv1/app/js/demo/demo-wizard.js') }}"></script>
 <section>
          <!-- Page content-->
          <div class="content-wrapper">
@@ -34,9 +38,5 @@
            
          
       </section>
-       <script src="{{ asset('bundles/fokkusv1/vendor/jquery-validation/dist/jquery.validate.js') }}"></script>
-
-       <script src="{{ asset('bundles/fokkusv1/vendor/jquery.steps/build/jquery.steps.js') }}"></script>
-   <!-- Demo-->
-   <script src="{{ asset('bundles/fokkusv1/app/js/demo/demo-wizard.js') }}"></script>
+     
     {% endblock %}

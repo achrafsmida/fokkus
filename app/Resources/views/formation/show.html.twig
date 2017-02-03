@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+ 
+    
+      <div id="panelDemo8" class="panel panel-primary">
+                     <div class="panel-heading">Formation {{ formation.nom }}                       
+                         <a class="btn btn-success btn-xs pull-right" href="{{ path('formation_index') }}">formation List</a>
+</div>
+                     <div class="panel-body">
+                        <p>{{ formation.description }}</p>
+                     </div>
+                     <div class="panel-footer">{{ formation.prix }}</div>
+                  </div>
+    
+    
+    
+  
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+       
+{% endblock %}

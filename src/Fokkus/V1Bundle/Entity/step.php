@@ -19,6 +19,14 @@ class step
    * @ORM\OneToMany(targetEntity="Fokkus\V1Bundle\Entity\sousstep", mappedBy="sousstep")
    */
   private $sousstep; 
+  
+  
+  
+      /**
+     * @ORM\ManyToOne(targetEntity="FKS\CentralBundle\Entity\Groups")
+     * @ORM\JoinColumn(name="group_id", referencedColumnName="id", nullable=false)
+     */
+    protected $groups;
     /**
      * @var int
      *
@@ -255,5 +263,29 @@ class step
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * Set groups
+     *
+     * @param \FKS\CentralBundle\Entity\Groups $groups
+     *
+     * @return step
+     */
+    public function setGroups(\FKS\CentralBundle\Entity\Groups $groups)
+    {
+        $this->groups = $groups;
+
+        return $this;
+    }
+
+    /**
+     * Get groups
+     *
+     * @return \FKS\CentralBundle\Entity\Groups
+     */
+    public function getGroups()
+    {
+        return $this->groups;
     }
 }

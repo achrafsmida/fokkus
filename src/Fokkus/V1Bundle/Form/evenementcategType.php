@@ -6,14 +6,14 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class stepType extends AbstractType
+class evenementcategType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('description')->add('groups')      ;
+        $builder->add('nom')        ;
     }
     
     /**
@@ -22,7 +22,7 @@ class stepType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Fokkus\V1Bundle\Entity\step'
+            'data_class' => 'Fokkus\V1Bundle\Entity\evenementcateg'
         ));
     }
 
@@ -31,7 +31,7 @@ class stepType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'fokkus_v1bundle_step';
+        return 'fokkus_v1bundle_evenementcateg';
     }
 
 

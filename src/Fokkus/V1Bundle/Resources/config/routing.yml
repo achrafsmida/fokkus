@@ -16,3 +16,15 @@ fokkus_v1_response:
 fokkus_v1_homepage:
     path:     /
     defaults: { _controller: FokkusV1Bundle:Default:index }
+fokkus_v1_formationcateg:
+        resource: "@FokkusV1Bundle/Resources/config/routing/formationcateg.yml"
+        prefix:   /formationcateg
+fokkus_v1_formation:
+        resource: "@FokkusV1Bundle/Resources/config/routing/formation.yml"
+        prefix:   /formation
+fokkus_v1_evenement:
+        resource: "@FokkusV1Bundle/Resources/config/routing/evenement.yml"
+        prefix:   /evenement
+fokkus_v1_evenementcateg:
+        resource: "@FokkusV1Bundle/Resources/config/routing/evenementcateg.yml"
+        prefix:   /evenementcateg

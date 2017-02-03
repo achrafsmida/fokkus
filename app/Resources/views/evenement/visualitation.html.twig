@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    
+      
+    
+             <div class="row">
+             
+                       {% for evenement in evenements %}
+  
+                 <div class="col-md-4">  
+                     
+                     
+                     
+                     
+                      <div class="panel panel-default">
+                     <div class="panel-heading">{{evenement.categ.nom}}</div>
+                     <div class="panel-body">
+                     
+               <div id="accordion1" class="panel-group">
+                   
+                    {% for row in evenement.evenements %}
+
+                  <div class="panel panel-default b0">
+                     <div class="panel-heading">
+                        <h4 class="panel-title">
+                           <a data-toggle="collapse" data-parent="#accordion1" href="#{{row.id}}">
+                              <small>
+                                 <em class="fa fa-plus text-primary mr"></em>
+                              </small>
+                              <span>{{row.nom}}</span>
+                           </a>
+                        </h4>
+                     </div>
+                     <div id="{{row.id}}" class="panel-collapse collapse">
+                        <div class="panel-body">
+                           <p>{{row.description}}</p>
+                           <div class="pull-right">
+                              <small class="text-muted mr">Participate</small>
+                              <button data-toggle="modal" data-target="#myModal"  type="button" class="btn btn-default btn-xs">
+                                 <em class="fa fa-thumbs-up text-muted"></em>
+                              </button>
+                             
+                           </div>
+                        </div>
+                     </div>
+                 
+                  </div>
+                                                              {% endfor  %}
+
+               </div>
+             
+                 </div>  
+                                                              </div> 
+                                                              </div> 
+                                      {% endfor  %}
+
+            </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+{% endblock %}

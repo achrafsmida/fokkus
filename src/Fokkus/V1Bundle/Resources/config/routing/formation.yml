@@ -1,0 +1,27 @@
+formation_index:
+    path:     /
+    defaults: { _controller: "FokkusV1Bundle:formation:index" }
+    methods:  GET
+visualitationformation:
+    path:     /visualitation
+    defaults: { _controller: "FokkusV1Bundle:formation:visualitationformation" }
+    methods:  GET
+formation_show:
+    path:     /{id}/show
+    defaults: { _controller: "FokkusV1Bundle:formation:show" }
+    methods:  GET
+
+formation_new:
+    path:     /new
+    defaults: { _controller: "FokkusV1Bundle:formation:new" }
+    methods:  [GET, POST]
+
+formation_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "FokkusV1Bundle:formation:edit" }
+    methods:  [GET, POST]
+
+formation_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "FokkusV1Bundle:formation:delete" }
+    methods:  DELETE
