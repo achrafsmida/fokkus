@@ -15,24 +15,46 @@
                 <table id="datatable2" class="table table-striped table-hover">
                     <thead>
                     <tr>
-                        <th>Type</th>
-                        <th>Group</th>
-                        <th>Date creation</th>
+                        <th>FirstName</th>
+                        <th>LastName</th>
+                        <th>UserName</th>
+                        <th>Mail</th>
+                        <th>Society</th>
+                        <th>Fix</th>
+                        <th>Mobile</th>
+                        <th>Twitter</th>
+                        <th>Site</th>
+                        {#<th>Description</th>#}
+                        <th>Network</th>
+                        {#<th>Date</th>#}
                         <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {% for network in networks %}
+                    {% for sub in subs %}
                         <tr>
-                            <td>{{ network.type }}</td>
-                            <td>{{ network.group.name }}</td>
-                            <td>{{ network.createdDate|date('Y-m-d H:i') }}</td>
+                            <td>{{ sub.firstName }}</td>
+                            <td>{{ sub.lastName }}</td>
+                            {% if sub.user.username %}
+                                <td>{{ sub.user.userName }}</td>
+                            {% else %}
+                                <td><span class="label label-success">No</span></td>
+                            {% endif %}
+                            <td>{{ sub.mail }}</td>
+                            <td>{{ sub.society }}</td>
+                            <td>{{ sub.fix }}</td>
+                            <td>{{ sub.mobile }}</td>
+                            <td>{{ sub.twitter }}</td>
+                            <td>{{ sub.site }}</td>
+                            {#<td>{{ sub.description }}</td>#}
+                            <td>{{ sub.network }}</td>
+                            {#<td>{{ sub.createdDate|date('Y-m-d H:i') }}</td>#}
                             <td>
 
-                                <a class="btn btn-info" href="{{ path('network_show', { 'id': network.id }) }}">show</a>
+                                <a class="btn btn-info" href="{{ path('subnetwork_show', { 'id': sub.id }) }}">show</a>
 
-                                <a class="btn btn-warning" href="{{ path('network_edit', { 'id': network.id }) }}">edit</a>
-                                <a class="btn btn-danger" href="{{ path('deleted_network', { 'id': network.id }) }}">Delete</a>
+                                <a class="btn btn-warning" href="{{ path('subnetwork_edit', { 'id': sub.id }) }}">edit</a>
+                                <a class="btn btn-danger" href="{{ path('deleted_sub', { 'id': sub.id }) }}">Delete</a>
 
                             </td>
                         </tr>

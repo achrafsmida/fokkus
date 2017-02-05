@@ -1,16 +1,160 @@
 {% extends 'base.html.twig' %}
-
-{% block body %}
-    <h1>Subpartener creation</h1>
-
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('subpartener_index') }}">Back to the list</a>
-        </li>
-    </ul>
+{% block main_breadcrumb %}
+    <li class=""><a href="{{ path('message_index') }}"> List of messages </a></li>
+    <li class="last-li-active"> New message</li>
 {% endblock %}
+    {% block body %}
+<style>
+    /*.form-control2{*/
+    /*overflow:scroll; height:250px;max-height:250px*/
+    /*}*/
+
+</style>
+<div class="row">
+
+    <div class="col-sm-12 col-md-12">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">Add subpartner</legend>
+
+            <form action="{{ path('subpartener_new') }}" method="post"
+                  enctype="multipart/form-data">
+                <div class="formSep">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <div class="formSep">
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-6">
+                                        {{ form_label(form.lastName) }}
+                                        {{ form_widget(form.lastName,{'attr':{'class':'form-control'}}) }}
+                                        <div class="error-field">{{ form_errors(form.lastName) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="formSep">
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-6">
+                                        {{ form_label(form.firstName) }}
+                                        {{ form_widget(form.firstName,{'attr':{'class':'form-control'}}) }}
+                                        <div class="error-field">{{ form_errors(form.firstName) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="formSep">
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-6">
+                                        {{ form_label(form.mail) }}
+                                        {{ form_widget(form.mail,{'attr':{'class':'form-control'}}) }}
+                                        <div class="error-field">{{ form_errors(form.mail) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="formSep">
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-6">
+                                        {{ form_label(form.twitter) }}
+                                        {{ form_widget(form.twitter,{'attr':{'class':'form-control'}}) }}
+                                        <div class="error-field">{{ form_errors(form.twitter) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="formSep">
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-6">
+                                        {{ form_label(form.society) }}
+                                        {{ form_widget(form.society,{'attr':{'class':'form-control'}}) }}
+                                        <div class="error-field">{{ form_errors(form.society) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="formSep">
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-6">
+                                        {{ form_label(form.fix) }}
+                                        {{ form_widget(form.fix,{'attr':{'class':'form-control'}}) }}
+                                        <div class="error-field">{{ form_errors(form.fix) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="formSep">
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-6">
+                                        {{ form_label(form.mobile) }}
+                                        {{ form_widget(form.mobile,{'attr':{'class':'form-control'}}) }}
+                                        <div class="error-field">{{ form_errors(form.mobile) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="formSep">
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-6">
+                                        {{ form_label(form.site) }}
+                                        {{ form_widget(form.site,{'attr':{'class':'form-control'}}) }}
+                                        <div class="error-field">{{ form_errors(form.site) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="formSep">
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-6">
+                                        description
+                                        {{ form_widget(form.description,{'attr':{'class':'form-control'}}) }}
+                                        <div class="error-field">{{ form_errors(form.description) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="formSep">
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-6">
+                                        partener
+                                        {{ form_widget(form.partener,{'attr':{'class':'form-control'}}) }}
+                                        <div class="error-field">{{ form_errors(form.partener) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="formSep">
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-6">
+                                        file
+                                        {{ form_widget(form.file,{'attr':{'class':'form-control'}}) }}
+                                        <div class="error-field">{{ form_errors(form.file) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{ form_rest(form) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-actions form-actions-btn" style="padding: 10px;">
+                    <input id="btnSubmit" value="save" type="submit"
+                           class="right btn btn-danger form-save-btn">
+                    <a href="{{ path('listPartener') }}" class="btn btn-default form-save-btn">
+                        return
+                    </a>
+                </div>
+                <div class="clear"></div>
+                {{ form_rest(form) }}
+            </form>
+
+        </fieldset>
+    </div>
+</div>
+<div>
+    {#<!-- Wysiswyg Editor-->#}
+    {#<div style="overflow:scroll; height:250px;max-height:250px" class="form-control wysiwyg mt-lg">Type something ...</div>#}
+    {#<br>#}
+    <script src="{{ asset('bundles/chosen/chosen.jquery.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('bundles/chosen/chosen.css') }}"/>
+    <script src="{{ asset('bundles/js/bootstrap-wysiwyg/bootstrap-wysiwyg.js') }}"></script>
+    <script src="{{ asset('bundles/js/bootstrap-wysiwyg/external/jquery.hotkeys.js') }}"></script>
+
+
+    <script>
+        $("#fks_centralbundle_message_users").chosen({
+            width: '100%'
+        });
+
+        $('.chosen-select').chosen();
+        $('.wysiwyg').wysiwyg();
+
+    </script>
+    {% endblock %}

@@ -4,6 +4,12 @@
     <li class="last-li-active"> New message</li>
 {% endblock %}
     {% block body %}
+<style>
+    /*.form-control2{*/
+        /*overflow:scroll; height:250px;max-height:250px*/
+    /*}*/
+
+</style>
         <div class="row">
 
             <div class="col-sm-12 col-md-12">
@@ -61,12 +67,22 @@
             </div>
         </div>
         <div>
-
+            {#<!-- Wysiswyg Editor-->#}
+            {#<div style="overflow:scroll; height:250px;max-height:250px" class="form-control wysiwyg mt-lg">Type something ...</div>#}
+            {#<br>#}
             <script src="{{ asset('bundles/chosen/chosen.jquery.min.js') }}"></script>
             <link rel="stylesheet" href="{{ asset('bundles/chosen/chosen.css') }}"/>
+            <script src="{{ asset('bundles/js/bootstrap-wysiwyg/bootstrap-wysiwyg.js') }}"></script>
+            <script src="{{ asset('bundles/js/bootstrap-wysiwyg/external/jquery.hotkeys.js') }}"></script>
+
+
             <script>
                     $("#fks_centralbundle_message_users").chosen({
                             width: '100%'
                     });
+
+                    $('.chosen-select').chosen();
+                    $('.wysiwyg').wysiwyg();
+
             </script>
     {% endblock %}

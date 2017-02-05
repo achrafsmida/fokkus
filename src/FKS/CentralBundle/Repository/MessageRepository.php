@@ -10,4 +10,35 @@ namespace FKS\CentralBundle\Repository;
  */
 class MessageRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function count($userId)
+    {
+        return $this->createQueryBuilder('u')->join('u.users', 't')->addSelect('t')->where('t.id = :id')
+            ->setParameter("id", $userId)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function read($userId)
+    {
+        return $this->createQueryBuilder('u')
+            ->join('u.users', 't')->addSelect('t')->where('t.id = :id')
+            ->andWhere('u.readed = :read')
+            ->setParameter("id", $userId)
+            ->setParameter("read", true)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function delete($userId)
+    {
+        return $this->createQueryBuilder('u')
+            ->join('u.users', 't')->addSelect('t')->where('t.id = :id')
+            ->orWhere('u.sender = :sender')
+            ->andWhere('u.deleted = :deleted')
+            ->setParameter("id", $userId)
+            ->setParameter("sender", $userId)
+            ->setParameter("deleted", true)
+            ->getQuery()
+            ->getResult();
+    }
 }

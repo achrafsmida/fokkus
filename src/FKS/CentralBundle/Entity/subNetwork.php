@@ -3,10 +3,11 @@
 namespace FKS\CentralBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Startup
- *
+ * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="sub_network")
  * @ORM\Entity(repositoryClass="FKS\CentralBundle\Repository\StartupRepository")
  */
@@ -81,7 +82,7 @@ class subNetwork
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=255)
+     * @ORM\Column(name="description", type="text")
      */
     private $description;
 
@@ -457,5 +458,70 @@ class subNetwork
     public function getUpdatedDate()
     {
         return $this->updatedDate;
+    }
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    public $pictureName;
+
+    /**
+     * @Assert\File(
+     *     maxSize = "2M",
+     *     mimeTypes = {"image/jpeg", "image/gif", "image/png"},
+     *     mimeTypesMessage = "The selected file does not match a valid image",
+     *     uploadErrorMessage = "Error in uploading file"
+     * )
+     */
+    public $file;
+
+    public function getWebPath()
+    {
+        return null === $this->pictureName ? null : $this->getUploadDir().'/'.$this->pictureName;
+    }
+
+    protected function getUploadRootDir()
+    {
+        // le chemin absolu du répertoire dans lequel sauvegarder les photos de profil
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        // get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
+        return 'uploads/network';
+    }
+
+    public function uploadProfilePicture()
+    {
+        // Nous utilisons le nom de fichier original, donc il est dans la pratique
+        // nécessaire de le nettoyer pour éviter les problèmes de sécurité
+
+        // move copie le fichier présent chez le client dans le répertoire indiqué.
+        $this->file->move($this->getUploadRootDir(), $this->file->getClientOriginalName());
+
+        // On sauvegarde le nom de fichier
+        $this->pictureName = $this->file->getClientOriginalName();
+
+        // La propriété file ne servira plus
+        $this->file = null;
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function updateDate()
+    {
+        $this->setUpdatedDate(new \Datetime());
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+
+    public function addDate()
+    {
+        $this->setCreatedDate(new \Datetime());
+        $this->setUpdatedDate(new \Datetime());
     }
 }

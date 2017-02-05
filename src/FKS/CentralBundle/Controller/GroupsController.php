@@ -41,6 +41,7 @@ class GroupsController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $group->uploadProfilePicture();
             $em = $this->getDoctrine()->getManager();
             $em->persist($group);
             $em->flush($group);

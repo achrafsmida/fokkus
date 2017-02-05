@@ -18,27 +18,21 @@
                         <th>Type</th>
                         <th>Group</th>
                         <th>Date creation</th>
-                        <th>Have Accompte</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {% for network in networks %}
+                    {% for parteners in partener %}
                         <tr>
-                            <td>{{ network.type }}</td>
-                            <td>{{ network.group.name }}</td>
-                            <td>{{ network.createdDate|date('Y-m-d H:i') }}</td>
-                            {% if network.haveUser %}
-                                <td><span class="label label-success">Yes</span></td>
-                            {% else %}
-                                <td><span class="label label-success">No</span></td>
-                            {% endif %}
+                            <td>{{ partener.type }}</td>
+                            <td>{{ partener.group.name }}</td>
+                            <td>{{ partener.createdDate|date('Y-m-d H:i') }}</td>
                             <td>
-                                <a class="btn btn-info" href="{{ path('network_show', { 'id': network.id }) }}">show</a>
+                                <a class="btn btn-info" href="{{ path('partener_show', { 'id': partener.id }) }}">show</a>
 
                                 <a class="btn btn-warning"
-                                   href="{{ path('network_edit', { 'id': network.id }) }}">edit</a>
-                                <a class="btn btn-danger" href="{{ path('deleted_sub', { 'id': network.id }) }}">Delete</a>
+                                   href="{{ path('partener_edit', { 'id': partener.id }) }}">edit</a>
+                                <a class="btn btn-danger" href="{{ path('partener_sub', { 'id': partener.id }) }}">Delete</a>
 
                             </td>
                         </tr>

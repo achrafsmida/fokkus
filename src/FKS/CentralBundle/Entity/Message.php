@@ -41,7 +41,14 @@ class Message
      * @ORM\Column(name="readed", type="boolean")
      */
     private $readed;
-    
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="deleted", type="boolean")
+     */
+    private $deleted;
+
     /**
      * @var string
      *
@@ -286,4 +293,28 @@ class Message
         $this->setCreatedDate(new \Datetime());
     }
 
+
+    /**
+     * Set deleted
+     *
+     * @param boolean $deleted
+     *
+     * @return Message
+     */
+    public function setDeleted($deleted)
+    {
+        $this->deleted = $deleted;
+
+        return $this;
+    }
+
+    /**
+     * Get deleted
+     *
+     * @return boolean
+     */
+    public function getDeleted()
+    {
+        return $this->deleted;
+    }
 }

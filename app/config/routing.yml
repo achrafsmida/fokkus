@@ -27,3 +27,6 @@ admin_sub:
     resource: "@FKSCentralBundle/Controller/"
     type:     annotation
     prefix:   /
+fokkus_v1:
+    resource: "@FokkusV1Bundle/Resources/config/routing.yml"
+    prefix:   /

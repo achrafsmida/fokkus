@@ -5,6 +5,11 @@ namespace FKS\CentralBundle\Controller;
 use FKS\CentralBundle\Entity\subNetwork;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\OptionsResolver\Exception\AccessException;
 
 /**
  * Subnetwork controller.
@@ -39,6 +44,7 @@ class subNetworkController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $subNetwork->uploadProfilePicture();
             $em->persist($subNetwork);
             $em->flush($subNetwork);
 
@@ -120,5 +126,46 @@ class subNetworkController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * Edit status of request .
+     *
+     * @Route("/sub/list/", name="listSub")
+     *
+     * @param string $id The bookingRequest ID
+     * @param string $status The bookingRequest ID
+     *
+     * @return array
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException If bookingRequest doesn't exists
+     */
+    public function listAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $subs = $em->getRepository('FKSCentralBundle:subNetwork')->findAll();
+
+        return $this->render('subnetwork/list.html.twig', array(
+            'subs' => $subs,
+        ));
+    }
+
+    /**
+     * Edit status of request .
+     *
+     * @Route("/{id}/delete-sub/", name="deleted_sub")
+     * @return array
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException If bookingRequest doesn't exists
+     */
+    public function delAction(subNetwork $subNetwork)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($subNetwork);
+        $em->flush($subNetwork);
+
+        return $this->redirectToRoute('listSub');
     }
 }

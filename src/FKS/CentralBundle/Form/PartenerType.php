@@ -13,7 +13,7 @@ class PartenerType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('type')->add('createdDate')->add('updatedDate')        ;
+        $builder->add('type')       ;
     }
     
     /**
