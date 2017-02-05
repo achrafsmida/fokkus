@@ -47,7 +47,12 @@ class Partener
      * @ORM\OneToMany(targetEntity="FKS\CentralBundle\Entity\subPartener", mappedBy="partener")
      */
     private $subPartener;
-
+    /**
+     * @ORM\ManyToOne(targetEntity="FKS\CentralBundle\Entity\Groups")
+     * @ORM\JoinColumn(name="group_id", referencedColumnName="id", nullable=false)
+     */
+    protected $group;
+    
     /**
      * Get id
      *
@@ -191,5 +196,29 @@ class Partener
     {
         $this->setCreatedDate(new \Datetime());
         $this->setUpdatedDate(new \Datetime());
+    }
+
+    /**
+     * Set group
+     *
+     * @param \FKS\CentralBundle\Entity\Groups $group
+     *
+     * @return Partener
+     */
+    public function setGroup(\FKS\CentralBundle\Entity\Groups $group)
+    {
+        $this->group = $group;
+
+        return $this;
+    }
+
+    /**
+     * Get group
+     *
+     * @return \FKS\CentralBundle\Entity\Groups
+     */
+    public function getGroup()
+    {
+        return $this->group;
     }
 }

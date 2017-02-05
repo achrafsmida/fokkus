@@ -13,7 +13,7 @@ class NetworkType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('type')->add('haveUser')->add('createdDate')->add('updatedDate')->add('group')
+        $builder->add('type')->add('haveUser')->add('group')
                    ;
     }
     

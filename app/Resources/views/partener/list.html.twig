@@ -7,7 +7,7 @@
             <div class="panel-heading">
                 Network |
                 <small>List</small>
-                <a class="btn btn-success btn-xs pull-right" href="{{ path('network_new') }}">Create a new network</a>
+                <a class="btn btn-success btn-xs pull-right" href="{{ path('partener_new') }}">Create a new partener</a>
 
             </div>
             <div class="panel-body">
@@ -22,7 +22,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {% for parteners in partener %}
+                    {% for partener in parteners %}
                         <tr>
                             <td>{{ partener.type }}</td>
                             <td>{{ partener.group.name }}</td>
@@ -32,7 +32,7 @@
 
                                 <a class="btn btn-warning"
                                    href="{{ path('partener_edit', { 'id': partener.id }) }}">edit</a>
-                                <a class="btn btn-danger" href="{{ path('partener_sub', { 'id': partener.id }) }}">Delete</a>
+                                <a class="btn btn-danger" href="{{ path('deleted_partener', { 'id': partener.id }) }}">Delete</a>
 
                             </td>
                         </tr>

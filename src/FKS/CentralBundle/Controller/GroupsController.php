@@ -7,6 +7,11 @@ use Fokkus\V1Bundle\Entity\sousstep;
 use FKS\CentralBundle\Entity\Groups;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\OptionsResolver\Exception\AccessException;
 
 /**
  * Group controller.
@@ -116,7 +121,7 @@ public function clonestep($group, $em){
 
         return $this->render('groups/edit.html.twig', array(
             'group' => $group,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -154,4 +159,23 @@ public function clonestep($group, $em){
             ->getForm()
         ;
     }
+
+    /**
+     * Edit status of request .
+     *
+     * @Route("/{id}/delete-group/", name="deleted_group")
+     * @return array
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException If bookingRequest doesn't exists
+     */
+    public function delAction(Groups $groups)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($groups);
+        $em->flush($groups);
+
+        return $this->redirectToRoute('groups_index');
+    }
+    
 }

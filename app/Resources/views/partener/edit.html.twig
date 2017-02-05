@@ -14,7 +14,7 @@
 
     <div class="col-sm-12 col-md-12">
         <fieldset class="scheduler-border">
-            <legend class="scheduler-border">Add partner</legend>
+            <legend class="scheduler-border">Edit partner</legend>
 
             <form action="{{ path('partener_edit' , { 'id': partener.id }) }}" method="post"
                   enctype="multipart/form-data">
@@ -27,6 +27,15 @@
                                         {{ form_label(form.type) }}
                                         {{ form_widget(form.type,{'attr':{'class':'form-control'}}) }}
                                         <div class="error-field">{{ form_errors(form.type) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="formSep">
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-6">
+                                        {{ form_label(form.group) }}
+                                        {{ form_widget(form.group,{'attr':{'class':'form-control'}}) }}
+                                        <div class="error-field">{{ form_errors(form.group) }}</div>
                                     </div>
                                 </div>
                             </div>
