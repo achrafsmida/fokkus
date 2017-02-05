@@ -1,7 +1,9 @@
 fks_central:
     resource: "@FKSCentralBundle/Resources/config/routing.yml"
     prefix:   /
-
+fokkus_v1:
+    resource: "@FokkusV1Bundle/Resources/config/routing.yml"
+    prefix:   /
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation

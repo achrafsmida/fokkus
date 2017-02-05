@@ -8,18 +8,23 @@
              
                        {% for evenement in evenements %}
   
-                 <div class="col-md-4">  
+                 <div class="col-md-12">  
                      
                      
-                     
+
                      
                       <div class="panel panel-default">
                      <div class="panel-heading">{{evenement.categ.nom}}</div>
                      <div class="panel-body">
-                     
+                       {% for subcateg in evenement.subcateg %}
+     
+                      <div class="panel panel-default">
+                     <div class="panel-heading">{{subcateg.subcateg.nom}}</div>
+                     <div class="panel-body">
+                           
                <div id="accordion1" class="panel-group">
                    
-                    {% for row in evenement.evenements %}
+                    {% for row in subcateg.evenements %}
 
                   <div class="panel panel-default b0">
                      <div class="panel-heading">
@@ -47,9 +52,12 @@
                  
                   </div>
                                                               {% endfor  %}
-
+                
                </div>
-             
+                       </div>
+                       </div>
+               </div>
+                {% endfor  %}
                  </div>  
                                                               </div> 
                                                               </div> 

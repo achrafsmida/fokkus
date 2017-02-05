@@ -32,17 +32,26 @@ class evenementController extends Controller
 
         $categories = $em->getRepository('FokkusV1Bundle:evenementcateg')->findAll();
         $evenements = array() ;
-         foreach($categories as $categ)
-             {
-             array_push($evenements  , 
+         foreach($categories as $categ){
+             
+             $subcategs = $em->getRepository('FokkusV1Bundle:evenementsubcateg')->findByEvenementcateg($categ) ;
+                      $curnsubcateg  = array() ;
+             
+             foreach($subcategs as $subcateg)  { 
+                 
+                 array_push(  $curnsubcateg , array(
+                      'subcateg'=>$subcateg ,
+                     'evenements'=>$em->getRepository('FokkusV1Bundle:evenement')->findByEvenementsubcateg($subcateg)
+                     )) ;
+                } 
+          array_push($evenements  , 
                   array(
                   'categ'=>$categ , 
-                 'evenements'=>$em->getRepository('FokkusV1Bundle:evenement')->findByEvenementcateg($categ)
-                     )
+                    'subcateg'=>  $curnsubcateg
+                      )
                      );
-             
-         }
-        
+         
+         } 
           
          return $this->render('evenement/visualitation.html.twig', array(
             'evenements' => $evenements,

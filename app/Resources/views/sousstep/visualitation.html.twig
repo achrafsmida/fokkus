@@ -2,16 +2,59 @@
   {% extends 'base.html.twig' %}
 
 {% block body %}
- <script src="{{ asset('bundles/fokkusv1/vendor/jquery-validation/dist/jquery.validate.js') }}"></script>
+
+  <link href="{{ asset('bundles/fokkusv1/Grumpy/assets/css/gsi-step-indicator.min.css') }}" rel="stylesheet" />
+
+    <!--Import demo css-->
+    <link href="{{ asset('bundles/fokkusv1/Grumpy/assets/css/demo.min.css') }}" rel="stylesheet" /> 
+
+
+  <script src="{{ asset('bundles/fokkusv1/vendor/jquery-validation/dist/jquery.validate.js') }}"></script>
 
        <script src="{{ asset('bundles/fokkusv1/vendor/jquery.steps/build/jquery.steps.js') }}"></script>
    <!-- Demo-->
    <script src="{{ asset('bundles/fokkusv1/app/js/demo/demo-wizard.js') }}"></script>
+   
+   
+   
+      <script src="{{ asset('bundles/fokkusv1/vendor/bootstrap-filestyle/src/bootstrap-filestyle.js') }}"></script>
+
+       <script src="{{ asset('bundles/fokkusv1/Grumpy/assets/js/demo.js') }}"></script>
+
 <section>
       
             <div class="panel panel-default">
                <div class="panel-heading">Sub steps</div>
                <div class="panel-body">
+			   
+			   
+			   
+			           <section class="example">
+
+			     <ul class="gsi-step-indicator triangle gsi-style-3  ">
+				
+				                            {% for sousstep in soussteps %}
+
+                <li class=" {% if loop.index == 1  %} current {% endif  %} ">
+                   {% if loop.index == 1  %}  <span> {% endif  %} 
+					         {% if loop.index != 1  %}  <a href="#0">{% endif  %} 
+
+                        <span class="number">{{loop.index }}</span>
+                        <span class="desc">
+                            <label>{{ sousstep.name }}</label>
+							                            <span>Basic account info</span>
+						</span>
+                         {% if loop.index == 1  %}</span>{% endif  %} 
+						 {% if loop.index != 1  %} </a>{% endif  %} 
+                    
+                </li>
+                                          {% endfor %}
+
+            </ul>
+			   
+			   </section>
+			   
+			   
                   <div id="example-vertical">
                             {% for sousstep in soussteps %}
  

@@ -1,0 +1,2315 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="UTF-8">
+
+    <title>Grumpy - Multi Step Indicator</title>
+
+    <!--Import Google Icon Font-->
+    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+    <!--Import Multi Step Indicator css-->
+    <link href="assets/css/gsi-step-indicator.min.css" rel="stylesheet" />
+   
+    <!--Import demo css-->
+    <link href="assets/css/demo.min.css" rel="stylesheet" />    
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+
+    <!-- BEGIN Step Indicator -->
+    <div>
+        <!-- BEGIN Step Indicator-1 -->
+        <section class="example">
+            <h2>Style 1</h2>
+            <ul class="gsi-step-indicator triangle gsi-style-1">
+                <li><a href="#0"><span class="number">1</span><span class="desc">Step 1</span></a></li>
+                <li><a href="#0"><span class="number">2</span><span class="desc">Step 2</span></a></li>
+                <li class="current"><span><span class="number">3</span><span class="desc">Step 3</span></span></li>
+                <li><a href="#0"><span class="number">4</span><span class="desc">Step 4</span></a></li>
+            </ul>
+            <h4>After adding '.gsi-vertical' and '.gsi-transition'</h4>
+            <ul class="gsi-step-indicator triangle gsi-style-1   gsi-vertical gsi-transition">
+                <li><a href="#0"><span class="number">1</span><span class="desc">Step 1</span></a></li>
+                <li><a href="#0"><span class="number">2</span><span class="desc">Step 2</span></a></li>
+                <li class="current"><span><span class="number">3</span><span class="desc">Step 3</span></span></li>
+                <li><a href="#0"><span class="number">4</span><span class="desc">Step 4</span></a></li>
+            </ul>
+        </section>
+        <!-- END Step Indicator-1 -->
+        <!-- BEGIN Step Indicator-2 -->
+        <section class="example">
+            <h2>Style 2</h2>
+            <ul class="gsi-step-indicator triangle gsi-style-2">
+                <li class="current">
+                    <span>
+                        <span class="number">1</span>
+                        <span class="desc">
+                            <label>Account</label>
+                            <span>Basic account info</span>
+                        </span>
+                    </span>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="number">2</span>
+                        <span class="desc">
+                            <label>Personal</label>
+                            <span>Personal details</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="number">3</span>
+                        <span class="desc">
+                            <label>Payment</label>
+                            <span>Select method</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#1">
+                        <span class="number">4</span>
+                        <span class="desc">
+                            <label>Confirm</label>
+                            <span>Review detail</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+
+            <h4>Adding '.gsi-step-no-available'</h4>
+            <ul class="gsi-step-indicator triangle gsi-style-2 gsi-step-no-available  ">
+                <li>
+                    <a href="#0">
+                        <span class="number">1</span>
+                        <span class="desc">
+                            <label>Account</label>
+                            <span>Basic account info</span>
+                        </span>
+                    </a>
+                </li>
+                <li class="current">
+                    <span>
+                        <span class="number">2</span>
+                        <span class="desc">
+                            <label>Personal</label>
+                            <span>Personal details</span>
+                        </span>
+                    </span>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="number">3</span>
+                        <span class="desc">
+                            <label>Payment</label>
+                            <span>Select method </span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="number">4</span>
+                        <span class="desc">
+                            <label>Confirm</label>
+                            <span>Review detail</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+
+            <h4>After adding '.gsi-vertical' and '.gsi-transition' and and '.gsi-step-no-available'</h4>
+
+            <div class="demo-vertical">
+                <ul class="gsi-step-indicator triangle gsi-style-2   gsi-vertical gsi-transition  ">
+                    <li class="current">
+                        <span>
+                            <span class="number">1</span>
+                            <span class="desc">
+                                <label>Account</label>
+                                <span>Basic account info</span>
+                            </span>
+                        </span>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">2</span>
+                            <span class="desc">
+                                <label>Personal</label>
+                                <span>Personal details</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">3</span>
+                            <span class="desc">
+                                <label>Payment</label>
+                                <span>Select method</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#1">
+                            <span class="number">4</span>
+                            <span class="desc">
+                                <label>Confirm</label>
+                                <span>Review detail</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="gsi-step-indicator triangle gsi-style-2   gsi-vertical gsi-transition gsi-step-no-available">
+                    <li class="current">
+                        <span>
+                            <span class="number">1</span>
+                            <span class="desc">
+                                <label>Account</label>
+                                <span>Basic account info</span>
+                            </span>
+                        </span>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">2</span>
+                            <span class="desc">
+                                <label>Personal</label>
+                                <span>Personal details</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">3</span>
+                            <span class="desc">
+                                <label>Payment</label>
+                                <span>Select method</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#1">
+                            <span class="number">4</span>
+                            <span class="desc">
+                                <label>Confirm</label>
+                                <span>Review detail</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+
+        </section>
+
+
+
+        <!-- END Step Indicator-2 -->
+        <!-- BEGIN Step Indicator-3 -->
+        <section class="example">
+            <h2>Style 3</h2>
+            <ul class="gsi-step-indicator triangle gsi-style-3  ">
+                <li>
+                    <a href="#0">
+                        <span class="number">1</span>
+                        <span class="desc">
+                            <label>Account</label>
+                            <span>Basic account info</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="number">2</span>
+                        <span class="desc">
+                            <label>Personal</label>
+                            <span>Personal details </span>
+                        </span>
+                    </a>
+                </li>
+                <li class="current">
+                    <span>
+                        <span class="number">3</span>
+                        <span class="desc">
+                            <label>Payment</label>
+                            <span>Select method</span>
+                        </span>
+                    </span>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="number">4</span>
+                        <span class="desc">
+                            <label>Confirm</label>
+                            <span>Review detail</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+
+            <h4>After adding '.gsi-vertical' and '.gsi-transition' and and '.gsi-step-no-available'</h4>
+
+            <div class="demo-vertical">
+                <ul class="gsi-step-indicator triangle gsi-style-3   gsi-vertical gsi-transition">
+                    <li>
+                        <a href="#0">
+                            <span class="number">1</span>
+                            <span class="desc">
+                                <label>Account</label>
+                                <span>Basic account info</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">2</span>
+                            <span class="desc">
+                                <label>Personal</label>
+                                <span>Personal details </span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="current">
+                        <span>
+                            <span class="number">3</span>
+                            <span class="desc">
+                                <label>Payment</label>
+                                <span>Select method</span>
+                            </span>
+                        </span>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">4</span>
+                            <span class="desc">
+                                <label>Confirm</label>
+                                <span>Review detail</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="gsi-step-indicator triangle gsi-style-3   gsi-vertical gsi-transition gsi-step-no-available">
+                    <li>
+                        <a href="#0">
+                            <span class="number">1</span>
+                            <span class="desc">
+                                <label>Account</label>
+                                <span>Basic account info</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="current">
+                        <span>
+                            <span class="number">2</span>
+                            <span class="desc">
+                                <label>Personal</label>
+                                <span>Personal details </span>
+                            </span>
+                        </span>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="number">3</span>
+                            <span class="desc">
+                                <label>Payment</label>
+                                <span>Select method</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">4</span>
+                            <span class="desc">
+                                <label>Confirm</label>
+                                <span>Review detail</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <!-- END Step Indicator-3 -->
+        <!-- BEGIN Step Indicator-4 -->
+        <section class="example">
+            <h2>Style 4</h2>
+            <ul class=" gsi-style-4 ">
+                <li>
+                    <a href="#0">
+                        <span class="number">1</span>
+                        <span class="desc">
+                            <label>Account</label>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="number">2</span>
+                        <span class="desc">
+                            <label>Personal</label>
+                        </span>
+                    </a>
+                </li>
+                <li class="current">
+                    <span>
+                        <span class="number">3</span>
+                        <span class="desc">
+                            <label>Payment</label>
+                        </span>
+                    </span>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="number">4</span>
+                        <span class="desc">
+                            <label>Confirm</label>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+
+            <h4>After adding '.gsi-vertical' and '.gsi-transition' and and '.gsi-step-no-available'</h4>
+
+            <div class="demo-vertical">
+                <ul class=" gsi-style-4   gsi-vertical gsi-transition ">
+                    <li>
+                        <a href="#0">
+                            <span class="number">1</span>
+                            <span class="desc">
+                                <label>Account</label>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">2</span>
+                            <span class="desc">
+                                <label>Personal</label>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="current">
+                        <span>
+                            <span class="number">3</span>
+                            <span class="desc">
+                                <label>Payment</label>
+                            </span>
+                        </span>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">4</span>
+                            <span class="desc">
+                                <label>Confirm</label>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class=" gsi-style-4   gsi-vertical gsi-transition gsi-step-no-available">
+                    <li>
+                        <a href="#0">
+                            <span class="number">1</span>
+                            <span class="desc">
+                                <label>Account</label>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">2</span>
+                            <span class="desc">
+                                <label>Personal</label>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="current">
+                        <span>
+                            <span class="number">3</span>
+                            <span class="desc">
+                                <label>Payment</label>
+                            </span>
+                        </span>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">4</span>
+                            <span class="desc">
+                                <label>Confirm</label>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+
+
+        </section>
+        <!-- END Step Indicator-4 -->
+        <!-- BEGIN Step Indicator-5 -->
+        <section class="example">
+            <h2>Style 5</h2>
+            <ul class=" gsi-style-5   ">
+                <li class="current">
+                    <span>
+                        <span class="number">1</span>
+                        <span class="desc">
+                            <label>Account</label>
+                            <span>Basic account info</span>
+                        </span>
+                    </span>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="number">2</span>
+                        <span class="desc">
+                            <label>Personal</label>
+                            <span>Personal details </span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="number">3</span>
+                        <span class="desc">
+                            <label>Payment</label>
+                            <span>Select method</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="number">4</span>
+                        <span class="desc">
+                            <label>Confirm</label>
+                            <span>Review detail</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class=" gsi-style-5   gsi-step-no-available">
+                <li>
+                    <a href="#0">
+                        <span class="number">1</span>
+                        <span class="desc">
+                            <label>Account</label>
+                            <span>Basic account info</span>
+                        </span>
+                    </a>
+                </li>
+                <li class="current">
+                    <span>
+                        <span class="number">2</span>
+                        <span class="desc">
+                            <label>Personal</label>
+                            <span>Personal details </span>
+                        </span>
+                    </span>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="number">3</span>
+                        <span class="desc">
+                            <label>Payment</label>
+                            <span>Select method</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="number">4</span>
+                        <span class="desc">
+                            <label>Confirm</label>
+                            <span>Review detail</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+
+            <br />
+            <ul class=" gsi-style-5   gsi-number-circle gsi-transition">
+                <li class="current">
+                    <span>
+                        <span class="number">1</span>
+                        <span class="desc">
+                            <label>Account</label>
+                            <span>Basic account info</span>
+                        </span>
+                    </span>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="number">2</span>
+                        <span class="desc">
+                            <label>Personal</label>
+                            <span>Personal details </span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="number">3</span>
+                        <span class="desc">
+                            <label>Payment</label>
+                            <span>Select method</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="number">4</span>
+                        <span class="desc">
+                            <label>Confirm</label>
+                            <span>Review detail</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+
+
+            <ul class=" gsi-style-5   gsi-number-circle gsi-step-no-available gsi-transition">
+                <li>
+                    <a href="#">
+                        <span class="number">1</span>
+                        <span class="desc">
+                            <label>Account</label>
+                            <span>Basic account info</span>
+                        </span>
+                    </a>
+                </li>
+                <li class="current">
+                    <span>
+                        <span class="number">2</span>
+                        <span class="desc">
+                            <label>Personal</label>
+                            <span>Personal details </span>
+                        </span>
+                    </span>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="number">3</span>
+                        <span class="desc">
+                            <label>Payment</label>
+                            <span>Select method</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="number">4</span>
+                        <span class="desc">
+                            <label>Confirm</label>
+                            <span>Review detail</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+
+        </section>
+        <!-- END Step Indicator-5 -->
+
+        <!-- BEGIN Step Indicator-6 -->
+        <section class="example">
+            <h2>Style 6</h2>
+            <ul class="gsi-style-6   ">
+                <li>
+                    <a href="#0">
+                        <span class="number">1</span>
+                        <span class="desc">
+                            <label>Account</label>
+                            <span>Basic account info</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="number">2</span>
+                        <span class="desc">
+                            <label>Personal</label>
+                            <span>Personal details </span>
+                        </span>
+                    </a>
+                </li>
+                <li class="current">
+                    <span>
+                        <span class="number">3</span>
+                        <span class="desc">
+                            <label>Payment</label>
+                            <span>Select method</span>
+                        </span>
+                    </span>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="number">4</span>
+                        <span class="desc">
+                            <label>Confirm</label>
+                            <span>Review detail</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+          
+            <ul class="gsi-style-6   gsi-step-no-available">
+                <li>
+                    <a href="#0">
+                        <span class="number">1</span>
+                        <span class="desc">
+                            <label>Account</label>
+                            <span>Basic account info</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="number">2</span>
+                        <span class="desc">
+                            <label>Personal</label>
+                            <span>Personal details </span>
+                        </span>
+                    </a>
+                </li>
+                <li class="current">
+                    <span>
+                        <span class="number">3</span>
+                        <span class="desc">
+                            <label>Payment</label>
+                            <span>Select method</span>
+                        </span>
+                    </span>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="number">4</span>
+                        <span class="desc">
+                            <label>Confirm</label>
+                            <span>Review detail</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+
+            <h4>After adding '.gsi-vertical' and '.gsi-transition' and and '.gsi-step-no-available'</h4>
+
+            <div class="demo-vertical">
+                <ul class="gsi-style-6   gsi-vertical gsi-transition">
+                    <li>
+                        <a href="#0">
+                            <span class="number">1</span>
+                            <span class="desc">
+                                <label>Account</label>
+                                <span>Basic account info</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">2</span>
+                            <span class="desc">
+                                <label>Personal</label>
+                                <span>Personal details </span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="current">
+                        <span>
+                            <span class="number">3</span>
+                            <span class="desc">
+                                <label>Payment</label>
+                                <span>Select method</span>
+                            </span>
+                        </span>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">4</span>
+                            <span class="desc">
+                                <label>Confirm</label>
+                                <span>Review detail</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="gsi-style-6   gsi-step-no-available gsi-vertical gsi-transition">
+                    <li>
+                        <a href="#0">
+                            <span class="number">1</span>
+                            <span class="desc">
+                                <label>Account</label>
+                                <span>Basic account info</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">2</span>
+                            <span class="desc">
+                                <label>Personal</label>
+                                <span>Personal details </span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="current">
+                        <span>
+                            <span class="number">3</span>
+                            <span class="desc">
+                                <label>Payment</label>
+                                <span>Select method</span>
+                            </span>
+                        </span>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">4</span>
+                            <span class="desc">
+                                <label>Confirm</label>
+                                <span>Review detail</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div> 
+
+        </section>
+        <!-- END Step Indicator-6 -->
+        <!-- BEGIN Step Indicator-7 -->
+        <section class="example">
+            <h2>Style 7</h2>
+            <br />
+            <ul class="gsi-style-7   border-top ">
+                <li>
+                    <a href="#0">
+                        <span class="number">1</span>
+                        <span class="desc">
+                            <label>Account</label>
+                            <span>Basic account info</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="number">2</span>
+                        <span class="desc">
+                            <label>Personal</label>
+                            <span>Personal details </span>
+                        </span>
+                    </a>
+                </li>
+                <li class="current">
+                    <span>
+                        <span class="number">3</span>
+                        <span class="desc">
+                            <label>Payment</label>
+                            <span>Select method</span>
+                        </span>
+                    </span>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="number">4</span>
+                        <span class="desc">
+                            <label>Confirm</label>
+                            <span>Review detail</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="gsi-style-7   border-right">
+                <li>
+                    <a href="#0">
+                        <span class="number">1</span>
+                        <span class="desc">
+                            <label>Account</label>
+                            <span>Basic account info</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="number">2</span>
+                        <span class="desc">
+                            <label>Personal</label>
+                            <span>Personal details </span>
+                        </span>
+                    </a>
+                </li>
+                <li class="current">
+                    <span>
+                        <span class="number">3</span>
+                        <span class="desc">
+                            <label>Payment</label>
+                            <span>Select method</span>
+                        </span>
+                    </span>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="number">4</span>
+                        <span class="desc">
+                            <label>Confirm</label>
+                            <span>Review detail</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="gsi-style-7   border-bottom">
+                <li>
+                    <a href="#0">
+                        <span class="number">1</span>
+                        <span class="desc">
+                            <label>Account</label>
+                            <span>Basic account info</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="number">2</span>
+                        <span class="desc">
+                            <label>Personal</label>
+                            <span>Personal details </span>
+                        </span>
+                    </a>
+                </li>
+                <li class="current">
+                    <span>
+                        <span class="number">3</span>
+                        <span class="desc">
+                            <label>Payment</label>
+                            <span>Select method</span>
+                        </span>
+                    </span>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="number">4</span>
+                        <span class="desc">
+                            <label>Confirm</label>
+                            <span>Review detail</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="gsi-style-7   border-left ">
+                <li>
+                    <a href="#0">
+                        <span class="number">1</span>
+                        <span class="desc">
+                            <label>Account</label>
+                            <span>Basic account info</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="number">2</span>
+                        <span class="desc">
+                            <label>Personal</label>
+                            <span>Personal details </span>
+                        </span>
+                    </a>
+                </li>
+                <li class="current">
+                    <span>
+                        <span class="number">3</span>
+                        <span class="desc">
+                            <label>Payment</label>
+                            <span>Select method</span>
+                        </span>
+                    </span>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="number">4</span>
+                        <span class="desc">
+                            <label>Confirm</label>
+                            <span>Review detail</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+
+            <h4>After adding '.gsi-vertical' and '.gsi-transition' and and '.gsi-step-no-available'</h4>
+
+            <div class="demo-vertical">
+                <ul class="gsi-style-7   border-top gsi-step-no-available gsi-vertical gsi-transition">
+                    <li>
+                        <a href="#0">
+                            <span class="number">1</span>
+                            <span class="desc">
+                                <label>Account</label>
+                                <span>Basic account info</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">2</span>
+                            <span class="desc">
+                                <label>Personal</label>
+                                <span>Personal details </span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="current">
+                        <span>
+                            <span class="number">3</span>
+                            <span class="desc">
+                                <label>Payment</label>
+                                <span>Select method</span>
+                            </span>
+                        </span>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">4</span>
+                            <span class="desc">
+                                <label>Confirm</label>
+                                <span>Review detail</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="gsi-style-7   border-right gsi-step-no-available gsi-vertical gsi-transition">
+                    <li>
+                        <a href="#0">
+                            <span class="number">1</span>
+                            <span class="desc">
+                                <label>Account</label>
+                                <span>Basic account info</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">2</span>
+                            <span class="desc">
+                                <label>Personal</label>
+                                <span>Personal details </span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="current">
+                        <span>
+                            <span class="number">3</span>
+                            <span class="desc">
+                                <label>Payment</label>
+                                <span>Select method</span>
+                            </span>
+                        </span>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">4</span>
+                            <span class="desc">
+                                <label>Confirm</label>
+                                <span>Review detail</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="gsi-style-7   border-bottom gsi-step-no-available gsi-vertical gsi-transition">
+                    <li>
+                        <a href="#0">
+                            <span class="number">1</span>
+                            <span class="desc">
+                                <label>Account</label>
+                                <span>Basic account info</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">2</span>
+                            <span class="desc">
+                                <label>Personal</label>
+                                <span>Personal details </span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="current">
+                        <span>
+                            <span class="number">3</span>
+                            <span class="desc">
+                                <label>Payment</label>
+                                <span>Select method</span>
+                            </span>
+                        </span>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">4</span>
+                            <span class="desc">
+                                <label>Confirm</label>
+                                <span>Review detail</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="gsi-style-7   border-left gsi-step-no-available gsi-vertical gsi-transition">
+                    <li>
+                        <a href="#0">
+                            <span class="number">1</span>
+                            <span class="desc">
+                                <label>Account</label>
+                                <span>Basic account info</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">2</span>
+                            <span class="desc">
+                                <label>Personal</label>
+                                <span>Personal details </span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="current">
+                        <span>
+                            <span class="number">3</span>
+                            <span class="desc">
+                                <label>Payment</label>
+                                <span>Select method</span>
+                            </span>
+                        </span>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">4</span>
+                            <span class="desc">
+                                <label>Confirm</label>
+                                <span>Review detail</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+
+
+            <h4>After adding '.gsi-number-circle' and '. gsi-transition'</h4>
+          
+        
+       
+
+
+                <ul class="gsi-style-7   border-top gsi-number-circle  gsi-transition ">
+                    <li>
+                        <a href="#0">
+                            <span class="number">1</span>
+                            <span class="desc">
+                                <label>Account</label>
+                                <span>Basic account info</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">2</span>
+                            <span class="desc">
+                                <label>Personal</label>
+                                <span>Personal details </span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="current">
+                        <span>
+                            <span class="number">3</span>
+                            <span class="desc">
+                                <label>Payment</label>
+                                <span>Select method</span>
+                            </span>
+                        </span>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">4</span>
+                            <span class="desc">
+                                <label>Confirm</label>
+                                <span>Review detail</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="gsi-style-7   border-right gsi-number-circle   gsi-transition">
+                    <li>
+                        <a href="#0">
+                            <span class="number">1</span>
+                            <span class="desc">
+                                <label>Account</label>
+                                <span>Basic account info</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">2</span>
+                            <span class="desc">
+                                <label>Personal</label>
+                                <span>Personal details </span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="current">
+                        <span>
+                            <span class="number">3</span>
+                            <span class="desc">
+                                <label>Payment</label>
+                                <span>Select method</span>
+                            </span>
+                        </span>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">4</span>
+                            <span class="desc">
+                                <label>Confirm</label>
+                                <span>Review detail</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="gsi-style-7   border-bottom gsi-number-circle  gsi-transition">
+                    <li>
+                        <a href="#0">
+                            <span class="number">1</span>
+                            <span class="desc">
+                                <label>Account</label>
+                                <span>Basic account info</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">2</span>
+                            <span class="desc">
+                                <label>Personal</label>
+                                <span>Personal details </span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="current">
+                        <span>
+                            <span class="number">3</span>
+                            <span class="desc">
+                                <label>Payment</label>
+                                <span>Select method</span>
+                            </span>
+                        </span>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">4</span>
+                            <span class="desc">
+                                <label>Confirm</label>
+                                <span>Review detail</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="gsi-style-7   border-left gsi-number-circle   gsi-transition">
+                    <li>
+                        <a href="#0">
+                            <span class="number">1</span>
+                            <span class="desc">
+                                <label>Account</label>
+                                <span>Basic account info</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">2</span>
+                            <span class="desc">
+                                <label>Personal</label>
+                                <span>Personal details </span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="current">
+                        <span>
+                            <span class="number">3</span>
+                            <span class="desc">
+                                <label>Payment</label>
+                                <span>Select method</span>
+                            </span>
+                        </span>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">4</span>
+                            <span class="desc">
+                                <label>Confirm</label>
+                                <span>Review detail</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+      
+
+            <h4>After adding '.gsi-vertical' and '.gsi-transition' and and '.gsi-step-no-available'</h4>
+
+            <div class="demo-vertical">
+                <ul class="gsi-style-7   border-top gsi-number-circle gsi-transition gsi-step-no-available">
+                    <li>
+                        <a href="#0">
+                            <span class="number">1</span>
+                            <span class="desc">
+                                <label>Account</label>
+                                <span>Basic account info</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">2</span>
+                            <span class="desc">
+                                <label>Personal</label>
+                                <span>Personal details </span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="current">
+                        <span>
+                            <span class="number">3</span>
+                            <span class="desc">
+                                <label>Payment</label>
+                                <span>Select method</span>
+                            </span>
+                        </span>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">4</span>
+                            <span class="desc">
+                                <label>Confirm</label>
+                                <span>Review detail</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="gsi-style-7   border-right gsi-number-circle  gsi-transition gsi-step-no-available">
+                    <li>
+                        <a href="#0">
+                            <span class="number">1</span>
+                            <span class="desc">
+                                <label>Account</label>
+                                <span>Basic account info</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">2</span>
+                            <span class="desc">
+                                <label>Personal</label>
+                                <span>Personal details </span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="current">
+                        <span>
+                            <span class="number">3</span>
+                            <span class="desc">
+                                <label>Payment</label>
+                                <span>Select method</span>
+                            </span>
+                        </span>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">4</span>
+                            <span class="desc">
+                                <label>Confirm</label>
+                                <span>Review detail</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="gsi-style-7   border-bottom gsi-number-circle  gsi-transition gsi-step-no-available">
+                    <li>
+                        <a href="#0">
+                            <span class="number">1</span>
+                            <span class="desc">
+                                <label>Account</label>
+                                <span>Basic account info</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">2</span>
+                            <span class="desc">
+                                <label>Personal</label>
+                                <span>Personal details </span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="current">
+                        <span>
+                            <span class="number">3</span>
+                            <span class="desc">
+                                <label>Payment</label>
+                                <span>Select method</span>
+                            </span>
+                        </span>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">4</span>
+                            <span class="desc">
+                                <label>Confirm</label>
+                                <span>Review detail</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="gsi-style-7   border-left gsi-number-circle gsi-transition gsi-step-no-available">
+                    <li>
+                        <a href="#0">
+                            <span class="number">1</span>
+                            <span class="desc">
+                                <label>Account</label>
+                                <span>Basic account info</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">2</span>
+                            <span class="desc">
+                                <label>Personal</label>
+                                <span>Personal details </span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="current">
+                        <span>
+                            <span class="number">3</span>
+                            <span class="desc">
+                                <label>Payment</label>
+                                <span>Select method</span>
+                            </span>
+                        </span>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">4</span>
+                            <span class="desc">
+                                <label>Confirm</label>
+                                <span>Review detail</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div> 
+
+        </section>
+        <!-- END Step Indicator-7 -->
+        <!-- BEGIN Step Indicator-8-->
+        <section class="example">
+            <h2>Style 8</h2>
+            <ul class=" gsi-style-8   ">
+                <li class="current">
+                    <span>
+                        <span class="number">1</span>
+                        <span class="desc">
+                            <label>Account</label>
+                            <span>Basic account info</span>
+                        </span>
+                    </span>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="number">2</span>
+                        <span class="desc">
+                            <label>Personal</label>
+                            <span>Personal details </span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="number">3</span>
+                        <span class="desc">
+                            <label>Payment</label>
+                            <span>Select method</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="number">4</span>
+                        <span class="desc">
+                            <label>Confirm</label>
+                            <span>Review detail</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+            <br />
+            <ul class=" gsi-style-8   gsi-step-no-available">
+                <li class="visited">
+                    <a href="#0">
+                        <span class="number">1</span>
+                        <span class="desc">
+                            <label>Account</label>
+                            <span>Basic account info</span>
+                        </span>
+                    </a>
+                </li>
+                <li class="current">
+                    <span>
+                        <span class="number">2</span>
+                        <span class="desc">
+                            <label>Personal</label>
+                            <span>Personal details </span>
+                        </span>
+                    </span>
+                </li>
+                <li class="">
+                    <a href="#0">
+                        <span class="number">3</span>
+                        <span class="desc">
+                            <label>Payment</label>
+                            <span>Select method</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="number">4</span>
+                        <span class="desc">
+                            <label>Confirm</label>
+                            <span>Review detail</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+
+            <h4>After adding '.gsi-vertical' and '.gsi-transition' and and '.gsi-step-no-available'</h4>
+
+            <div class="demo-vertical">
+                <ul class=" gsi-style-8   gsi-vertical gsi-transition gsi-step-no-available">
+                    <li class="current">
+                        <span>
+                            <span class="number">1</span>
+                            <span class="desc">
+                                <label>Account</label>
+                                <span>Basic account info</span>
+                            </span>
+                        </span>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">2</span>
+                            <span class="desc">
+                                <label>Personal</label>
+                                <span>Personal details </span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">3</span>
+                            <span class="desc">
+                                <label>Payment</label>
+                                <span>Select method</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">4</span>
+                            <span class="desc">
+                                <label>Confirm</label>
+                                <span>Review detail</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+                <br />
+                <ul class=" gsi-style-8   gsi-vertical gsi-transition gsi-step-no-available">
+                    <li class="visited">
+                        <a href="#0">
+                            <span class="number">1</span>
+                            <span class="desc">
+                                <label>Account</label>
+                                <span>Basic account info</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="current">
+                        <span>
+                            <span class="number">2</span>
+                            <span class="desc">
+                                <label>Personal</label>
+                                <span>Personal details </span>
+                            </span>
+                        </span>
+                    </li>
+                    <li class="">
+                        <a href="#0">
+                            <span class="number">3</span>
+                            <span class="desc">
+                                <label>Payment</label>
+                                <span>Select method</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">4</span>
+                            <span class="desc">
+                                <label>Confirm</label>
+                                <span>Review detail</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div> 
+
+
+            <h4>After adding '.gsi-number-circle' and '.gsi-transition'</h4>
+            <ul class=" gsi-style-8   gsi-number-circle gsi-transition">
+                <li class="visited">
+                    <a href="#0">
+                        <span class="number">1</span>
+                        <span class="desc">
+                            <label>Account</label>
+                            <span>Basic account info</span>
+                        </span>
+                    </a>
+                </li>
+                <li class="current">
+                    <span>
+                        <span class="number">2</span>
+                        <span class="desc">
+                            <label>Personal</label>
+                            <span>Personal details </span>
+                        </span>
+                    </span>
+                </li>
+                <li class="">
+                    <a href="#0">
+                        <span class="number">3</span>
+                        <span class="desc">
+                            <label>Payment</label>
+                            <span>Select method</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="number">4</span>
+                        <span class="desc">
+                            <label>Confirm</label>
+                            <span>Review detail</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+
+
+
+            <h4>After adding '.gsi-vertical' and '.gsi-transition' and and '.gsi-step-no-available'</h4>
+
+            <div class="demo-vertical">
+                <ul class=" gsi-style-8   gsi-number-circle  gsi-vertical gsi-transition ">
+                    <li class="current">
+                        <span>
+                            <span class="number">1</span>
+                            <span class="desc">
+                                <label>Account</label>
+                                <span>Basic account info</span>
+                            </span>
+                        </span>
+                    </li>
+                    <li >
+                        <a href="#0">
+                            <span class="number">2</span>
+                            <span class="desc">
+                                <label>Personal</label>
+                                <span>Personal details </span>
+                            </span>
+                            </a>
+</li>
+                    <li class="">
+                        <a href="#0">
+                            <span class="number">3</span>
+                            <span class="desc">
+                                <label>Payment</label>
+                                <span>Select method</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">4</span>
+                            <span class="desc">
+                                <label>Confirm</label>
+                                <span>Review detail</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class=" gsi-style-8   gsi-number-circle  gsi-vertical gsi-transition gsi-step-no-available">
+                    <li class="visited">
+                        <a href="#0">
+                            <span class="number">1</span>
+                            <span class="desc">
+                                <label>Account</label>
+                                <span>Basic account info</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="current">
+                        <span>
+                            <span class="number">2</span>
+                            <span class="desc">
+                                <label>Personal</label>
+                                <span>Personal details </span>
+                            </span>
+                        </span>
+                    </li>
+                    <li class="">
+                        <a href="#0">
+                            <span class="number">3</span>
+                            <span class="desc">
+                                <label>Payment</label>
+                                <span>Select method</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="number">4</span>
+                            <span class="desc">
+                                <label>Confirm</label>
+                                <span>Review detail</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div> 
+        </section>
+        <!-- END Step Indicator-8 -->
+
+        <!-- BEGIN Step Indicator-9-->
+        <section class="example">
+            <h2>Style 9</h2>
+            <ul class="gsi-style-9   ">
+                <li>
+                    <a href="#0">
+                        <span class="desc">
+                            Account
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="desc">
+                            Personal
+                        </span>
+                    </a>
+                </li>
+                <li class="current">
+                    <span>
+                        <span class="desc">
+                            Payment
+                        </span>
+                    </span>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="desc">
+                            Confirm
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        
+            <ul class="gsi-style-9   ">
+                <li class="visited">
+                    <a href="#0">
+                        <span class="desc">
+                            Account
+                        </span>
+                    </a>
+                </li>
+                <li class="visited">
+                    <a href="#0">
+                        <span class="desc">
+                            Personal
+                        </span>
+                    </a>
+                </li>
+                <li class="current">
+                    <span>
+                        <span class="desc">
+                            Payment
+                        </span>
+                    </span>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="desc">
+                            Confirm
+                        </span>
+                    </a>
+                </li>
+            </ul>
+
+            <h4>After adding '.gsi-vertical' </h4>
+
+            <div class="demo-vertical">
+                <ul class="gsi-style-9   gsi-vertical">
+                    <li>
+                        <a href="#0">
+                            <span class="desc">
+                                Account
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="desc">
+                                Personal
+                            </span>
+                        </a>
+                    </li>
+                    <li class="current">
+                        <span>
+                            <span class="desc">
+                                Payment
+                            </span>
+                        </span>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="desc">
+                                Confirm
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="gsi-style-9   gsi-vertical">
+                    <li class="visited">
+                        <a href="#0">
+                            <span class="desc">
+                                Account
+                            </span>
+                        </a>
+                    </li>
+                    <li class="visited">
+                        <a href="#0">
+                            <span class="desc">
+                                Personal
+                            </span>
+                        </a>
+                    </li>
+                    <li class="current">
+                        <span>
+                            <span class="desc">
+                                Payment
+                            </span>
+                        </span>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="desc">
+                                Confirm
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+
+            </div> 
+        </section>
+        <!-- END Step Indicator-9 -->
+        <!-- BEGIN Step Indicator-10-->
+        <section class="example">
+            <h2>Style 10</h2>
+            <ul class="gsi-style-10   ">
+                <li>
+                    <a href="#0">
+                        <span class="desc">
+                            Account
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="desc">
+                            Personal
+                        </span>
+                    </a>
+                </li>
+                <li class="current">
+                    <span>
+                        <span class="desc">
+                            Payment
+                        </span>
+                    </span>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="desc">
+                            Confirm
+                        </span>
+                    </a>
+                </li>
+            </ul>
+            <br />
+            <ul class="gsi-style-10   ">
+                <li class="visited">
+                    <a href="#0">
+                        <span class="desc">
+                            Account
+                        </span>
+                    </a>
+                </li>
+                <li class="visited">
+                    <a href="#0">
+                        <span class="desc">
+                            Personal
+                        </span>
+                    </a>
+                </li>
+                <li class="current">
+                    <span>
+                        <span class="desc">
+                            Payment
+                        </span>
+                    </span>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="desc">
+                            Confirm
+                        </span>
+                    </a>
+                </li>
+            </ul>       
+            
+            <h4>After adding '.gsi-vertical' </h4>
+
+            <div class="demo-vertical">
+                <ul class="gsi-style-10   gsi-vertical">
+                    <li>
+                        <a href="#0">
+                            <span class="desc">
+                                Account
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="desc">
+                                Personal
+                            </span>
+                        </a>
+                    </li>
+                    <li class="current">
+                        <span>
+                            <span class="desc">
+                                Payment
+                            </span>
+                        </span>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="desc">
+                                Confirm
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+                <br />
+                <ul class="gsi-style-10   gsi-vertical">
+                    <li class="visited">
+                        <a href="#0">
+                            <span class="desc">
+                                Account
+                            </span>
+                        </a>
+                    </li>
+                    <li class="visited">
+                        <a href="#0">
+                            <span class="desc">
+                                Personal
+                            </span>
+                        </a>
+                    </li>
+                    <li class="current">
+                        <span>
+                            <span class="desc">
+                                Payment
+                            </span>
+                        </span>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="desc">
+                                Confirm
+                            </span>
+                        </a>
+                    </li>
+                </ul>     
+            </div>   
+        </section>
+        <!-- END Step Indicator-10 -->
+        <!-- BEGIN Step Indicator-11-->
+        <section class="example">
+            <h2>Style 11</h2>
+            <ul class="gsi-style-11   ">
+                <li>
+                    <a href="#0">
+                        <span class="desc">
+                            Account
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="desc">
+                            Personal
+                        </span>
+                    </a>
+                </li>
+                <li class="current">
+                    <span>
+                        <span class="desc">
+                            Payment
+                        </span>
+                    </span>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="desc">
+                            Confirm
+                        </span>
+                    </a>
+                </li>
+            </ul>
+
+
+            <h4>After adding '.gsi-vertical'</h4>
+
+            <div class="demo-vertical">
+                <ul class="gsi-style-11   gsi-vertical">
+                    <li>
+                        <a href="#0">
+                            <span class="desc">
+                                Account
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="desc">
+                                Personal
+                            </span>
+                        </a>
+                    </li>
+                    <li class="current">
+                        <span>
+                            <span class="desc">
+                                Payment
+                            </span>
+                        </span>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="desc">
+                                Confirm
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="gsi-style-11   gsi-vertical">
+                    <li class="visited">
+                        <a href="#0">
+                            <span class="desc">
+                                Account
+                            </span>
+                        </a>
+                    </li>
+                    <li class="visited">
+                        <a href="#0">
+                            <span class="desc">
+                                Personal
+                            </span>
+                        </a>
+                    </li>
+                    <li class="current">
+                        <span>
+                            <span class="desc">
+                                Payment
+                            </span>
+                        </span>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="desc">
+                                Confirm
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div> 
+        </section>
+        <!-- END Step Indicator-11 -->
+        <!-- BEGIN Step Indicator-12-->
+        <section class="example">
+            <h2>Style 12</h2>
+            <ul class="gsi-style-12   ">
+                <li>
+                    <a href="#0">
+                        <span class="desc">
+                            Account
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="desc">
+                            Personal
+                        </span>
+                    </a>
+                </li>
+                <li class="current">
+                    <span>
+                        <span class="desc">
+                            Payment
+                        </span>
+                    </span>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="desc">
+                            Confirm
+                        </span>
+                    </a>
+                </li>
+            </ul>
+
+            <h4>After adding '.gsi-vertical' </h4>
+
+            <div class="demo-vertical">
+                <ul class="gsi-style-12   gsi-vertical">
+                    <li>
+                        <a href="#0">
+                            <span class="desc">
+                                Account
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="desc">
+                                Personal
+                            </span>
+                        </a>
+                    </li>
+                    <li class="current">
+                        <span>
+                            <span class="desc">
+                                Payment
+                            </span>
+                        </span>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="desc">
+                                Confirm
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div> 
+        </section>
+        <!-- END Step Indicator-12 -->
+        <!-- BEGIN Step Indicator-13-->
+        <section class="example">
+            <h2>Style 13</h2>
+            <ul class="gsi-style-13   ">
+                <li >
+                    <a href="#0">
+                        <span class="desc">
+                            Account
+                        </span>
+                        <span class="number">1</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="desc">
+                            Personal
+                        </span>
+                        <span class="number">2</span>
+                    </a>
+                </li>
+                <li class="current">
+                    <span>
+                        <span class="desc">
+                            Payment
+                        </span>
+                        <span class="number">3</span>
+                    </span>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="desc">
+                            Confirm
+                        </span>
+                        <span class="number">4</span>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="gsi-style-13   ">
+                <li class="visited">
+                    <a href="#0">
+                        <span class="desc">
+                            Account
+                        </span>
+                        <span class="number">1</span>
+                    </a>
+                </li>
+                <li class="visited">
+                    <a href="#0">
+                        <span class="desc">
+                            Personal
+                        </span>
+                        <span class="number">2</span>
+                    </a>
+                </li>
+                <li class="current">
+                    <span>
+                        <span class="desc">
+                            Payment
+                        </span>
+                        <span class="number">3</span>
+                    </span>
+                </li>
+                <li>
+                    <a href="#0">
+                        <span class="desc">
+                            Confirm
+                        </span>
+                        <span class="number">4</span>
+                    </a>
+                </li>
+            </ul>
+            <h4>After adding '.gsi-vertical' and '.gsi-transition' and '.gsi-step-no-available'</h4>
+
+            <div class="demo-vertical">
+                <ul class="gsi-style-13   gsi-vertical gsi-transition gsi-step-no-available ">
+                    <li>
+                        <a href="#0">
+                            <span class="desc">
+                                Account
+                            </span>
+                            <span class="number">1</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="desc">
+                                Personal
+                            </span>
+                            <span class="number">2</span>
+                        </a>
+                    </li>
+                    <li class="current">
+                        <span>
+                            <span class="desc">
+                                Payment
+                            </span>
+                            <span class="number">3</span>
+                        </span>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="desc">
+                                Confirm
+                            </span>
+                            <span class="number">4</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="gsi-style-13   gsi-vertical gsi-transition gsi-step-no-available ">
+                    <li class="visited">
+                        <a href="#0">
+                            <span class="desc">
+                                Account
+                            </span>
+                            <span class="number">1</span>
+                        </a>
+                    </li>
+                    <li class="current">
+                        <a href="#0">
+                            <span class="desc">
+                                Personal
+                            </span>
+                            <span class="number">2</span>
+                        </a>
+                    </li>
+                    <li >
+                        <a href="#">
+                            <span class="desc">
+                                Payment
+                            </span>
+                            <span class="number">3</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#0">
+                            <span class="desc">
+                                Confirm
+                            </span>
+                            <span class="number">4</span>
+                        </a>
+                    </li>
+                </ul>
+            </div> 
+        </section>
+        <!-- END Step Indicator-13 -->
+
+
+    </div>
+    <!-- End Step Indicator -->
+
+    <!-- JS -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="assets/js/jquery-1.11.3.min.js"></script>
+    <script src="assets/js/demo.js"></script>
+
+
+
+</body>
+</html>

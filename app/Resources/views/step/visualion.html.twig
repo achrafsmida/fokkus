@@ -1,38 +1,109 @@
   {% extends 'base.html.twig' %}
 
 {% block body %}
+
+
+    <link href="{{ asset('bundles/fokkusv1/Grumpy/assets/css/gsi-step-indicator.min.css') }}" rel="stylesheet" />
+      <link rel="stylesheet" href="{{ asset('bundles/fokkusv1/vendor/animate.css/animate.min.css') }}">
+
+    <!--Import demo css-->
+    <link href="{{ asset('bundles/fokkusv1/Grumpy/assets/css/demo.min.css') }}" rel="stylesheet" /> 
+
+
   <script src="{{ asset('bundles/fokkusv1/vendor/jquery-validation/dist/jquery.validate.js') }}"></script>
 
        <script src="{{ asset('bundles/fokkusv1/vendor/jquery.steps/build/jquery.steps.js') }}"></script>
    <!-- Demo-->
    <script src="{{ asset('bundles/fokkusv1/app/js/demo/demo-wizard.js') }}"></script>
+   
+   
+   
+      <script src="{{ asset('bundles/fokkusv1/vendor/bootstrap-filestyle/src/bootstrap-filestyle.js') }}"></script>
+
+       <script src="{{ asset('bundles/fokkusv1/Grumpy/assets/js/demo.js') }}"></script>
+
 <section>
          <!-- Page content-->
+		 
+		 
+		 
+		 
          <div class="content-wrapper">
             <h3>Steps</h3>
             <div class="panel panel-default">
                <div class="panel-heading">Steps</div>
                <div class="panel-body">
-                  <form id="example-form" action="#">
-                     <div>
-                              {% for step in steps %}
+			           <section class="example">
 
-                        <h4>{{step.name}}
-                           <br>
-                           <small></small>
-                        </h4>
-                        <fieldset>
-                         {{step.description}}
-                         
-                         </br>    
-                         
-   <a class="btn btn-info" href="{{ path('sousstep_visualitation', { 'step': step.id }) }}">Sub Step  List</a>
-   
-                        </fieldset>
-                          {% endfor  %}
+			     <ul class="gsi-step-indicator triangle gsi-style-3  ">
+			
+			  {% for step in steps %}
 
+                <li class="{% if loop.index == 1  %} current {% endif  %}">
+                    <a href="current">
+                        <span class="number">{{ loop.index }}</span>
+                        <span class="desc">
+                            <label>{{step.name}}</label>
+                        </span>
+                    </a>
+                </li>
+               
+                                          {% endfor  %}
+
+            </ul>
+			   
+			   </section>
+			   
+			   
+			   
+			 <div class="row">
+                  <div class="col-md-3">
+                     <div class="panel b ">
+                        <div class="panel-heading bg-gray-lighter text-bold">STEPS</div>
+									
+
+                        <div class="list-group ">
+						  {% for step in steps %}
+						<a href="#{{step.id}}" data-toggle="tab" class="list-group-item {% if loop.index == 1  %} active {% endif  %}">{{step.name}}</a>
+						                                         
+ {% endfor  %}
+                        </div>
+						
                      </div>
-                  </form>
+                  </div>
+                  <div class="col-md-9">
+                     <div class="tab-content p0 b0">
+					 
+					 									  {% for step in steps %}
+
+                        <div id="{{step.id}}" class="tab-pane {% if loop.index == 1  %} active {% endif  %} ">
+                           <div class="panel b">
+                              <div class="panel-heading bg-gray-lighter text-bold">{{step.name}} <a  style="margin-bottom:5px" class="btn btn-xs btn-info pull-right " href="{{ path('sousstep_visualitation', { 'step': step.id }) }}">Sub Step  List</a></div>
+                              <div class="panel-body">
+                                 {{step.description}}
+                         
+                         
+   
+                              </div>
+                           </div>
+                        </div>
+                       						                                          {% endfor  %}
+
+                         
+                     </div>
+                  </div>
+               </div>   
+			   
+			   
+			   
+			   
+			   
+			   
+			   
+			   
+			   
+			   
+			   
                </div>
             </div>
            

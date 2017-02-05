@@ -28,3 +28,6 @@ fokkus_v1_evenement:
 fokkus_v1_evenementcateg:
         resource: "@FokkusV1Bundle/Resources/config/routing/evenementcateg.yml"
         prefix:   /evenementcateg
+fokkus_v1_evenementsubcateg:
+    resource: "@FokkusV1Bundle/Resources/config/routing/evenementsubcateg.yml"
+    prefix:   /evenementsubcateg 

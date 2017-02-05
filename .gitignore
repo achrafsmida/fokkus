@@ -11,3 +11,4 @@ node_modules
 qa/*
 var/bootstrap.php.cache
 *~
+/nbproject/private/

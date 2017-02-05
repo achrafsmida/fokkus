@@ -80,44 +80,6 @@ class evenementcateg
      *
      * @return evenementcateg
      */
-    public function addFormation(\Fokkus\V1Bundle\Entity\evenement $evenement)
-    {
-        $this->evenement[] = $evenement;
-
-        return $this;
-    }
-
-    /**
-     * Remove evenement
-     *
-     * @param \Fokkus\V1Bundle\Entity\evenement $evenement
-     */
-    public function removeFormation(\Fokkus\V1Bundle\Entity\evenement $evenement)
-    {
-        $this->evenement->removeElement($evenement);
-    }
-
-    /**
-     * Get evenement
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getFormation()
-    {
-        return $this->evenement;
-    }
-      public function __tostring()
-    {
-        return $this->nom;
-    }
-
-    /**
-     * Add evenement
-     *
-     * @param \Fokkus\V1Bundle\Entity\evenement $evenement
-     *
-     * @return evenementcateg
-     */
     public function addEvenement(\Fokkus\V1Bundle\Entity\evenement $evenement)
     {
         $this->evenement[] = $evenement;
@@ -135,6 +97,15 @@ class evenementcateg
         $this->evenement->removeElement($evenement);
     }
 
+ 
+      public function __tostring()
+    {
+        return $this->nom;
+    }
+
+   
+
+   
     /**
      * Get evenement
      *

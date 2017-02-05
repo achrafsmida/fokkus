@@ -21,10 +21,10 @@ class evenement
      */
     private $id;
  /**
-   * @ORM\ManyToOne(targetEntity="Fokkus\V1Bundle\Entity\evenementcateg")
+   * @ORM\ManyToOne(targetEntity="Fokkus\V1Bundle\Entity\evenementsubcateg")
    * @ORM\JoinColumn(nullable=false)
    */
-  private $evenementcateg;
+  private $evenementsubcateg;
     /**
      * @var string
      *
@@ -171,5 +171,29 @@ class evenement
     public function getEvenementcateg()
     {
         return $this->evenementcateg;
+    }
+
+    /**
+     * Set evenementsubcateg
+     *
+     * @param \Fokkus\V1Bundle\Entity\evenementsubcateg $evenementsubcateg
+     *
+     * @return evenement
+     */
+    public function setEvenementsubcateg(\Fokkus\V1Bundle\Entity\evenementsubcateg $evenementsubcateg)
+    {
+        $this->evenementsubcateg = $evenementsubcateg;
+
+        return $this;
+    }
+
+    /**
+     * Get evenementsubcateg
+     *
+     * @return \Fokkus\V1Bundle\Entity\evenementsubcateg
+     */
+    public function getEvenementsubcateg()
+    {
+        return $this->evenementsubcateg;
     }
 }
