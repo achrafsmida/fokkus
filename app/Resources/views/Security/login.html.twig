@@ -1,0 +1,32 @@
+{% extends "PxCoreUserBundle::layout.html.twig" %}
+{% block fos_user_content %}
+    <form action="{{ path("admin_login_check") }}" method="post" id="login_form" style="display:block">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+        <input type="hidden" name="_role" value="ADMIN">
+        <div class="top_b" style="text-align: center">Administration</div>
+        {% if error %}
+            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+        <div class="cnt_b">
+            <div class="formRow">
+                <div class="input-prepend">
+                    <span class="add-on" title="login"><i class="icon icon-user"></i></span>
+                    <input type="text" placeholder="Login" id="username" name="_username" value="{{ last_username }}"/>
+                </div>
+            </div>
+            <div class="formRow">
+                <div class="input-prepend">
+                    <span class="add-on" title="mot de passe"><i class="icon icon-lock "></i></span>
+                    <input placeholder="Password" type="password" id="password" name="_password" />
+                </div>
+            </div>
+            <div class="formRow clearfix">
+                <label for="remember_me" class="checkbox"><input type="checkbox" id="remember_me" name="_remember_me" value="on" class="checkbox" />Remember me</label>
+            </div>
+        </div>
+        <div class="btm_b clearfix">
+            <input type="submit" class="btn btn-inverse pull-right" id="_submit" name="_submit" value="Login" />
+
+        </div>
+    </form>
+{% endblock fos_user_content %}
