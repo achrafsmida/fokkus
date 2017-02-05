@@ -21,6 +21,23 @@ class DefaultController extends Controller
     /**
      * Edit status of request .
      *
+     * @Route("/subscription/", name="subscription_show")
+     *
+     * @param string $id The bookingRequest ID
+     * @param string $status The bookingRequest ID
+     *
+     * @return array
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException If bookingRequest doesn't exists
+     */
+    public function subscriptionAction()
+    {
+        return $this->render('default/subscription.html.twig');
+    }
+
+    /**
+     * Edit status of request .
+     *
      * @Route("/stats/", name="stats_show")
      *
      * @param string $id The bookingRequest ID

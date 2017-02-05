@@ -1,4 +1,4 @@
-{% extends "PxCoreUserBundle::layout.html.twig" %}
+{% extends 'base.html.twig' %}
 {% block fos_user_content %}
     <form action="{{ path("admin_login_check") }}" method="post" id="login_form" style="display:block">
         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />

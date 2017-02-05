@@ -1,29 +1,179 @@
 
 {% extends 'base.html.twig' %}
 {% block body %}
+    {#<section>#}
+    {#<!-- Page content-->#}
+    {#<div class="content-wrapper">#}
+    {#<div class="row">#}
+    {#<div class="col-md-4">#}
+    {#<div class="panel panel-default">#}
+    {#<div class="panel-body text-center">#}
+    {#<div class="pv-lg">#}
+    {#<img src="{{ asset(subPartener.getWebPath()) }}" alt="Group"#}
+    {#class="center-block img-responsive img-circle img-thumbnail thumb96">#}
+    {#</div>#}
+    {#<h3 class="m0 text-bold">{{ subPartener.firstName }} {{ subPartener.lastName }}</h3>#}
+    {#<div class="mv-lg">#}
+    {#<p>Mail: {{ subPartener.mail }}, society: {{ subPartener.society }}, fix: {{ subPartener.fix }},#}
+    {#mobile: {{ subPartener.mobile }},#}
+    {#twitter: {{ subPartener.twitter }}, site: {{ subPartener.site }}, description:#}
+    {#{{ subPartener.description }}</p>#}
+    {#</div>#}
+    {#<div class="text-center"><a href="#" class="btn btn-primary">{{ subPartener.createdDate|date('Y-m-d H:i:s') }}</a>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#</section>#}
+
+
     <section>
-        <!-- Page content-->
-        <div class="content-wrapper">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-body text-center">
-                            <div class="pv-lg">
-                                <img src="{{ asset(subNetwork.getWebPath()) }}" alt="Group"
-                                class="center-block img-responsive img-circle img-thumbnail thumb96">
+    <!-- Page content-->
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-body text-center">
+                        <div class="pv-lg">
+                            <img src="{{ asset(subNetwork.getWebPath()) }}" alt="Contact" class="center-block img-responsive img-circle img-thumbnail thumb96">
+                        </div>
+                        <h3 class="m0 text-bold">{{ subNetwork.firstName }} {{ subNetwork.lastName }}</h3>
+                        <div class="mv-lg">
+                            <p>{{ subNetwork.description }}.</p>
+                        </div>
+                        <div class="text-center"><a href="#" class="btn btn-primary">Send message</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="pull-right">
+                            <div class="btn-group">
+                                <button data-toggle="dropdown" class="btn btn-link">
+                                    <em class="fa fa-ellipsis-v fa-lg text-muted"></em>
+                                </button>
+                                <ul role="menu" class="dropdown-menu dropdown-menu-right animated fadeInLeft">
+                                    <li>
+                                        <a href="#">
+                                            <span>Send by message</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span>Share contact</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span>Block contact</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span class="text-warning">Delete contact</span>
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
-                            <h3 class="m0 text-bold">{{ subNetwork.firstName }} {{ subNetwork.lastName }}</h3>
-                            <div class="mv-lg">
-                                <p>Mail: {{ subNetwork.mail }}, society: {{ subNetwork.society }}, fix: {{ subNetwork.fix }},
-                                    mobile: {{ subNetwork.mobile }},
-                                    twitter: {{ subNetwork.twitter }}, site: {{ subNetwork.site }}, {% if subNetwork.user %} {{ subNetwork.user.username }}{% else %}No accompte{% endif %}, description: {{ subNetwork.description }}</p>
-                            </div>
-                            <div class="text-center"><a href="#" class="btn btn-primary">{{ subNetwork.createdDate|date('Y-m-d H:i:s') }}</a>
+                        </div>
+                        <div class="h4 text-center">Contact Information</div>
+                        <div class="row pv-lg">
+                            <div class="col-lg-2"></div>
+                            <div class="col-lg-8">
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label for="inputContact1" class="col-sm-2 control-label">Name</label>
+                                        <div class="col-sm-10">
+                                            <input id="inputContact1" readonly type="text" placeholder="" value="{{ subNetwork.firstName }}" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputContact1" class="col-sm-2 control-label">Last Name</label>
+                                        <div class="col-sm-10">
+                                            <input id="inputContact1" readonly type="text" placeholder="" value="{{ subNetwork.lastName }}" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputContact2" class="col-sm-2 control-label">Email</label>
+                                        <div class="col-sm-10">
+                                            <input id="inputContact2" readonly type="email" value="{{ subNetwork.mail }}" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputContact3" class="col-sm-2 control-label">Phone</label>
+                                        <div class="col-sm-10">
+                                            <input id="inputContact3" readonly type="text" value="{{ subNetwork.fix }}" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputContact4" class="col-sm-2 control-label">Society</label>
+                                        <div class="col-sm-10">
+                                            <input id="inputContact4" readonly type="text" value="{{ subNetwork.society }}" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputContact4" class="col-sm-2 control-label">Mobile</label>
+                                        <div class="col-sm-10">
+                                            <input id="inputContact4" readonly type="text" value="{{ subNetwork.mobile }}" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputContact5" class="col-sm-2 control-label">Website</label>
+                                        <div class="col-sm-10">
+                                            <input id="inputContact5" readonly type="text" value="{{ subNetwork.site }}" class="form-control">
+                                        </div>
+                                    </div>
+                                    {#<div class="form-group">#}
+                                    {#<label for="inputContact6" class="col-sm-2 control-label">Address</label>#}
+                                    {#<div class="col-sm-10">#}
+                                    {#<textarea id="inputContact6" row="4" class="form-control">Some nice Street, 1234</textarea>#}
+                                    {#</div>#}
+                                    {#</div>#}
+                                    <div class="form-group">
+                                        <label for="inputContact7" class="col-sm-2 control-label">Social</label>
+                                        <div class="col-sm-10">
+                                            <input id="inputContact7" readonly type="text" value="{{ subNetwork.twitter }}" class="form-control">
+                                        </div>
+                                    </div>
+                                    {% if subNetwork.user %}
+                                    <div class="form-group">
+                                        <label for="inputContact7" class="col-sm-2 control-label">user</label>
+                                        <div class="col-sm-10">
+                                            <input id="inputContact7" readonly type="text" value="{{ subNetwork.user.username }}" class="form-control">
+                                        </div>
+                                    </div>
+                                        {% endif  %}
+                                    <div class="form-group">
+                                    <label for="inputContact8" class="col-sm-2 control-label">Company</label>
+                                    <div class="col-sm-10">
+                                    <input id="inputContact8" readonly type="text" placeholder="{{ subNetwork.network.type }}" class="form-control">
+                                    </div>
+                                    {#</div>#}
+                                    {#<div class="form-group">#}
+                                    {#<div class="col-sm-offset-2 col-sm-10">#}
+                                    {#<div class="checkbox">#}
+                                    {#<label>#}
+                                    {#<input type="checkbox">Favorite contact?</label>#}
+                                    {#</div>#}
+                                    {#</div>#}
+                                    {#</div>#}
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <a href="{{ path('subnetwork_edit', { 'id': subNetwork.id }) }}" class="btn btn-info">Update?</a>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="text-right"><a href="{{ path('deleted_sub', { 'id': subNetwork.id }) }}" class="text-muted">Delete this contact?</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-{% endblock %}
+    </div>
+    </section>{% endblock %}

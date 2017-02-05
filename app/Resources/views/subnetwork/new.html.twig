@@ -114,9 +114,7 @@
                             <div class="formSep" id="user">
                                 <div class="row">
                                     <div class="col-sm-6 col-md-6">
-                                        user
-                                        {{ form_widget(form.user,{'attr':{'class':'form-control'}}) }}
-                                        <div class="error-field">{{ form_errors(form.user) }}</div>
+                                       {#formtype register#}
                                     </div>
                                 </div>
                             </div>
@@ -148,6 +146,8 @@
     </div>
 </div>
 <div>
+
+
     {#<!-- Wysiswyg Editor-->#}
     {#<div style="overflow:scroll; height:250px;max-height:250px" class="form-control wysiwyg mt-lg">Type something ...</div>#}
     {#<br>#}
@@ -155,7 +155,6 @@
     <link rel="stylesheet" href="{{ asset('bundles/chosen/chosen.css') }}"/>
     <script src="{{ asset('bundles/js/bootstrap-wysiwyg/bootstrap-wysiwyg.js') }}"></script>
     <script src="{{ asset('bundles/js/bootstrap-wysiwyg/external/jquery.hotkeys.js') }}"></script>
-
 
     <script>
         $("#fks_centralbundle_message_users").chosen({
@@ -166,11 +165,34 @@
         $('.wysiwyg').wysiwyg();
 
         $('#user').hide();
-        $( "#fks_centralbundle_subnetwork_network" ).change(function() {
-
+        $("#fks_centralbundle_subnetwork_network").change(function () {
             var selected = $('#fks_centralbundle_subnetwork_network option:selected').val();
             //alert( selected );
-           // console.log();
+            // console.log();
+            var id = selected;
+            console.log('---', id);
+            // var content = $('#test'+id).val();
+
+            var url = '{{ path("find_network", {'id': 'id' }) }}';
+            url = url.replace("id", id);
+
+            //alert  (content);
+            $.ajax({
+
+                url: url,
+                type: 'POST',
+                data: {'id': id},
+                dataType: 'JSON',
+                success: function (result) {
+                    console.log(result.response)
+                    if (result.response == true) {
+                        $('#user').show();
+                    }
+
+                }
+            });
+
+
         });
     </script>
     {% endblock %}

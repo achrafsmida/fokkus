@@ -1,6 +1,6 @@
 <?php
 
-namespace PxCore\AdminBundle\Controller;
+namespace FKS\CentralBundle\Controller;
 
 use FOS\UserBundle\Controller\SecurityController as BaseController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -14,7 +14,7 @@ class SecurityController extends BaseController
       /**
      * 
      *
-     * @Route("/login", name="admin_login")
+     * @Route("admin/login", name="admin_login")
      *
      */
     public function loginAction(Request $request)
@@ -32,13 +32,13 @@ class SecurityController extends BaseController
      */
     protected function renderLogin(array $data)
     {
-        return $this->render('PxCoreAdminBundle:Security:login.html.twig', $data);
+        return $this->render('Security/login.html.twig', $data);
     }
     
      /**
      * 
      *
-     * @Route("/login-check", name="admin_login_check")
+     * @Route("admin/login-check", name="admin_login_check")
      *
      */
        public function checkAction()

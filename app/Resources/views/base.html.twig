@@ -379,11 +379,11 @@
                      </a>
 
                      <ul id="network" class="nav sidebar-subnav collapse">
-                        {#<li class=" ">#}
-                           {#<a href="{{ path('network_index') }}" >#}
-                              {#<span>List of Network</span>#}
-                           {#</a>#}
-                        {#</li>#}
+                        <li class=" ">
+                           <a href="{{ path('network_index') }}" >
+                              <span>Visualation</span>
+                           </a>
+                        </li>
                         {#<li class=" ">#}
                            {#<a href="{{ path('evenementcateg_index') }}" >#}
                               {#<span>Category</span>#}
@@ -391,7 +391,7 @@
                         {#</li>#}
                         <li class=" ">
                            <a href="{{ path('list') }}" >
-                              <span>Visualation</span>
+                              <span>List of Network</span>
                            </a>
                         </li>
                      </ul>
@@ -403,11 +403,11 @@
                      </a>
 
                      <ul id="subnetwork" class="nav sidebar-subnav collapse">
-                        {#<li class=" ">#}
-                           {#<a href="{{ path('subnetwork_index') }}" >#}
-                              {#<span>List of Sub Network</span>#}
-                           {#</a>#}
-                        {#</li>#}
+                        <li class=" ">
+                           <a href="{{ path('subnetwork_index') }}" >
+                              <span>List of Sub Network</span>
+                           </a>
+                        </li>
                         {#<li class=" ">#}
                         {#<a href="{{ path('evenementcateg_index') }}" >#}
                         {#<span>Category</span>#}
@@ -427,11 +427,6 @@
                      </a>
 
                      <ul id="subpartener" class="nav sidebar-subnav collapse">
-                        <li class=" ">
-                           <a href="{{ path('subpartener_index') }}" >
-                              <span>List of Sub Parteners</span>
-                           </a>
-                        </li>
                         {#<li class=" ">#}
                         {#<a href="{{ path('evenementcateg_index') }}" >#}
                         {#<span>Category</span>#}
@@ -453,7 +448,7 @@
                      <ul id="partner" class="nav sidebar-subnav collapse">
                         <li class=" ">
                            <a href="{{ path('partener_index') }}" >
-                              <span>List of Parteners</span>
+                              <span>Visualisation</span>
                            </a>
                         </li>
                         {#<li class=" ">#}
@@ -463,11 +458,16 @@
                         {#</li>#}
                         <li class=" ">
                            <a href="{{ path('listPartener') }}" >
-                              <span>Visualation</span>
+                              <span>List of partener</span>
                            </a>
                         </li>
 
                      </ul>
+                  </li>
+                  <li class=" ">
+                     <a href="{{ path('subscription_show') }}" title="subscription_show">
+                        <span>Subscription</span>
+                     </a>
                   </li>
 				  <li class=" "> 
                         <a href="{{ path('myMessages') }}" title="Dashboard v1">
