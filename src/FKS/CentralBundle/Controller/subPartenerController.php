@@ -5,6 +5,11 @@ namespace FKS\CentralBundle\Controller;
 use FKS\CentralBundle\Entity\subPartener;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\OptionsResolver\Exception\AccessException;
 
 /**
  * Subpartener controller.
@@ -39,6 +44,7 @@ class subPartenerController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $subPartener->uploadProfilePicture();
             $em->persist($subPartener);
             $em->flush($subPartener);
 
@@ -83,7 +89,7 @@ class subPartenerController extends Controller
 
         return $this->render('subpartener/edit.html.twig', array(
             'subPartener' => $subPartener,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -120,5 +126,46 @@ class subPartenerController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * Edit status of request .
+     *
+     * @Route("/subPartener/list/", name="listSubPartener")
+     *
+     * @param string $id The bookingRequest ID
+     * @param string $status The bookingRequest ID
+     *
+     * @return array
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException If bookingRequest doesn't exists
+     */
+    public function listAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $subs = $em->getRepository('FKSCentralBundle:subPartener')->findAll();
+
+        return $this->render('subpartener/list.html.twig', array(
+            'subs' => $subs,
+        ));
+    }
+
+    /**
+     * Edit status of request .
+     *
+     * @Route("/{id}/delete-sub-partener/", name="deleted_sub_partener")
+     * @return array
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException If bookingRequest doesn't exists
+     */
+    public function delAction(subPartener $subPartener)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($subPartener);
+        $em->flush($subPartener);
+
+        return $this->redirectToRoute('listSubPartener');
     }
 }

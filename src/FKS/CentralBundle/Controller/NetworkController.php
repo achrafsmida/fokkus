@@ -125,8 +125,7 @@ class NetworkController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('network_delete', array('id' => $network->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 
     /**
@@ -149,7 +148,9 @@ class NetworkController extends Controller
         $user = $this->getUser();
         $id = $request->get('id');
         //dump($sub);die;
-        return new JsonResponse(array('sub' => $sub->getLastName()));
+        return new JsonResponse(array('sub' => $sub->getLastName(),
+            'firstName' => $sub->getFirstName(),
+            'description' => $sub->getDescription()));
 
 //        $deleteForm = $this->createDeleteForm($network);
 //
@@ -157,5 +158,46 @@ class NetworkController extends Controller
 //            'network' => $network,
 //            'delete_form' => $deleteForm->createView(),
 //        ));
+    }
+
+    /**
+     * Edit status of request .
+     *
+     * @Route("/network/list/", name="list")
+     *
+     * @param string $id The bookingRequest ID
+     * @param string $status The bookingRequest ID
+     *
+     * @return array
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException If bookingRequest doesn't exists
+     */
+    public function listAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $networks = $em->getRepository('FKSCentralBundle:Network')->findAll();
+
+        return $this->render('network/list.html.twig', array(
+            'networks' => $networks,
+        ));
+    }
+
+    /**
+     * Edit status of request .
+     *
+     * @Route("/{id}/delete-network/", name="deleted_network")
+     * @return array
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException If bookingRequest doesn't exists
+     */
+    public function delAction(Network $network)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($network);
+        $em->flush($network);
+
+        return $this->redirectToRoute('list');
     }
 }

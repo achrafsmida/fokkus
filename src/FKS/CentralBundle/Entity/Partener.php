@@ -3,10 +3,11 @@
 namespace FKS\CentralBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Partener
- *
+ * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="partener")
  * @ORM\Entity(repositoryClass="FKS\CentralBundle\Repository\PartenerRepository")
  */
@@ -173,5 +174,22 @@ class Partener
     public function getSubPartener()
     {
         return $this->subPartener;
+    }
+    /**
+     * @ORM\PreUpdate
+     */
+    public function updateDate()
+    {
+        $this->setUpdatedDate(new \Datetime());
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+
+    public function addDate()
+    {
+        $this->setCreatedDate(new \Datetime());
+        $this->setUpdatedDate(new \Datetime());
     }
 }

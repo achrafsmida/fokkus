@@ -38,6 +38,7 @@ class UserController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $user->uploadProfilePicture();
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush($user);

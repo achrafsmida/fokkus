@@ -1,21 +1,70 @@
 {% extends 'base.html.twig' %}
-
-{% block body %}
-    <h1>Partener edit</h1>
-
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('partener_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+{% block main_breadcrumb %}
+    <li class=""><a href="{{ path('message_index') }}"> List of messages </a></li>
+    <li class="last-li-active"> New message</li>
 {% endblock %}
+    {% block body %}
+<style>
+    /*.form-control2{*/
+    /*overflow:scroll; height:250px;max-height:250px*/
+    /*}*/
+
+</style>
+<div class="row">
+
+    <div class="col-sm-12 col-md-12">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">Add partner</legend>
+
+            <form action="{{ path('partener_edit' , { 'id': partener.id }) }}" method="post"
+                  enctype="multipart/form-data">
+                <div class="formSep">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <div class="formSep">
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-6">
+                                        {{ form_label(form.type) }}
+                                        {{ form_widget(form.type,{'attr':{'class':'form-control'}}) }}
+                                        <div class="error-field">{{ form_errors(form.type) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{ form_rest(form) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-actions form-actions-btn" style="padding: 10px;">
+                    <input id="btnSubmit" value="save" type="submit"
+                           class="right btn btn-danger form-save-btn">
+                    <a href="{{ path('listPartener') }}" class="btn btn-default form-save-btn">
+                        return
+                    </a>
+                </div>
+                <div class="clear"></div>
+                {{ form_rest(form) }}
+            </form>
+
+        </fieldset>
+    </div>
+</div>
+<div>
+    {#<!-- Wysiswyg Editor-->#}
+    {#<div style="overflow:scroll; height:250px;max-height:250px" class="form-control wysiwyg mt-lg">Type something ...</div>#}
+    {#<br>#}
+    <script src="{{ asset('bundles/chosen/chosen.jquery.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('bundles/chosen/chosen.css') }}"/>
+    <script src="{{ asset('bundles/js/bootstrap-wysiwyg/bootstrap-wysiwyg.js') }}"></script>
+    <script src="{{ asset('bundles/js/bootstrap-wysiwyg/external/jquery.hotkeys.js') }}"></script>
+
+
+    <script>
+        $("#fks_centralbundle_message_users").chosen({
+            width: '100%'
+        });
+
+        $('.chosen-select').chosen();
+        $('.wysiwyg').wysiwyg();
+
+    </script>
+    {% endblock %}

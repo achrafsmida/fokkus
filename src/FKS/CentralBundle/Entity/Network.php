@@ -3,10 +3,11 @@
 namespace FKS\CentralBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Network
- *
+ * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="network")
  * @ORM\Entity(repositoryClass="FKS\CentralBundle\Repository\NetworkRepository")
  */
@@ -235,5 +236,22 @@ class Network
     public function __toString()
     {
         return $this->getType();
+    }
+    /**
+     * @ORM\PreUpdate
+     */
+    public function updateDate()
+    {
+        $this->setUpdatedDate(new \Datetime());
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+
+    public function addDate()
+    {
+        $this->setCreatedDate(new \Datetime());
+        $this->setUpdatedDate(new \Datetime());
     }
 }

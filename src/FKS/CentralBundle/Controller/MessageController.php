@@ -47,6 +47,7 @@ class MessageController extends Controller
             $em = $this->getDoctrine()->getManager();
             $message->setSender($this->getUser());
             $message->setReaded(false);
+            $message->setDeleted(false);
             $em->persist($message);
             $em->flush($message);
 
@@ -66,10 +67,20 @@ class MessageController extends Controller
     public function showAction(Message $message)
     {
         $deleteForm = $this->createDeleteForm($message);
+        $em = $this->getDoctrine()->getManager();
+        $count = count($em->getRepository('FKSCentralBundle:Message')->count($this->getUser()->getId()));
+        $countReaded = count($em->getRepository('FKSCentralBundle:Message')->read($this->getUser()->getId()));
+        //dump($count);die;
+
+        $countSended = count($em->getRepository('FKSCentralBundle:Message')->findBySender($this->getUser()));
+        $countDeleted = count($em->getRepository('FKSCentralBundle:Message')->delete($this->getUser()->getId()));
 
         return $this->render('message/show.html.twig', array(
             'message' => $message,
-            'delete_form' => $deleteForm->createView(),
+            'count' => $count,
+            'countReaded' => $countReaded,
+            'countSended' => $countSended,
+            'countDeleted' => $countDeleted
         ));
     }
 
@@ -126,8 +137,7 @@ class MessageController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('message_delete', array('id' => $message->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 
     /**
@@ -140,8 +150,19 @@ class MessageController extends Controller
 
         $messages = $em->getRepository('FKSCentralBundle:Message')->findAll();
 
+        $count = count($em->getRepository('FKSCentralBundle:Message')->count($this->getUser()->getId()));
+        $countReaded = count($em->getRepository('FKSCentralBundle:Message')->read($this->getUser()->getId()));
+        //dump($count);die;
+
+        $countSended = count($em->getRepository('FKSCentralBundle:Message')->findBySender($this->getUser()));
+        $countDeleted = count($em->getRepository('FKSCentralBundle:Message')->delete($this->getUser()->getId()));
+
         return $this->render('message/index.html.twig', array(
             'messages' => $messages,
+            'count' => $count,
+            'countReaded' => $countReaded,
+            'countSended' => $countSended,
+            'countDeleted' => $countDeleted
         ));
     }
 
@@ -172,6 +193,79 @@ class MessageController extends Controller
 
         return $this->render('message/readed.html.twig', array(
             'messages' => $messages,
+        ));
+    }
+
+    /**
+     * Edit status of request .
+     *
+     * @Route("/{id}/delete-msg/", name="deleted_message")
+     * @return array
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException If bookingRequest doesn't exists
+     */
+    public function delAction(Message $message)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($message);
+        $em->flush($message);
+
+        return $this->redirectToRoute('myMessages');
+    }
+
+    /**
+     * Edit status of request .
+     *
+     * @Route("/delete-ajax/AA", name="deleted_ajax")
+     * @return array
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException If bookingRequest doesn't exists
+     */
+    public function deletedAjaxAction(Request $request)
+    {
+        $tab = $request->get('valeurs');
+        //dump(array($tab));die;
+        $em = $this->getDoctrine()->getManager();
+//$tab2 = Integer.valueOf($tab);
+        //dump(($tab2));die;
+            foreach ($tab as $item) {
+                //dump($item);die;
+                $message = $em->getRepository('FKSCentralBundle:Message')->findOneById($item);
+                //dump($message);die;
+                $message->setDeleted(true);
+                $em->flush($message);
+            }
+
+
+        return new JsonResponse(array('path' => $this->generateUrl('myMessages')));
+       // return $this->redirectToRoute('myMessages');
+
+    }
+
+    /**
+     * Lists all message entities.
+     * @Route("/my-deleted-messages/", name="myDeletedMessages")
+     */
+    public function deletedMessagesAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $messages = $em->getRepository('FKSCentralBundle:Message')->delete($this->getUser());
+
+//        $count = count($em->getRepository('FKSCentralBundle:Message')->count($this->getUser()->getId()));
+//        $countReaded = count($em->getRepository('FKSCentralBundle:Message')->read($this->getUser()));
+//        //dump($count);die;
+//
+//        $countSended = count($em->getRepository('FKSCentralBundle:Message')->findBySender($this->getUser()));
+//        $countDeleted = count($em->getRepository('FKSCentralBundle:Message')->delete($this->getUser()));
+
+        return $this->render('message/deleted.html.twig', array(
+            'messages' => $messages,
+//            'count' => $count,
+//            'countReaded' => $countReaded,
+//            'countSended' => $countSended,
+//            'countDeleted' => $countDeleted
         ));
     }
 }

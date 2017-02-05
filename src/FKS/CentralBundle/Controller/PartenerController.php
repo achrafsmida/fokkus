@@ -90,7 +90,7 @@ class PartenerController extends Controller
 
         return $this->render('partener/edit.html.twig', array(
             'partener' => $partener,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -125,8 +125,7 @@ class PartenerController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('partener_delete', array('id' => $partener->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 
     /**
@@ -149,7 +148,9 @@ class PartenerController extends Controller
         $user = $this->getUser();
         $id = $request->get('id');
         //dump($sub);die;
-        return new JsonResponse(array('sub' => $sub->getLastName()));
+        return new JsonResponse(array('sub' => $sub->getLastName(),
+            'firstName' => $sub->getFirstName(),
+            'description' => $sub->getDescription()));
 
 //        $deleteForm = $this->createDeleteForm($network);
 //
@@ -157,5 +158,46 @@ class PartenerController extends Controller
 //            'network' => $network,
 //            'delete_form' => $deleteForm->createView(),
 //        ));
+    }
+
+    /**
+     * Edit status of request .
+     *
+     * @Route("/partener/list/", name="listPartener")
+     *
+     * @param string $id The bookingRequest ID
+     * @param string $status The bookingRequest ID
+     *
+     * @return array
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException If bookingRequest doesn't exists
+     */
+    public function listAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $parteners = $em->getRepository('FKSCentralBundle:Partener')->findAll();
+
+        return $this->render('partener/list.html.twig', array(
+            'parteners' => $parteners,
+        ));
+    }
+
+    /**
+     * Edit status of request .
+     *
+     * @Route("/{id}/delete-partener/", name="deleted_partener")
+     * @return array
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException If bookingRequest doesn't exists
+     */
+    public function delAction(Partener $partener)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($partener);
+        $em->flush($partener);
+
+        return $this->redirectToRoute('listPartener');
     }
 }

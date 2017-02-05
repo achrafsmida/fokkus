@@ -13,7 +13,8 @@ class UserType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('messages')        ;
+        $builder->add('messages')
+            ->add('file');
     }
     
     /**

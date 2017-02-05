@@ -14,7 +14,7 @@ class subPartenerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('firstName')->add('lastName')->add('mail')->add('society'
-        )->add('fix')->add('mobile')->add('twitter')->add('site')->add('description')->add('partener')->add('createdDate')->add('updatedDate')       ;
+        )->add('fix')->add('mobile')->add('twitter')->add('site')->add('description')->add('partener')->add('file')       ;
     }
     
     /**
