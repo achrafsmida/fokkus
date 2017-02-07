@@ -1,0 +1,309 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <style>
+
+        #chartdiv2 {
+            width: 100%;
+            height: 500px;
+        }
+
+        h3 {
+            margin: 60px;
+            color: #3993ba;
+            font-size: 20px;
+            font-weight: 900;
+        }
+
+        image {
+            height: 40px;
+        }
+    </style>
+
+
+    {# display charts #}
+    <script src="{{ asset('bundles/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('bundles/amcharts/amcharts.js') }}"></script>
+    <script src="{{ asset('bundles/amcharts/serial.js') }}"></script>
+    <script src="{{ asset('bundles/amcharts/export.js') }}"></script>
+    <script src="{{ asset('bundles/amcharts/xlsx.min.js') }}"></script>
+    <script src="{{ asset('bundles/amcharts/fabric.min.js') }}"></script>
+    <script src="{{ asset('bundles/amcharts/blob.js') }}"></script>
+    <script src="{{ asset('bundles/amcharts/FileSaver.min.js') }}"></script>
+    <script src="{{ asset('bundles/amcharts/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('bundles/amcharts/vfs_fonts.js') }}"></script>
+
+    <link rel="stylesheet" href="{{ asset('bundles/amcharts/export.css') }}"/>
+    <script src="{{ asset('bundles/amcharts/light.js') }}"></script>
+
+    {# download as PDF #}
+    <script src="{{ asset('bundles/amcharts/jszip.js') }}"></script>
+
+
+    <script>
+        $.ajax({
+            type: "POST",
+            url: "",
+            dataType: "HTML",
+            success: function (data) {
+                {#{% for res in result %}#}
+
+                var chart = AmCharts.makeChart("chartdiv2", {
+                    "type": "serial",
+                    "addClassNames": true,
+                    "theme": "light",
+                    "autoMargins": false,
+                    "marginLeft": 30,
+                    "marginRight": 8,
+                    "marginTop": 10,
+                    "marginBottom": 26,
+                    "balloon": {
+                        "adjustBorderColor": false,
+                        "horizontalPadding": 10,
+                        "verticalPadding": 8,
+                        "color": "#ffffff"
+                    },
+
+                    "dataProvider": [
+                        {% for stat in stats %}
+                        {
+                            "year": {{ stat.month }},
+                            "income":{{ stat.income }},
+                            "expenses": {{ stat.expenses }}
+                        },
+
+                        {% endfor %}
+
+// {
+//                        "year": 2010,
+//                        "income": 26.2,
+//                        "expenses": 30.5
+//                    }, {
+//                        "year": 2011,
+//                        "income": 30.1,
+//                        "expenses": 34.9
+//                    }, {
+//                        "year": 2012,
+//                        "income": 29.5,
+//                        "expenses": 31.1
+//                    }, {
+//                        "year": 2013,
+//                        "income": 30.6,
+//                        "expenses": 28.2,
+//                        "dashLengthLine": 5
+//                    }, {
+//                        "year": 2014,
+//                        "income": 34.1,
+//                        "expenses": 32.9,
+//                        "dashLengthColumn": 5,
+//                        "alpha": 0.2,
+//                        "additional": "(projection)"
+//                    }
+//
+                    ],
+                    "valueAxes": [{
+                        "axisAlpha": 0,
+                        "position": "left"
+                    }],
+                    "startDuration": 1,
+                    "graphs": [{
+                        "alphaField": "alpha",
+                        "balloonText": "<span style='font-size:12px;'>[[title]] in [[category]]:<br><span style='font-size:20px;'>[[value]]</span> [[additional]]</span>",
+                        "fillAlphas": 1,
+                        "title": "Income",
+                        "type": "column",
+                        "valueField": "income",
+                        "dashLengthField": "dashLengthColumn"
+                    }, {
+                        "id": "graph2",
+                        "balloonText": "<span style='font-size:12px;'>[[title]] in [[category]]:<br><span style='font-size:20px;'>[[value]]</span> [[additional]]</span>",
+                        "bullet": "round",
+                        "lineThickness": 3,
+                        "bulletSize": 7,
+                        "bulletBorderAlpha": 1,
+                        "bulletColor": "#FFFFFF",
+                        "useLineColorForBulletBorder": true,
+                        "bulletBorderThickness": 3,
+                        "fillAlphas": 0,
+                        "lineAlpha": 1,
+                        "title": "Expenses",
+                        "valueField": "expenses",
+                        "dashLengthField": "dashLengthLine"
+                    }],
+                    "categoryField": "year",
+                    "categoryAxis": {
+                        "gridPosition": "start",
+                        "axisAlpha": 0,
+                        "tickLength": 0
+                    },
+                    "export": {
+                        "enabled": true
+                    }
+                });
+                {#{% endfor %}#}
+            } // success
+        });
+
+
+    </script>
+    <div class="col-sm-12 col-md-12">
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <a class="btn btn-default" href="javascript:void(0)" onclick="exportReport()" style="float: right;">Download
+                    as PDF</a>
+                <h3 class="heading">Statistiques</h3>
+                <h4 id="note"></h4>
+                <div class="vcard">
+
+                    <div id="chartdiv2"></div>
+                    <span class="label label-info" style="padding-left: 20px">        </span><span style="margin: 10px">Chiffre d'affaire de mois</span><br>
+                    <span class="label label-warning" style="padding-left: 20px">       </span><span style="margin: 10px;">Nombre de ventes actuelles</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+    <!-- Resources -->
+
+    <!-- Chart code -->
+
+    <script>
+        function exportReport() {
+
+            // So that we know export was started
+            console.log("Starting export...");
+
+            // Define IDs of the charts we want to include in the report
+            var ids = ["chartdiv2"];
+            console.log(ids);
+            // Collect actual chart objects out of the AmCharts.charts array
+            var charts = {}
+            var charts_remaining = ids.length;
+            for (var i = 0; i < ids.length; i++) {
+                for (var x = 0; x < AmCharts.charts.length; x++) {
+                    if (AmCharts.charts[x].div.id == ids[i])
+                        charts[ids[i]] = AmCharts.charts[x];
+                }
+            }
+
+            // Trigger export of each chart
+            for (var x in charts) {
+                if (charts.hasOwnProperty(x)) {
+                    var chart = charts[x];
+                    chart["export"].capture({}, function () {
+                        this.toPNG({}, function (data) {
+
+                            // Save chart data into chart object itself
+                            this.setup.chart.exportedImage = data;
+
+                            // Reduce the remaining counter
+                            charts_remaining--;
+
+                            // Check if we got all of the charts
+                            if (charts_remaining == 0) {
+                                // Yup, we got all of them
+                                // Let's proceed to putting PDF together
+                                generatePDF();
+                            }
+
+                        });
+                    });
+                }
+            }
+
+            function generatePDF() {
+
+                // Log
+                console.log("Generating PDF...");
+                var layout = {
+                    content: [
+                        // if you don't need styles, you can use a simple string to define a paragraph
+//                            'This is a standard paragraph, using default style',
+
+                    ]
+
+                }
+                layout.content.push({
+                    "text": "Happiness Statistics",
+                    "fontSize": 15
+                });
+                layout.content.push({
+                    "text": "\n "
+                });
+                layout.content.push({
+                    "table": {
+                        // headers are automatically repeated if the table spans over multiple pages
+                        // you can declare how many rows should be treated as headers
+                        "headerRows": 1,
+                        "widths": ["16%", "16%", "16%", "16%", "16%", "16%", "*"],
+                        "body": [
+                            {#{% for res in result %}#}
+                            {#["Happiness", "Rate of Application"],#}
+                            {#["Happy", "{{ res.application.happy }}"],#}
+                            {#["Unhappy", "{{ res.application.unhappy }}"],#}
+                            {#["Neutral", "{{ res.application.neutral }}"],#}
+                            {#["No Rate", "{{ res.application.null }}"]#}
+                            {#{% endfor %}#}
+                        ]
+                    }
+                });
+
+
+//                    layout.content.push({
+//                        "columns": [{
+//                            "width": "50%",
+//                            "image": charts["chartdiv"].exportedImage,
+//                            "fit": [ 523, 300 ]}
+//
+//                        ]
+//                    });
+                layout.content.push({
+                    "text": "\n "
+                });
+                layout.content.push({
+                    "text": "\n "
+                });
+                layout.content.push({
+                    "columns": [{
+                        "width": "30%",
+                        "image": charts["chartdiv2"].exportedImage,
+                        "fit": [523, 300], "margin": 0
+                    }, {
+                        "width": "50%",
+                        "stack": [
+                            document.getElementById("note").innerHTML,
+                            "Booking Car Request",
+                        ]
+                    }],
+                    "columnGap": 20
+                });
+                layout.content.push({
+                    "text": "\n "
+                });
+                layout.content.push({
+                    "text": "\n "
+                });
+
+                var layout = {
+                    content: [
+                        // if you don't need styles, you can use a simple string to define a paragraph
+                        'This is a standard paragraph, using default style',
+
+                    ]
+
+                }
+                layout.content.push({
+                    "text": "\n "
+                });
+                chart["export"].toPDF(layout, function (data) {
+                    this.download(data, "application/pdf", 'Statistics' + ".pdf");
+                });
+                layout.content.push({
+                    "text": "\n "
+                });
+            }
+        }
+    </script>
+{% endblock %}
