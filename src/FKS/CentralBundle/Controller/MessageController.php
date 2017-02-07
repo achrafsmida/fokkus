@@ -176,8 +176,20 @@ class MessageController extends Controller
 
         $messages = $em->getRepository('FKSCentralBundle:Message')->findBySender($this->getUser());
 
+        $count = count($em->getRepository('FKSCentralBundle:Message')->count($this->getUser()->getId()));
+        $countReaded = count($em->getRepository('FKSCentralBundle:Message')->read($this->getUser()->getId()));
+        //dump($count);die;
+
+        $countSended = count($em->getRepository('FKSCentralBundle:Message')->findBySender($this->getUser()));
+        $countDeleted = count($em->getRepository('FKSCentralBundle:Message')->delete($this->getUser()->getId()));
+
         return $this->render('message/sended.html.twig', array(
+//            'messagesSended' => $messagesSended,
             'messages' => $messages,
+            'count' => $count,
+            'countReaded' => $countReaded,
+            'countSended' => $countSended,
+            'countDeleted' => $countDeleted
         ));
     }
 
@@ -191,8 +203,19 @@ class MessageController extends Controller
 
         $messages = $em->getRepository('FKSCentralBundle:Message')->findBySender($this->getUser());
 
+        $count = count($em->getRepository('FKSCentralBundle:Message')->count($this->getUser()->getId()));
+        $countReaded = count($em->getRepository('FKSCentralBundle:Message')->read($this->getUser()->getId()));
+        //dump($count);die;
+
+        $countSended = count($em->getRepository('FKSCentralBundle:Message')->findBySender($this->getUser()));
+        $countDeleted = count($em->getRepository('FKSCentralBundle:Message')->delete($this->getUser()->getId()));
+
         return $this->render('message/readed.html.twig', array(
             'messages' => $messages,
+            'count' => $count,
+            'countReaded' => $countReaded,
+            'countSended' => $countSended,
+            'countDeleted' => $countDeleted
         ));
     }
 
@@ -253,19 +276,19 @@ class MessageController extends Controller
 
         $messages = $em->getRepository('FKSCentralBundle:Message')->delete($this->getUser());
 
-//        $count = count($em->getRepository('FKSCentralBundle:Message')->count($this->getUser()->getId()));
-//        $countReaded = count($em->getRepository('FKSCentralBundle:Message')->read($this->getUser()));
-//        //dump($count);die;
-//
-//        $countSended = count($em->getRepository('FKSCentralBundle:Message')->findBySender($this->getUser()));
-//        $countDeleted = count($em->getRepository('FKSCentralBundle:Message')->delete($this->getUser()));
+        $count = count($em->getRepository('FKSCentralBundle:Message')->count($this->getUser()->getId()));
+        $countReaded = count($em->getRepository('FKSCentralBundle:Message')->read($this->getUser()));
+        //dump($count);die;
+
+        $countSended = count($em->getRepository('FKSCentralBundle:Message')->findBySender($this->getUser()));
+        $countDeleted = count($em->getRepository('FKSCentralBundle:Message')->delete($this->getUser()));
 
         return $this->render('message/deleted.html.twig', array(
             'messages' => $messages,
-//            'count' => $count,
-//            'countReaded' => $countReaded,
-//            'countSended' => $countSended,
-//            'countDeleted' => $countDeleted
+            'count' => $count,
+            'countReaded' => $countReaded,
+            'countSended' => $countSended,
+            'countDeleted' => $countDeleted
         ));
     }
 }

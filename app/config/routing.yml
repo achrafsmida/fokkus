@@ -1,3 +1,7 @@
+fks_central_statistique:
+    resource: "@FKSCentralBundle/Controller/StatistiqueController.php"
+    type:     annotation
+
 fks_central:
     resource: "@FKSCentralBundle/Resources/config/routing.yml"
     prefix:   /

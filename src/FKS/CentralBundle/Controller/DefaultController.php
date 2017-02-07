@@ -15,6 +15,7 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
+
         return $this->render('FKSCentralBundle:Default:index.html.twig');
     }
 
@@ -52,12 +53,16 @@ class DefaultController extends Controller
         /** @var EntityManager $em */
         $em = $this->getDoctrine()->getManager();
 
-        $user = $this->getUser();
-        //dump($sub);die;
-       // return new JsonResponse(array('sub' => $sub->getLastName()));
+        $stats = $em->getRepository('FKSCentralBundle:Statistique')->findAll();
 
-//        $deleteForm = $this->createDeleteForm($network);
-//
-        return $this->render('default/index.html.twig');
+
+
+        //dump($result);die;
+
+        return $this->render('default/index.html.twig', array(
+            'stats' => $stats,
+            //  'hotelUnhappy' => $hotelUnhappy,
+
+        ));
     }
 }
