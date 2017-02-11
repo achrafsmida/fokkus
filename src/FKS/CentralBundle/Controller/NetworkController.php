@@ -140,17 +140,18 @@ class NetworkController extends Controller
      *
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException If bookingRequest doesn't exists
      */
-    public function showSubAction(subNetwork $sub, Request $request)
+    public function showSubAction(Request $request)
     {
         /** @var EntityManager $em */
         $em = $this->getDoctrine()->getManager();
 
         $user = $this->getUser();
         $id = $request->get('id');
+        $query = $em->createQuery(
+		'SELECT sub FROM FKSCentralBundle:subNetwork sub    WHERE   sub.id = :id  ')
+		->setParameter("id",$id ) ;
         //dump($sub);die;
-        return new JsonResponse(array('sub' => $sub->getLastName(),
-            'firstName' => $sub->getFirstName(),
-            'description' => $sub->getDescription()));
+        return new JsonResponse($query->getArrayResult()[0]);
 
 //        $deleteForm = $this->createDeleteForm($network);
 //

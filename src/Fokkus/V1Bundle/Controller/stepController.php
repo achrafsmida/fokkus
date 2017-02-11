@@ -27,6 +27,32 @@ class stepController extends Controller
         if($type == 2)$session->set('typestring', "Communication");
         if($type == 3)$session->set('typestring', "Résaux humaines");
         if($type == 4)$session->set('typestring', "Technique");
+        
+        
+        
+          $em = $this->getDoctrine()->getManager();
+		$user =  $this->getUser();;
+       $check = false ; 
+        foreach($user->getRoles() as $role) {
+			if($role =="ROLE_ADMIN") $check = TRUE ; 
+
+		}
+        if($check == false){
+            
+                    $sub_network = $em->getRepository('FKSCentralBundle:subNetwork')->findOneByUser($user);
+         
+  
+                    $session->set('group', $sub_network->getNetwork()->getGroup()->getId());
+
+               return $this->redirectToRoute('step_visualtion');
+
+            
+        }
+        
+        
+        
+        
+        
         $groups = $em->getRepository('FKSCentralBundle:Groups')->findAll();
         
 
@@ -41,6 +67,8 @@ class stepController extends Controller
 
         $session = new Session();
         $session->set('type', $type);
+         $session->set('group', $group);
+       
         
         if($type == 1) $session->set('typestring', "Commerciale");
         if($type == 2)$session->set('typestring', "Communication");
@@ -59,6 +87,7 @@ class stepController extends Controller
 
         $session = new Session();
         $type= $session->get('type');
+        $group= $session->get('group');
         $steps = $em->getRepository('FokkusV1Bundle:step')->findByType($type);
         return $this->render('step/visualion.html.twig', array(
             'steps' => $steps,$type => $type

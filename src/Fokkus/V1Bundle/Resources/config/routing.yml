@@ -14,7 +14,7 @@ fokkus_v1_response:
     resource: "@FokkusV1Bundle/Resources/config/routing/response.yml"
     prefix:   /response
 fokkus_v1_homepage:
-    path:     /
+    path:     /default
     defaults: { _controller: FokkusV1Bundle:Default:index }
 fokkus_v1_formationcateg:
         resource: "@FokkusV1Bundle/Resources/config/routing/formationcateg.yml"

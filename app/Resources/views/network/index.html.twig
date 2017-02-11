@@ -130,7 +130,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="row">
+                <div  id ="messagebloc" style="display:none" class="row">
                     <div class="col-md-4">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -138,9 +138,10 @@
                                     <em class="fa"></em>
                                 </a>
                             </div>
-                            <div class="panel-body text-center">
+                            <div id="block" >
+                            <div class="panel-body text-center" >
                                 {#{{ asset(equipment.getWebPath()) }}#}
-                                <img src="{{ asset('bundles/img/04.jpg') }}" alt="Contact"
+                                <img src="{{ asset('bundles/img/04.jpg') }}"  alt="Contact"
                                      class="center-block img-responsive img-circle thumb64">
                                 <h4 class="">Tara Nelson</h4>
                                 <p>Hello, I'm a just a dummy contact in your contact list and this is my presentation
@@ -151,6 +152,7 @@
                                 </div>
                                 <div class="pull-right"><a href="#" class="btn btn-xs btn-default">View</a>
                                 </div>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -183,15 +185,29 @@
                 data: {'id': id},
                 dataType: 'JSON',
                 success: function (result) {
-                    console.log(result.sub)// quand la réponse de la requete arrive
-                    //                    $( ".container" ).append( result.sub );
-                    //                   $( ".link" ).append( "<a>contacter</a>");
-                    //var $newdiv1 = $( "<div class='object1' style='style=border: dotted'>result.sub</div>" );
-                    var $button = $("<a class='object2' href='#' '>contacter</a>");
-                    var $br = $("<br>");
+                    
+                    
+                    img = '{{ asset('uploads/network/curentimg') }}' ;
+                    img = img.replace("curentimg", result.pictureName);
+                    viewurl = '{{ path('subnetwork_show', { 'id': 'id' }) }}'
+                    viewurl = viewurl.replace("id", result.id);
 
-                    $(".et").append(result.sub);
-                    $("body").append($button);
+                    
+                    html='';
+                    html+=' <div class="panel-body text-center">'
+                       html+='  <img src="'+img+'"  alt="Contact" class="center-block img-responsive img-circle thumb64">'
+                               html+='  <h4 class="">'+result.firstName+' '+result.lastName+'</h4>'
+                               html+='  <p>'+result.description+'</p>'
+                            html+=' </div>'
+                           html+='  <div class="panel-footer clearfix">'
+                            html+='     <div class="pull-left"><a href="" class="btn btn-xs btn-primary">Send message</a>'
+                             html+='    </div>'
+                              html+='   <div class="pull-right"><a href="'+viewurl+'" class="btn btn-xs btn-default">View</a>'
+                              html+='   </div>'
+                           html+='  </div>'
+                                       $('#block').html(html) ;
+                    $('#messagebloc').show() ;
+
 
 
                 }

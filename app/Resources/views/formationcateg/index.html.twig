@@ -1,9 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Formationcategs list</h1>
+       
+          <div class="row">
+                  <div class="col-lg-12">
+                     <div class="panel panel-default">
+                        <div class="panel-heading">
+                           Formation catégory |
+                           <small>list</small>
+                                       <a  class="btn btn-xs btn-success pull-right" href="{{ path('formationcateg_new') }}">Create a new question</a>
 
-    <table>
+                        </div>
+                        <div class="panel-body">
+                           <table id="datatable2" class="table table-striped table-hover">
         <thead>
             <tr>
                 <th>Id</th>
