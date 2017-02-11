@@ -88,7 +88,7 @@ class subNetwork
 
     /**
      * @ORM\ManyToOne(targetEntity="FKS\CentralBundle\Entity\User")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true)
      */
     protected $user;
 
@@ -523,5 +523,29 @@ class subNetwork
     {
         $this->setCreatedDate(new \Datetime());
         $this->setUpdatedDate(new \Datetime());
+    }
+
+    /**
+     * Set pictureName
+     *
+     * @param string $pictureName
+     *
+     * @return subNetwork
+     */
+    public function setPictureName($pictureName)
+    {
+        $this->pictureName = $pictureName;
+
+        return $this;
+    }
+
+    /**
+     * Get pictureName
+     *
+     * @return string
+     */
+    public function getPictureName()
+    {
+        return $this->pictureName;
     }
 }

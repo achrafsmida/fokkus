@@ -6,15 +6,14 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class NetworkType extends AbstractType
+class StatistiqueType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('type')->add('haveUser')->add('group')
-                   ;
+        $builder->add('income')->add('expenses')->add('month')->add('creationDate')->add('updatedDate')        ;
     }
     
     /**
@@ -23,7 +22,7 @@ class NetworkType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'FKS\CentralBundle\Entity\Network'
+            'data_class' => 'FKS\CentralBundle\Entity\Statistique'
         ));
     }
 
@@ -32,7 +31,7 @@ class NetworkType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'fks_centralbundle_network';
+        return 'fks_centralbundle_statistique';
     }
 
 

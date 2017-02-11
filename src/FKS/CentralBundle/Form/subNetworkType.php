@@ -2,6 +2,7 @@
 
 namespace FKS\CentralBundle\Form;
 
+use FOS\UserBundle\Form\Type\RegistrationFormType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,7 +15,12 @@ class subNetworkType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('firstName')->add('lastName')->add('mail')->add('society'
-        )->add('fix')->add('mobile')->add('twitter')->add('site')->add('description')->add('network')->add('user')->add('createdDate')->add('updatedDate')->add('file')        ;
+        )->add('fix')->add('mobile')->add('twitter')->add('site')->add('description')->add('network')->add('file')
+            ->add('user', 'collection', [
+                'type' => new RegistrationFormType(),
+                'allow_add' => true,
+                'allow_delete' => true
+            ]);
     }
     
     /**

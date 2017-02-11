@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Statistique</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ statistique.id }}</td>
+            </tr>
+            <tr>
+                <th>Val</th>
+                <td>{{ statistique.val }}</td>
+            </tr>
+            <tr>
+                <th>Month</th>
+                <td>{{ statistique.month }}</td>
+            </tr>
+            <tr>
+                <th>Creationdate</th>
+                <td>{% if statistique.creationDate %}{{ statistique.creationDate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Updateddate</th>
+                <td>{% if statistique.updatedDate %}{{ statistique.updatedDate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('statistique_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('statistique_edit', { 'id': statistique.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

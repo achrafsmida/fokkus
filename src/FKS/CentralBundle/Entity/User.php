@@ -36,6 +36,16 @@ class User extends BaseUser
      */
     private $messages;
 
+    /**
+     * @ORM\OneToMany(targetEntity="FKS\CentralBundle\Entity\RequestContact", mappedBy="sender")
+     */
+    private $requestSender;
+
+    /**
+     * @ORM\OneToMany(targetEntity="FKS\CentralBundle\Entity\RequestContact", mappedBy="receiver")
+     */
+    private $requestReceiver;
+
     public function __construct()
     {
         parent::__construct();
@@ -167,5 +177,97 @@ class User extends BaseUser
 
         // La propriété file ne servira plus
         $this->file = null;
+    }
+
+    /**
+     * Set pictureName
+     *
+     * @param string $pictureName
+     *
+     * @return User
+     */
+    public function setPictureName($pictureName)
+    {
+        $this->pictureName = $pictureName;
+
+        return $this;
+    }
+
+    /**
+     * Get pictureName
+     *
+     * @return string
+     */
+    public function getPictureName()
+    {
+        return $this->pictureName;
+    }
+
+    /**
+     * Add requestSender
+     *
+     * @param \FKS\CentralBundle\Entity\RequestContact $requestSender
+     *
+     * @return User
+     */
+    public function addRequestSender(\FKS\CentralBundle\Entity\RequestContact $requestSender)
+    {
+        $this->requestSender[] = $requestSender;
+
+        return $this;
+    }
+
+    /**
+     * Remove requestSender
+     *
+     * @param \FKS\CentralBundle\Entity\RequestContact $requestSender
+     */
+    public function removeRequestSender(\FKS\CentralBundle\Entity\RequestContact $requestSender)
+    {
+        $this->requestSender->removeElement($requestSender);
+    }
+
+    /**
+     * Get requestSender
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRequestSender()
+    {
+        return $this->requestSender;
+    }
+
+    /**
+     * Add requestReceiver
+     *
+     * @param \FKS\CentralBundle\Entity\RequestContact $requestReceiver
+     *
+     * @return User
+     */
+    public function addRequestReceiver(\FKS\CentralBundle\Entity\RequestContact $requestReceiver)
+    {
+        $this->requestReceiver[] = $requestReceiver;
+
+        return $this;
+    }
+
+    /**
+     * Remove requestReceiver
+     *
+     * @param \FKS\CentralBundle\Entity\RequestContact $requestReceiver
+     */
+    public function removeRequestReceiver(\FKS\CentralBundle\Entity\RequestContact $requestReceiver)
+    {
+        $this->requestReceiver->removeElement($requestReceiver);
+    }
+
+    /**
+     * Get requestReceiver
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRequestReceiver()
+    {
+        return $this->requestReceiver;
     }
 }

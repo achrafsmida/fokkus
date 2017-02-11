@@ -465,4 +465,28 @@ class subPartener
         $this->setCreatedDate(new \Datetime());
         $this->setUpdatedDate(new \Datetime());
     }
+
+    /**
+     * Set pictureName
+     *
+     * @param string $pictureName
+     *
+     * @return subPartener
+     */
+    public function setPictureName($pictureName)
+    {
+        $this->pictureName = $pictureName;
+
+        return $this;
+    }
+
+    /**
+     * Get pictureName
+     *
+     * @return string
+     */
+    public function getPictureName()
+    {
+        return $this->pictureName;
+    }
 }

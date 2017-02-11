@@ -66,31 +66,7 @@
                     "dataProvider": [
                         {% for stat in stats %}
                         {
-                            {% if stat.month == 1 %}
-                            "year": 01,
-                            {% elseif stat.month == 2 %}
-                            "year": 02,
-                            {% elseif stat.month == 3 %}
-                            "year": 03,
-                            {% elseif stat.month == 4 %}
-                            "year": 04,
-                            {% elseif stat.month == 5 %}
-                            "year": 05,
-                            {% elseif stat.month == 6 %}
-                            "year": 06,
-                            {% elseif stat.month == 7 %}
-                            "year": 07,
-                            {% elseif stat.month == 8 %}
-                            "year": 08,
-                            {% elseif stat.month == 9 %}
-                            "year": 09,
-                            {% elseif stat.month == 10 %}
-                            "year": 10,
-                            {% elseif stat.month == 11 %}
-                            "year": 11,
-                            {% else %}
-                            "year": 12,
-                            {% endif %}
+                            "year": {{ stat.month }},
                             "income":{{ stat.income }},
                             "expenses": {{ stat.expenses }}
                         },

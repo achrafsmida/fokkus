@@ -47,6 +47,11 @@ class Groups
      * @ORM\OneToMany(targetEntity="FKS\CentralBundle\Entity\Network", mappedBy="group")
      */
     private $network;
+
+    /**
+     * @ORM\OneToMany(targetEntity="FKS\CentralBundle\Entity\Partener", mappedBy="group")
+     */
+    private $partner;
     
     /**
      * Get id
@@ -240,4 +245,62 @@ class Groups
         $this->file = null;
     }
 
+
+    /**
+     * Set pictureName
+     *
+     * @param string $pictureName
+     *
+     * @return Groups
+     */
+    public function setPictureName($pictureName)
+    {
+        $this->pictureName = $pictureName;
+
+        return $this;
+    }
+
+    /**
+     * Get pictureName
+     *
+     * @return string
+     */
+    public function getPictureName()
+    {
+        return $this->pictureName;
+    }
+
+    /**
+     * Add partner
+     *
+     * @param \FKS\CentralBundle\Entity\Partener $partner
+     *
+     * @return Groups
+     */
+    public function addPartner(\FKS\CentralBundle\Entity\Partener $partner)
+    {
+        $this->partner[] = $partner;
+
+        return $this;
+    }
+
+    /**
+     * Remove partner
+     *
+     * @param \FKS\CentralBundle\Entity\Partener $partner
+     */
+    public function removePartner(\FKS\CentralBundle\Entity\Partener $partner)
+    {
+        $this->partner->removeElement($partner);
+    }
+
+    /**
+     * Get partner
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPartner()
+    {
+        return $this->partner;
+    }
 }

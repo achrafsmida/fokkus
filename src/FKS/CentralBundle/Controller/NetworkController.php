@@ -201,4 +201,25 @@ class NetworkController extends Controller
 
         return $this->redirectToRoute('list');
     }
+
+    /**
+     * Edit status of request .
+     *
+     * @Route("/{id}/find/", name="find_network")
+     * @return array
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException If bookingRequest doesn't exists
+     */
+    public function findAction(Request $request, Network $network)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        if ($network->getHaveUser() == true) {
+            $response = true;
+        } else {
+            $response = false;
+        }
+
+        return new JsonResponse(array('response' => $response));
+    }
 }
