@@ -60,7 +60,7 @@
     {% extends 'base.html.twig' %}
 
 {% block body %}
-
+    <link rel="stylesheet" href="{{ asset('bundles/fokkusv1/app/js/sweetalert/dist/sweetalert.css') }}">
 
     <div class="row">
 
@@ -148,7 +148,7 @@
                                     text. Have fun!</p>
                             </div>
                             <div class="panel-footer clearfix">
-                                <div class="pull-left"><a href="#" class="btn btn-xs btn-primary">Send message</a>
+                                <div class="pull-left"><a href="#" class="btn btn-xs btn-primary"  onclick="send(1)">Send message</a>
                                 </div>
                                 <div class="pull-right"><a href="#" class="btn btn-xs btn-default">View</a>
                                 </div>
@@ -159,14 +159,35 @@
                 </div>
             </div>
         </section>
-
+        <div id="myModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Confirmation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Do you want to save changes you made to document before closing?</p>
+                        <p class="text-warning"><small>If you don't save, your changes will be lost.</small></p>
+                    </div>
+                    {{ form_start(form_send) }}
+                    {{ form_widget(form_send) }}
+                    <input type="submit" value="Create" />
+                    {{ form_end(form_send) }}
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
 
     {#<body>#}
     {#<h4 class="name"></h4>#}
     {#</body>#}
     {#<script src="{{ asset('bundles/js/jquery.min.js') }}"></script>#}
+    <script src="{{ asset('bundles/fokkusv1/app/js/sweetalert/dist/sweetalert.min.js') }}"></script>
 
     <script>function display(id) {
             var id = id;
@@ -214,6 +235,62 @@
             });
         }
 
+
+        function send(id) {
+            var id = id;
+            console.log('---', id);
+            // var content = $('#test'+id).val();
+
+            var url = '{{ path("send_contact", {'id': 'id' }) }}';
+            url = url.replace("id", id);
+
+
+            //alert  (content);
+            $.ajax({
+
+                url: url,
+                type: 'POST',
+                data: {'id': id},
+                dataType: 'JSON',
+                success: function (result) {
+                    $("#myModal").modal('hide');
+                    console.log(result.msg);
+                    if (result.msg == 1){
+                        swal({
+                                    title : "Votre demande de contact est en attente",
+                                    text : "Attendez votre partenaire pour qu'il accepte votre demande de contact!",
+                                    type : "warning",
+                                    showCancelButton : true,
+                                    confirmButtonColor : "#DD6B55",
+                                    closeOnConfirm : false
+                                },
+                                function () {
+
+                                    $('.sweet-alert').hide();
+
+                                });
+                        {#$.ajax({#}
+                        {#url: '{{ path("deleted_ajax") }}',#}
+                        {#type: 'POST',#}
+                        {#data: {'valeurs': valeurs},#}
+                        {#dataType: 'JSON',#}
+                        {#success: function (result) {#}
+                        {#var url = result.path;#}
+                        {#//alert(result.commet);#}
+                        {#window.location.href = url;#}
+                        {#//console.log(result.sub)// quand la réponse de la requete arrive#}
+
+                        {#}#}
+                        {#});#}
+                    }
+                    else{
+                        //$('.sweet-alert').hide();
+                        $("#myModal").modal('show');
+                    }
+
+                }
+            });
+        }
     </script>
 
 {% endblock %}

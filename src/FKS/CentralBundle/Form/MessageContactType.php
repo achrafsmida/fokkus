@@ -6,14 +6,14 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class MessageType extends AbstractType
+class MessageContactType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('subject')->add('message')->add('users')       ;
+        $builder->add('subject')->add('message')      ;
     }
     
     /**
@@ -31,7 +31,7 @@ class MessageType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'fks_centralbundle_message';
+        return 'fks_centralbundle_message_contact';
     }
 
 

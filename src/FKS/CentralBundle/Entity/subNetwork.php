@@ -87,13 +87,13 @@ class subNetwork
     private $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity="FKS\CentralBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="FKS\CentralBundle\Entity\User", inversedBy="subNetwork")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true)
      */
     protected $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="FKS\CentralBundle\Entity\Network")
+     * @ORM\ManyToOne(targetEntity="FKS\CentralBundle\Entity\Network", inversedBy="subNetwork")
      * @ORM\JoinColumn(name="network_id", referencedColumnName="id", nullable=false)
      */
     protected $network;

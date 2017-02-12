@@ -48,7 +48,7 @@ class Partener
      */
     private $subPartener;
     /**
-     * @ORM\ManyToOne(targetEntity="FKS\CentralBundle\Entity\Groups")
+     * @ORM\ManyToOne(targetEntity="FKS\CentralBundle\Entity\Groups", inversedBy="partner")
      * @ORM\JoinColumn(name="group_id", referencedColumnName="id", nullable=false)
      */
     protected $group;
