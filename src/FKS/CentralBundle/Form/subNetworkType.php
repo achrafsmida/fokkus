@@ -16,11 +16,8 @@ class subNetworkType extends AbstractType
     {
         $builder->add('firstName')->add('lastName')->add('mail')->add('society'
         )->add('fix')->add('mobile')->add('twitter')->add('site')->add('description')->add('network')->add('file')
-            ->add('user', 'collection', [
-                'type' => new RegistrationFormType(),
-                'allow_add' => true,
-                'allow_delete' => true
-            ]);
+        ->add('user',    UserType::class , array('label'=>"Paramétre d'authentification " )) ;
+
     }
     
     /**
