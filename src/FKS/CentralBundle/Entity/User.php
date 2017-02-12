@@ -21,10 +21,16 @@ class User extends BaseUser
      */
     protected $id;
     
+//    /**
+//     * @ORM\OneToMany(targetEntity="FKS\CentralBundle\Entity\subNetwork", mappedBy="user")
+//     */
+//    private $subNetwork;
+
     /**
-     * @ORM\OneToMany(targetEntity="FKS\CentralBundle\Entity\subNetwork", mappedBy="user")
+     * @ORM\OneToOne(targetEntity="FKS\CentralBundle\Entity\subNetwork", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $subNetwork;
+    private $sub;
 
     /**
      * @ORM\OneToMany(targetEntity="FKS\CentralBundle\Entity\Message", mappedBy="sender")
@@ -347,5 +353,29 @@ class User extends BaseUser
     public function getContact()
     {
         return $this->contact;
+    }
+
+    /**
+     * Set sub
+     *
+     * @param \FKS\CentralBundle\Entity\subNetwork $sub
+     *
+     * @return User
+     */
+    public function setSub(\FKS\CentralBundle\Entity\subNetwork $sub)
+    {
+        $this->sub = $sub;
+
+        return $this;
+    }
+
+    /**
+     * Get sub
+     *
+     * @return \FKS\CentralBundle\Entity\subNetwork
+     */
+    public function getSub()
+    {
+        return $this->sub;
     }
 }

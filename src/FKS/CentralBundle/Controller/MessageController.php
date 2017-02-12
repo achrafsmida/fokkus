@@ -319,9 +319,11 @@ class MessageController extends Controller
             $em->flush($contactUser);
 
             return new JsonResponse(array('msg' => 1));
-        } else {
-            return new JsonResponse(array('path' => 0));
+        } elseif ($contact->getStatus == 0) {
+            return new JsonResponse(array('path' => 1));
 
+        }else{
+            return new JsonResponse(array('path' => 0));
         }
 
     }

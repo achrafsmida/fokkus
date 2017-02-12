@@ -48,7 +48,13 @@ class Statistique
      * @ORM\Column(name="creationDate", type="date")
      */
     private $creationDate;
-
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="FKS\CentralBundle\Entity\subNetwork", inversedBy="stats")
+     * @ORM\JoinColumn(name="sub_id", referencedColumnName="id", nullable=false)
+     */
+    protected $sub;
+    
     /**
      * @var \DateTime
      *
@@ -209,5 +215,29 @@ class Statistique
     public function getExpenses()
     {
         return $this->expenses;
+    }
+
+    /**
+     * Set sub
+     *
+     * @param \FKS\CentralBundle\Entity\subNetwork $sub
+     *
+     * @return Statistique
+     */
+    public function setSub(\FKS\CentralBundle\Entity\subNetwork $sub)
+    {
+        $this->sub = $sub;
+
+        return $this;
+    }
+
+    /**
+     * Get sub
+     *
+     * @return \FKS\CentralBundle\Entity\subNetwork
+     */
+    public function getSub()
+    {
+        return $this->sub;
     }
 }

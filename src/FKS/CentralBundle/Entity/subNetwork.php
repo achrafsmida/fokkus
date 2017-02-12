@@ -86,11 +86,11 @@ class subNetwork
      */
     private $description;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="FKS\CentralBundle\Entity\User", inversedBy="subNetwork")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true)
-     */
-    protected $user;
+//    /**
+//     * @ORM\ManyToOne(targetEntity="FKS\CentralBundle\Entity\User", inversedBy="subNetwork")
+//     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true)
+//     */
+//    protected $user;
 
     /**
      * @ORM\ManyToOne(targetEntity="FKS\CentralBundle\Entity\Network", inversedBy="subNetwork")
@@ -111,7 +111,13 @@ class subNetwork
      * @ORM\Column(name="updatedDate", type="datetime")
      */
     private $updatedDate;
+
+    /**
+     * @ORM\OneToMany(targetEntity="FKS\CentralBundle\Entity\Statistique", mappedBy="sub")
+     */
+    private $stats;
     
+
     /**
      * Get id
      *
@@ -547,5 +553,39 @@ class subNetwork
     public function getPictureName()
     {
         return $this->pictureName;
+    }
+
+    /**
+     * Add stat
+     *
+     * @param \FKS\CentralBundle\Entity\Statistique $stat
+     *
+     * @return subNetwork
+     */
+    public function addStat(\FKS\CentralBundle\Entity\Statistique $stat)
+    {
+        $this->stats[] = $stat;
+
+        return $this;
+    }
+
+    /**
+     * Remove stat
+     *
+     * @param \FKS\CentralBundle\Entity\Statistique $stat
+     */
+    public function removeStat(\FKS\CentralBundle\Entity\Statistique $stat)
+    {
+        $this->stats->removeElement($stat);
+    }
+
+    /**
+     * Get stats
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getStats()
+    {
+        return $this->stats;
     }
 }

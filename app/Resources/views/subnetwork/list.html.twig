@@ -7,8 +7,9 @@
             <div class="panel-heading">
                 Network |
                 <small>List</small>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}
                 <a class="btn btn-success btn-xs pull-right" href="{{ path('subnetwork_new') }}">Create a new sub network</a>
-
+                {% endif %}
             </div>
             <div class="panel-body">
 
@@ -52,9 +53,10 @@
                             <td>
 
                                 <a class="btn btn-info" href="{{ path('subnetwork_show', { 'id': sub.id }) }}">show</a>
-
+                                {% if is_granted('ROLE_SUPER_ADMIN') %}
                                 <a class="btn btn-warning" href="{{ path('subnetwork_edit', { 'id': sub.id }) }}">edit</a>
                                 <a class="btn btn-danger" href="{{ path('deleted_sub', { 'id': sub.id }) }}">Delete</a>
+                                {% else %}
 
                             </td>
                         </tr>
