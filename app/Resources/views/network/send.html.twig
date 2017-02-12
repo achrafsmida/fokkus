@@ -1,79 +1,45 @@
-{% extends 'base.html.twig' %}
-{% block main_breadcrumb %}
-    <li class=""><a href="{{ path('network_index') }}"> List of networks </a></li>
-    <li class="last-li-active"> New network</li>
-{% endblock %}
-    {% block body %}
-<style>
-    /*.form-control2{*/
-    /*overflow:scroll; height:250px;max-height:250px*/
-    /*}*/
+{#<div id="myModal" class="modal fade" role="dialog">#}
+    {#<div class="modal-dialog">#}
 
-</style>
-<div class="row">
+        {#<!-- Modal content-->#}
+        {#<div class="modal-content">#}
+            {#<div class="modal-header">#}
+                {#<button type="button" class="close" data-dismiss="modal">&times;</button>#}
+                {#<h4 class="modal-title">Modal Header</h4>#}
+            {#</div>#}
+            {#<div class="modal-body">#}
+                {#<p>Some text in the modal.</p>#}
+            {#</div>#}
+            {#<div class="modal-footer">#}
+                {#<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>#}
+            {#</div>#}
+        {#</div>#}
 
-    <div class="col-sm-12 col-md-12">
-        <fieldset class="scheduler-border">
-            <legend class="scheduler-border">Add network</legend>
+    {#</div>#}
+{#</div>#}
 
-            <form action="{{ path('network_new') }}" method="post"
-                  enctype="multipart/form-data">
-                <div class="formSep">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12">
-                            <div class="formSep">
-                                <div class="row">
-                                    <div class="col-sm-6 col-md-6">
-                                        {{ form_label(form.type) }}
-                                        {{ form_widget(form.type,{'attr':{'class':'form-control'}}) }}
-                                        <div class="error-field">{{ form_errors(form.type) }}</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="formSep">
-                                <div class="row">
-                                    <div class="col-sm-6 col-md-6">
-                                        {{ form_label(form.group) }}
-                                        {{ form_widget(form.group,{'attr':{'class':'form-control'}}) }}
-                                        <div class="error-field">{{ form_errors(form.group) }}</div>
-                                    </div>
-                                </div>
-                            </div>
-                            {{ form_rest(form) }}
-                        </div>
-                    </div>
-                </div>
-                <div class="form-actions form-actions-btn" style="padding: 10px;">
-                    <input id="btnSubmit" value="save" type="submit"
-                           class="right btn btn-danger form-save-btn">
-                    <a href="{{ path('list') }}" class="btn btn-default form-save-btn">
-                        return
-                    </a>
-                </div>
-                <div class="clear"></div>
-                {{ form_rest(form) }}
-            </form>
+<div id="myModal2" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <p>Do you want to save changes you made to document before closing?</p>
+                <p class="text-warning"><small>If you don't save, your changes will be lost.</small></p>
+            </div>
+           subject: <input type="text" name="fname"><br>
+            <textarea rows="4" cols="50">
+At w3schools.com you will learn how to make a website. We offer free tutorials in all web development technologies.
+</textarea>
+            {{ form_widget(form_send) }}
+            <input type="submit" value="Create" />
 
-        </fieldset>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
     </div>
 </div>
-<div>
-    {#<!-- Wysiswyg Editor-->#}
-    {#<div style="overflow:scroll; height:250px;max-height:250px" class="form-control wysiwyg mt-lg">Type something ...</div>#}
-    {#<br>#}
-    <script src="{{ asset('bundles/chosen/chosen.jquery.min.js') }}"></script>
-    <link rel="stylesheet" href="{{ asset('bundles/chosen/chosen.css') }}"/>
-    <script src="{{ asset('bundles/js/bootstrap-wysiwyg/bootstrap-wysiwyg.js') }}"></script>
-    <script src="{{ asset('bundles/js/bootstrap-wysiwyg/external/jquery.hotkeys.js') }}"></script>
-
-
-    <script>
-        $("#fks_centralbundle_message_users").chosen({
-            width: '100%'
-        });
-
-        $('.chosen-select').chosen();
-        $('.wysiwyg').wysiwyg();
-
-    </script>
-    {% endblock %}

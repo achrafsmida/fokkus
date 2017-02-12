@@ -308,7 +308,7 @@ class MessageController extends Controller
         $currentUser = $this->getUser();
 
         $contact = count($em->getRepository('FKSCentralBundle:ContactUser')->getContactUser($receiver->getId(), $currentUser->getId()));
-       // dump($contact); die;
+        // dump($contact); die;
         if ($contact == 0) {
             $contactUser = new ContactUser();
             $contactUser->setSender($currentUser);
@@ -337,25 +337,32 @@ class MessageController extends Controller
      */
     public function sendAction(Request $request, User $receiver)
     {
-        $message = new Message();
-        $form = $this->createForm('FKS\CentralBundle\Form\MessageContactType', $message);
-        $form->handleRequest($request);
+//        $message = new Message();
+//        $form = $this->createForm('FKS\CentralBundle\Form\MessageContactType', $message);
+//        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $message->setSender($this->getUser());
-            $message->addUser($receiver);
-            $message->setReaded(false);
-            $message->setDeleted(false);
-            $em->persist($message);
-            $em->flush($message);
+//        if ($form->isSubmitted() && $form->isValid()) {
 
-            return $this->redirectToRoute('message_show', array('id' => $message->getId()));
-        }
+        $subject = $request->get('subject');
+        $message = $request->get('message');
+        $em = $this->getDoctrine()->getManager();
 
-        return $this->render('network/index.html.twig', array(
-            'message' => $message,
-            'form_send' => $form->createView(),
-        ));
+        $message->setSubject($subject);
+        $message->setMessage($message);
+        
+        $message->setSender($this->getUser());
+        $message->addUser($receiver);
+        $message->setReaded(false);
+        $message->setDeleted(false);
+        $em->persist($message);
+        $em->flush($message);
+
+        return $this->redirectToRoute('message_show', array('id' => $message->getId()));
+        // }
+
+//        return $this->render('network/send.html.twig', array(
+//            'message' => $message,
+//            'form_send' => $form->createView(),
+//        ));
     }
 }

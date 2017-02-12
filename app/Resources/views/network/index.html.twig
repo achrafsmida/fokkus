@@ -94,6 +94,31 @@
                             </div>
 
                         </div>
+
+                        <div id="myModal22" class="modal fade">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title">Confirmation</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Do you want to save changes you made to document before closing?</p>
+                                        <p class="text-warning">
+                                            <small>If you don't save, your changes will be lost.</small>
+                                        </p>
+                                    </div>
+                                    subject: <input id="subject" type="text" name="fname"><br>
+                                    <textarea id="message" rows="4" cols="50"></textarea>
+                                    <input type="submit" value="Create"/>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary" onclick="save({{ sub.id }})">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     {% endfor %}
 
                 </div>
@@ -130,7 +155,7 @@
                         </ul>
                     </div>
                 </div>
-                <div  id ="messagebloc" style="display:none" class="row">
+                <div id="messagebloc" style="display:none" class="row">
                     <div class="col-md-4">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -138,50 +163,37 @@
                                     <em class="fa"></em>
                                 </a>
                             </div>
-                            <div id="block" >
-                            <div class="panel-body text-center" >
-                                {#{{ asset(equipment.getWebPath()) }}#}
-                                <img src="{{ asset('bundles/img/04.jpg') }}"  alt="Contact"
-                                     class="center-block img-responsive img-circle thumb64">
-                                <h4 class="">Tara Nelson</h4>
-                                <p>Hello, I'm a just a dummy contact in your contact list and this is my presentation
-                                    text. Have fun!</p>
-                            </div>
-                            <div class="panel-footer clearfix">
-                                <div class="pull-left"><a href="#" class="btn btn-xs btn-primary"  onclick="send(1)">Send message</a>
+                            <div id="block">
+                                <div class="panel-body text-center">
+                                    {#{{ asset(equipment.getWebPath()) }}#}
+                                    <img src="{{ asset('bundles/img/04.jpg') }}" alt="Contact"
+                                         class="center-block img-responsive img-circle thumb64">
+                                    <h4 class="">Tara Nelson</h4>
+                                    <p>Hello, I'm a just a dummy contact in your contact list and this is my
+                                        presentation
+                                        text. Have fun!</p>
                                 </div>
-                                <div class="pull-right"><a href="#" class="btn btn-xs btn-default">View</a>
+                                <div class="panel-footer clearfix">
+                                    <div class="pull-left"><a href="#" class="btn btn-xs btn-primary" onclick="send(1)">Send
+                                            message</a>
+                                    </div>
+                                    <div class="pull-right"><a href="#" class="btn btn-xs btn-default">View</a>
+                                    </div>
                                 </div>
-                            </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <div id="myModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Confirmation</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>Do you want to save changes you made to document before closing?</p>
-                        <p class="text-warning"><small>If you don't save, your changes will be lost.</small></p>
-                    </div>
-                    {{ form_start(form_send) }}
-                    {{ form_widget(form_send) }}
-                    <input type="submit" value="Create" />
-                    {{ form_end(form_send) }}
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {#{{ render(controller(#}
+        {#'FKSCentralBundle:Message:send',#}
+        {#{ 'id': 1 }#}
+        {#)) }}#}
     </div>
+
+
+
 
     {#<body>#}
     {#<h4 class="name"></h4>#}
@@ -206,29 +218,28 @@
                 data: {'id': id},
                 dataType: 'JSON',
                 success: function (result) {
-                    
-                    
-                    img = '{{ asset('uploads/network/curentimg') }}' ;
+
+                    myId = result.id;
+                    img = '{{ asset('uploads/network/curentimg') }}';
                     img = img.replace("curentimg", result.pictureName);
                     viewurl = '{{ path('subnetwork_show', { 'id': 'id' }) }}'
                     viewurl = viewurl.replace("id", result.id);
 
-                    
-                    html='';
-                    html+=' <div class="panel-body text-center">'
-                       html+='  <img src="'+img+'"  alt="Contact" class="center-block img-responsive img-circle thumb64">'
-                               html+='  <h4 class="">'+result.firstName+' '+result.lastName+'</h4>'
-                               html+='  <p>'+result.description+'</p>'
-                            html+=' </div>'
-                           html+='  <div class="panel-footer clearfix">'
-                            html+='     <div class="pull-left"><a href="" class="btn btn-xs btn-primary">Send message</a>'
-                             html+='    </div>'
-                              html+='   <div class="pull-right"><a href="'+viewurl+'" class="btn btn-xs btn-default">View</a>'
-                              html+='   </div>'
-                           html+='  </div>'
-                                       $('#block').html(html) ;
-                    $('#messagebloc').show() ;
 
+                    html = '';
+                    html += ' <div class="panel-body text-center">'
+                    html += '  <img src="' + img + '"  alt="Contact" class="center-block img-responsive img-circle thumb64">'
+                    html += '  <h4 class="">' + result.firstName + ' ' + result.lastName + '</h4>'
+                    html += '  <p>' + result.description + '</p>'
+                    html += ' </div>'
+                    html += '  <div class="panel-footer clearfix">'
+                    html += '     <div class="pull-left"><a href="#" onclick="send(' + myId + ')" class="btn btn-xs btn-primary">Send message</a>'
+                    html += '    </div>'
+                    html += '   <div class="pull-right"><a href="' + viewurl + '" class="btn btn-xs btn-default">View</a>'
+                    html += '   </div>'
+                    html += '  </div>'
+                    $('#block').html(html);
+                    $('#messagebloc').show();
 
 
                 }
@@ -243,8 +254,6 @@
 
             var url = '{{ path("send_contact", {'id': 'id' }) }}';
             url = url.replace("id", id);
-
-
             //alert  (content);
             $.ajax({
 
@@ -253,16 +262,16 @@
                 data: {'id': id},
                 dataType: 'JSON',
                 success: function (result) {
-                    $("#myModal").modal('hide');
+                    //$("#myModal").modal('hide');
                     console.log(result.msg);
-                    if (result.msg == 1){
+                    if (result.msg == 1) {
                         swal({
-                                    title : "Votre demande de contact est en attente",
-                                    text : "Attendez votre partenaire pour qu'il accepte votre demande de contact!",
-                                    type : "warning",
-                                    showCancelButton : true,
-                                    confirmButtonColor : "#DD6B55",
-                                    closeOnConfirm : false
+                                    title: "Votre demande de contact est en attente",
+                                    text: "Attendez votre partenaire pour qu'il accepte votre demande de contact!",
+                                    type: "warning",
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#DD6B55",
+                                    closeOnConfirm: false
                                 },
                                 function () {
 
@@ -283,13 +292,41 @@
                         {#}#}
                         {#});#}
                     }
-                    else{
+                    else {
                         //$('.sweet-alert').hide();
-                        $("#myModal").modal('show');
+                        //alert('eee');
+                        $("#myModal22").modal('show') ;
                     }
 
                 }
             });
+        }
+
+
+
+        function save(id) {
+            var id = id;
+
+             var subject = $('#subject').val();
+             var message = $('#message').val();
+            console.log('---', subject);
+
+            var url = '{{ path("send_form_message", {'id': 'id' }) }}';
+            url = url.replace("id", id);
+
+
+            //alert  (content);
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: {'id': id, 'subject': subject, 'message': message},
+                dataType: 'JSON',
+                success: function (result) {
+
+                }
+
+            }
+        );
         }
     </script>
 
