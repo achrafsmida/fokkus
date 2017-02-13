@@ -172,19 +172,14 @@
                                         {#</div>#}
                                         {#</div>#}
                                         <div class="form-group">
-                                            {% if is_granted('ROLE_SUPER_ADMIN') %}
                                                 <div class="col-sm-offset-2 col-sm-10">
                                                     <a href="{{ path('subnetwork_edit', { 'id': subNetwork.id }) }}"
                                                        class="btn btn-info">Update?</a>
                                                 </div>
-                                            {% endif %}
                                         </div>
                                 </form></div>
-
-                                {% if is_granted('ROLE_SUPER_ADMIN') %}
                                 <div class="text-right"><a href="{{ path('deleted_sub', { 'id': subNetwork.id }) }}"
                                                            class="text-muted">Delete this contact?</a>
-                                    {% endif %}
                                 </div>
                             </div>
                         </div>

@@ -116,7 +116,12 @@ class subNetwork
      * @ORM\OneToMany(targetEntity="FKS\CentralBundle\Entity\Statistique", mappedBy="sub")
      */
     private $stats;
-    
+
+    /**
+     * @ORM\OneToOne(targetEntity="FKS\CentralBundle\Entity\User", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
 
     /**
      * Get id
@@ -357,15 +362,15 @@ class subNetwork
         return $this;
     }
 
-    /**
-     * Get user
-     *
-     * @return \FKS\CentralBundle\Entity\User
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
+//    /**
+//     * Get user
+//     *
+//     * @return \FKS\CentralBundle\Entity\User
+//     */
+//    public function getUser()
+//    {
+//        return $this->user;
+//    }
     /**
      * Constructor
      */
@@ -587,5 +592,15 @@ class subNetwork
     public function getStats()
     {
         return $this->stats;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \FKS\CentralBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

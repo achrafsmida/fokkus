@@ -322,7 +322,7 @@ class MessageController extends Controller
         } elseif ($contact->getStatus == 0) {
             return new JsonResponse(array('path' => 1));
 
-        }else{
+        } else {
             return new JsonResponse(array('path' => 0));
         }
 
@@ -351,7 +351,7 @@ class MessageController extends Controller
 
         $message->setSubject($subject);
         $message->setMessage($message);
-        
+
         $message->setSender($this->getUser());
         $message->addUser($receiver);
         $message->setReaded(false);
@@ -366,5 +366,39 @@ class MessageController extends Controller
 //            'message' => $message,
 //            'form_send' => $form->createView(),
 //        ));
+    }
+
+    /**
+     * Finds and edit status of contact request.
+     *
+     * @Route("/{id}", name="read_message")
+     * @Method({"GET", "POST"})
+     */
+    public function setReadedAction(Message $message)
+    {
+        /** @var EntityManager $em */
+        $em = $this->getDoctrine()->getManager();
+
+        $message->setReaded(true);
+
+        $em->persist($message);
+        $em->flush($message);
+
+        $messages = $em->getRepository('FKSCentralBundle:Message')->findAll();
+
+        $count = count($em->getRepository('FKSCentralBundle:Message')->count($this->getUser()->getId()));
+        $countReaded = count($em->getRepository('FKSCentralBundle:Message')->read($this->getUser()->getId()));
+        //dump($count);die;
+
+        $countSended = count($em->getRepository('FKSCentralBundle:Message')->findBySender($this->getUser()));
+        $countDeleted = count($em->getRepository('FKSCentralBundle:Message')->delete($this->getUser()->getId()));
+
+        return $this->render('message/index.html.twig', array(
+            'messages' => $messages,
+            'count' => $count,
+            'countReaded' => $countReaded,
+            'countSended' => $countSended,
+            'countDeleted' => $countDeleted
+        ));
     }
 }

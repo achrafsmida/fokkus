@@ -27,12 +27,6 @@ class User extends BaseUser
 //    private $subNetwork;
 
     /**
-     * @ORM\OneToOne(targetEntity="FKS\CentralBundle\Entity\subNetwork", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $sub;
-
-    /**
      * @ORM\OneToMany(targetEntity="FKS\CentralBundle\Entity\Message", mappedBy="sender")
      */
     private $message;

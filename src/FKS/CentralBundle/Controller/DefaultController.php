@@ -2,6 +2,8 @@
 
 namespace FKS\CentralBundle\Controller;
 
+use FKS\CentralBundle\Entity\ContactUser;
+use FKS\CentralBundle\Entity\RequestContact;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -55,13 +57,58 @@ class DefaultController extends Controller
 
         $stats = $em->getRepository('FKSCentralBundle:Statistique')->findAll();
 
-
-
         //dump($result);die;
 
         return $this->render('default/index.html.twig', array(
             'stats' => $stats,
             //  'hotelUnhappy' => $hotelUnhappy,
+
+        ));
+    }
+
+    /**
+     * Lists all statistique entities.
+     *
+     * @Route("/request/contact", name="request_contact")
+     * @Method("GET")
+     */
+    public function listAction()
+    {
+        /** @var EntityManager $em */
+        $em = $this->getDoctrine()->getManager();
+
+        $requests = $em->getRepository('FKSCentralBundle:ContactUser')->findAll();
+        return $this->render('default/requests.html.twig', array(
+            'requests' => $requests,
+            //  'hotelUnhappy' => $hotelUnhappy,
+
+        ));
+
+    }
+
+    /**
+     * Finds and edit status of contact request.
+     *
+     * @Route("/{id}", name="edit_status")
+     * @Method("SET")
+     */
+    public function editAction(ContactUser $request)
+    {
+        /** @var EntityManager $em */
+        $em = $this->getDoctrine()->getManager();
+        if ($request->getStatus() == true) {
+            $request->setStatus(false);
+        } else {
+            $request->setStatus(true);
+
+        }
+        $em->persist($request);
+        $em->flush($request);
+
+        $requests = $em->getRepository('FKSCentralBundle:ContactUser')->findAll();
+        return $this->render('default/requests.html.twig', array(
+            'requests' => $requests,
+            'request' => $request,
 
         ));
     }
