@@ -58,6 +58,7 @@ class StatistiqueController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $statistique->setSub($this->getUser()->getSub());
             $em->persist($statistique);
             $em->flush($statistique);
 

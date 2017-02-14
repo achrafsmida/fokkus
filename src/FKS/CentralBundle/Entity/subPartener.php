@@ -99,7 +99,7 @@ class subPartener
     private $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity="FKS\CentralBundle\Entity\Partener")
+     * @ORM\ManyToOne(targetEntity="FKS\CentralBundle\Entity\Partener", inversedBy="subPartener")
      * @ORM\JoinColumn(name="partener_id", referencedColumnName="id", nullable=false)
      */
     protected $partener;

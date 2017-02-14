@@ -79,7 +79,7 @@
                                             <small class="text-muted">MAILBOXES</small>
                                         </li>
                                         <li class="active">
-                                            <a href="#">
+                                            <a href="{{ path('myMessages') }}">
                                                 <span class="label label-green pull-right">{{ count }}</span>
                                                 <em class="fa fa-fw fa-lg fa-inbox"></em>
                                                 <span>Inbox</span>
@@ -154,7 +154,7 @@
                                     {% if message.deleted  == false %}
                                         {% for user in  message.users %}
                                             {% if user.id  == app.user.getId() %}
-                                                <tr>
+                                                <tr onclick="readed({{ message.id }})" {% if message.readed  == false %} style="background-color: #f2dede" {% endif %}>
                                                     <td>
                                                         <div class="checkbox c-checkbox">
                                                             <label>
@@ -270,5 +270,30 @@
 //                    });
 //
 //        });
+
+        function readed(id) {
+
+            var id = id;
+
+            var url = '{{ path("read_message", {'id': 'id' }) }}';
+            url = url.replace("id", id);
+
+            //alert  (content);
+//                            display(),
+//                                    swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                            $.ajax({
+                                url: url,
+                                type: 'POST',
+                                data: {'id': id},
+                                dataType: 'JSON',
+                                success: function (result) {
+                                   // var url = result.path;
+                                    //alert(result.commet);
+                                   // window.location.href = url;
+                                    //console.log(result.sub)// quand la réponse de la requete arrive
+
+                                }
+                            });
+        }
     </script>
 {% endblock %}

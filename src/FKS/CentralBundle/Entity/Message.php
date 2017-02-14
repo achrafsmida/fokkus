@@ -30,7 +30,7 @@ class Message
     private $subject;
 
     /**
-     * @ORM\ManyToOne(targetEntity="FKS\CentralBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="FKS\CentralBundle\Entity\User", inversedBy="message")
      * @ORM\JoinColumn(name="sender_id", referencedColumnName="id", nullable=false)
      */
     protected $sender;

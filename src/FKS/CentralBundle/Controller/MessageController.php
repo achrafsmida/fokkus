@@ -2,7 +2,9 @@
 
 namespace FKS\CentralBundle\Controller;
 
+use FKS\CentralBundle\Entity\ContactUser;
 use FKS\CentralBundle\Entity\Message;
+use FKS\CentralBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -252,17 +254,17 @@ class MessageController extends Controller
         $em = $this->getDoctrine()->getManager();
 //$tab2 = Integer.valueOf($tab);
         //dump(($tab2));die;
-            foreach ($tab as $item) {
-                //dump($item);die;
-                $message = $em->getRepository('FKSCentralBundle:Message')->findOneById($item);
-                //dump($message);die;
-                $message->setDeleted(true);
-                $em->flush($message);
-            }
+        foreach ($tab as $item) {
+            //dump($item);die;
+            $message = $em->getRepository('FKSCentralBundle:Message')->findOneById($item);
+            //dump($message);die;
+            $message->setDeleted(true);
+            $em->flush($message);
+        }
 
 
         return new JsonResponse(array('path' => $this->generateUrl('myMessages')));
-       // return $this->redirectToRoute('myMessages');
+        // return $this->redirectToRoute('myMessages');
 
     }
 
@@ -284,6 +286,114 @@ class MessageController extends Controller
         $countDeleted = count($em->getRepository('FKSCentralBundle:Message')->delete($this->getUser()));
 
         return $this->render('message/deleted.html.twig', array(
+            'messages' => $messages,
+            'count' => $count,
+            'countReaded' => $countReaded,
+            'countSended' => $countSended,
+            'countDeleted' => $countDeleted
+        ));
+    }
+
+    /**
+     * Edit status of request .
+     *
+     * @Route("/{id}/send-msg/", name="send_contact")
+     * @return array
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException If bookingRequest doesn't exists
+     */
+    public function sendFirstContactAction(User $receiver)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $currentUser = $this->getUser();
+
+        $contact = count($em->getRepository('FKSCentralBundle:ContactUser')->getContactUser($receiver->getId(), $currentUser->getId()));
+        // dump($contact); die;
+        if ($contact == 0) {
+            $contactUser = new ContactUser();
+            $contactUser->setSender($currentUser);
+            $contactUser->setReceiver($receiver);
+            $contactUser->setStatus(true);
+
+            $em->persist($contactUser);
+            $em->flush($contactUser);
+
+            return new JsonResponse(array('msg' => 1));
+        } elseif ($contact->getStatus == 0) {
+            return new JsonResponse(array('path' => 1));
+
+        } else {
+            return new JsonResponse(array('path' => 0));
+        }
+
+    }
+
+
+    /**
+     * Edit status of request .
+     *
+     * @Route("/{id}/send-form/", name="send_form_message")
+     * @return array
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException If bookingRequest doesn't exists
+     */
+    public function sendAction(Request $request, User $receiver)
+    {
+//        $message = new Message();
+//        $form = $this->createForm('FKS\CentralBundle\Form\MessageContactType', $message);
+//        $form->handleRequest($request);
+
+//        if ($form->isSubmitted() && $form->isValid()) {
+
+        $subject = $request->get('subject');
+        $message = $request->get('message');
+        $em = $this->getDoctrine()->getManager();
+
+        $message->setSubject($subject);
+        $message->setMessage($message);
+
+        $message->setSender($this->getUser());
+        $message->addUser($receiver);
+        $message->setReaded(false);
+        $message->setDeleted(false);
+        $em->persist($message);
+        $em->flush($message);
+
+        return $this->redirectToRoute('message_show', array('id' => $message->getId()));
+        // }
+
+//        return $this->render('network/send.html.twig', array(
+//            'message' => $message,
+//            'form_send' => $form->createView(),
+//        ));
+    }
+
+    /**
+     * Finds and edit status of contact request.
+     *
+     * @Route("/{id}", name="read_message")
+     * @Method({"GET", "POST"})
+     */
+    public function setReadedAction(Message $message)
+    {
+        /** @var EntityManager $em */
+        $em = $this->getDoctrine()->getManager();
+
+        $message->setReaded(true);
+
+        $em->persist($message);
+        $em->flush($message);
+
+        $messages = $em->getRepository('FKSCentralBundle:Message')->findAll();
+
+        $count = count($em->getRepository('FKSCentralBundle:Message')->count($this->getUser()->getId()));
+        $countReaded = count($em->getRepository('FKSCentralBundle:Message')->read($this->getUser()->getId()));
+        //dump($count);die;
+
+        $countSended = count($em->getRepository('FKSCentralBundle:Message')->findBySender($this->getUser()));
+        $countDeleted = count($em->getRepository('FKSCentralBundle:Message')->delete($this->getUser()->getId()));
+
+        return $this->render('message/index.html.twig', array(
             'messages' => $messages,
             'count' => $count,
             'countReaded' => $countReaded,

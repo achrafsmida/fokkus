@@ -51,7 +51,7 @@ class Network
     private $updatedDate;
 
     /**
-     * @ORM\ManyToOne(targetEntity="FKS\CentralBundle\Entity\Groups")
+     * @ORM\ManyToOne(targetEntity="FKS\CentralBundle\Entity\Groups", inversedBy="network")
      * @ORM\JoinColumn(name="group_id", referencedColumnName="id", nullable=false)
      */
     protected $group;

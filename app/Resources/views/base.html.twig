@@ -342,6 +342,12 @@
                   </li>
 				  <li class=" ">
                   <li class=" ">
+                     <a href="{{ path('request_contact') }}" title="group" data-toggle="collapse">
+                        <em class="icon-speedometer"></em>
+                        <span data-localize="sidebar.nav.evenement">Demande of request</span>
+                     </a>
+                  </li>
+                  <li class=" ">
                      <a href="#group" title="group" data-toggle="collapse">
                         <em class="icon-speedometer"></em>
                         <span data-localize="sidebar.nav.evenement">Groups</span>
@@ -423,11 +429,11 @@
                      </a>
 
                      <ul id="subnetwork" class="nav sidebar-subnav collapse">
-                        <li class=" ">
-                           <a href="{{ path('subnetwork_index') }}" >
-                              <span>List of Sub Network</span>
-                           </a>
-                        </li>
+                        {#<li class=" ">#}
+                           {#<a href="{{ path('subnetwork_index') }}" >#}
+                              {#<span>List of Sub Network</span>#}
+                           {#</a>#}
+                        {#</li>#}
                         {#<li class=" ">#}
                         {#<a href="{{ path('evenementcateg_index') }}" >#}
                         {#<span>Category</span>#}

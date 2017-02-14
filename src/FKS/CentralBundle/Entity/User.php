@@ -21,10 +21,10 @@ class User extends BaseUser
      */
     protected $id;
     
-    /**
-     * @ORM\OneToMany(targetEntity="FKS\CentralBundle\Entity\subNetwork", mappedBy="user")
-     */
-    private $subNetwork;
+//    /**
+//     * @ORM\OneToMany(targetEntity="FKS\CentralBundle\Entity\subNetwork", mappedBy="user")
+//     */
+//    private $subNetwork;
 
     /**
      * @ORM\OneToMany(targetEntity="FKS\CentralBundle\Entity\Message", mappedBy="sender")
@@ -40,6 +40,16 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="FKS\CentralBundle\Entity\RequestContact", mappedBy="sender")
      */
     private $requestSender;
+
+    /**
+     * @ORM\OneToMany(targetEntity="FKS\CentralBundle\Entity\ContactUser", mappedBy="sender")
+     */
+    private $contactSender;
+
+    /**
+     * @ORM\OneToMany(targetEntity="FKS\CentralBundle\Entity\ContactUser", mappedBy="receiver")
+     */
+    private $contact;
 
     /**
      * @ORM\OneToMany(targetEntity="FKS\CentralBundle\Entity\RequestContact", mappedBy="receiver")
@@ -269,5 +279,97 @@ class User extends BaseUser
     public function getRequestReceiver()
     {
         return $this->requestReceiver;
+    }
+
+    /**
+     * Add contactSender
+     *
+     * @param \FKS\CentralBundle\Entity\ContactUser $contactSender
+     *
+     * @return User
+     */
+    public function addContactSender(\FKS\CentralBundle\Entity\ContactUser $contactSender)
+    {
+        $this->contactSender[] = $contactSender;
+
+        return $this;
+    }
+
+    /**
+     * Remove contactSender
+     *
+     * @param \FKS\CentralBundle\Entity\ContactUser $contactSender
+     */
+    public function removeContactSender(\FKS\CentralBundle\Entity\ContactUser $contactSender)
+    {
+        $this->contactSender->removeElement($contactSender);
+    }
+
+    /**
+     * Get contactSender
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getContactSender()
+    {
+        return $this->contactSender;
+    }
+
+    /**
+     * Add contact
+     *
+     * @param \FKS\CentralBundle\Entity\ContactUser $contact
+     *
+     * @return User
+     */
+    public function addContact(\FKS\CentralBundle\Entity\ContactUser $contact)
+    {
+        $this->contact[] = $contact;
+
+        return $this;
+    }
+
+    /**
+     * Remove contact
+     *
+     * @param \FKS\CentralBundle\Entity\ContactUser $contact
+     */
+    public function removeContact(\FKS\CentralBundle\Entity\ContactUser $contact)
+    {
+        $this->contact->removeElement($contact);
+    }
+
+    /**
+     * Get contact
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getContact()
+    {
+        return $this->contact;
+    }
+
+    /**
+     * Set sub
+     *
+     * @param \FKS\CentralBundle\Entity\subNetwork $sub
+     *
+     * @return User
+     */
+    public function setSub(\FKS\CentralBundle\Entity\subNetwork $sub)
+    {
+        $this->sub = $sub;
+
+        return $this;
+    }
+
+    /**
+     * Get sub
+     *
+     * @return \FKS\CentralBundle\Entity\subNetwork
+     */
+    public function getSub()
+    {
+        return $this->sub;
     }
 }

@@ -43,13 +43,13 @@ class RequestContact
     private $updatedDate;
 
     /**
-     * @ORM\ManyToOne(targetEntity="FKS\CentralBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="FKS\CentralBundle\Entity\User", inversedBy="requestSender")
      * @ORM\JoinColumn(name="sender_id", referencedColumnName="id", nullable=false)
      */
     protected $sender;
 
     /**
-     * @ORM\ManyToOne(targetEntity="FKS\CentralBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="FKS\CentralBundle\Entity\User", inversedBy="requestReceiver")
      * @ORM\JoinColumn(name="receiver_id", referencedColumnName="id", nullable=false)
      */
     protected $receiver;
