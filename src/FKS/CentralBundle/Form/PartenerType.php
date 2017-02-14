@@ -13,7 +13,14 @@ class PartenerType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('type')->add('group')      ;
+        $net = $options['net'];
+        if ($net) {
+            $builder->add('type')
+                ->add('group');
+        } else {
+            $builder->add('type')->add('haveUser');
+        }
+        ;
     }
     
     /**

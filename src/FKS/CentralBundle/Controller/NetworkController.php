@@ -41,11 +41,28 @@ class NetworkController extends Controller
     public function newAction(Request $request)
     {
         $network = new Network();
-        $form = $this->createForm('FKS\CentralBundle\Form\NetworkType', $network);
+
+        /** @var User $user */
+        $user = $this->getUser();
+        $sub = false;
+        // Check if user is manager
+        if ($user->hasRole('ROLE_GROUP')) {
+            $sub = true;
+        } else {
+            $sub = false;
+        }
+
+        $form = $this->createForm('FKS\CentralBundle\Form\NetworkType', $network, array('sub' => $sub));
         $form->handleRequest($request);
 
+        $em = $this->getDoctrine()->getManager();
+        $subNetwork = $em->getRepository('FKSCentralBundle:subNetwork')->findOneByUser($user);
+        $group = $subNetwork->getNetwork()->getGroup();
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+
+            if ($sub == true ){
+              $network->setGroup($group)  ;
+            }
             $em->persist($network);
             $em->flush($network);
 
@@ -148,8 +165,8 @@ class NetworkController extends Controller
         $user = $this->getUser();
         $id = $request->get('id');
         $query = $em->createQuery(
-		'SELECT sub FROM FKSCentralBundle:subNetwork sub    WHERE   sub.id = :id  ')
-		->setParameter("id",$id ) ;
+            'SELECT sub FROM FKSCentralBundle:subNetwork sub    WHERE   sub.id = :id  ')
+            ->setParameter("id", $id);
         //dump($sub);die;
         return new JsonResponse($query->getArrayResult()[0]);
 

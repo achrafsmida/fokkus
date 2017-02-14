@@ -13,17 +13,27 @@ class NetworkType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('type')->add('haveUser')->add('group')
-                   ;
+        $sub = $options['sub'];
+        if ($sub) {
+            $builder->add('type')
+                ->add('haveUser')
+                ->add('group');
+        } else {
+            $builder->add('type')->add('haveUser');
+        }
+
+
     }
-    
+
     /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'FKS\CentralBundle\Entity\Network'
+            'data_class' => 'FKS\CentralBundle\Entity\Network',
+            'sub' => null
+
         ));
     }
 

@@ -41,11 +41,23 @@ class PartenerController extends Controller
     public function newAction(Request $request)
     {
         $partener = new Partener();
-        $form = $this->createForm('FKS\CentralBundle\Form\PartenerType', $partener);
+        $form = $this->createForm('FKS\CentralBundle\Form\PartenerType', $partener, array('net' => $net));
         $form->handleRequest($request);
+        $user = $this->getUser();
+        if ($user->hasRole('ROLE_GROUP')) {
+            $net = true;
+        } else {
+            $net = false;
+        }
 
+        $em = $this->getDoctrine()->getManager();
+        $subPartenaire = $em->getRepository('FKSCentralBundle:subPartener')->findOneByUser($user);
+        $group = $subPartenaire->getPartenaire()->getGroup();
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+
+            if ($net == true ){
+                $subPartenaire->setGroup($group)  ;
+            }
             $em->persist($partener);
             $em->flush($partener);
 
