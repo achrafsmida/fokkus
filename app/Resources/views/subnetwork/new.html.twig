@@ -127,6 +127,15 @@
                                     </div>
                                 </div>
                             </div>
+							 <div class="formSep">
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-6">
+                                        file
+                                        {{ form_widget(form.user ) }}
+                                        <div class="error-field">{{ form_errors(form.user) }}</div>
+                                    </div>
+                                </div>
+                            </div>
                             {{ form_rest(form) }}
                         </div>
                     </div>
