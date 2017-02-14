@@ -96,10 +96,23 @@ class NetworkController extends Controller
     public function editAction(Request $request, Network $network)
     {
         $deleteForm = $this->createDeleteForm($network);
-        $editForm = $this->createForm('FKS\CentralBundle\Form\NetworkType', $network);
+        $user = $this->getUser();
+        // Check if user is manager
+        if ($user->hasRole('ROLE_GROUP')) {
+            $sub = true;
+        } else {
+            $sub = false;
+        }
+
+        $editForm = $this->createForm('FKS\CentralBundle\Form\NetworkType', $network, array('sub' => $sub));
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $subNetwork = $em->getRepository('FKSCentralBundle:subNetwork')->findOneByUser($user);
+            $group = $subNetwork->getNetwork()->getGroup();
+                if ($sub == true ){
+                    $network->setGroup($group)  ;}
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('network_edit', array('id' => $network->getId()));

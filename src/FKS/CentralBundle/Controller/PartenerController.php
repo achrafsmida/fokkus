@@ -41,8 +41,6 @@ class PartenerController extends Controller
     public function newAction(Request $request)
     {
         $partener = new Partener();
-        $form = $this->createForm('FKS\CentralBundle\Form\PartenerType', $partener, array('net' => $net));
-        $form->handleRequest($request);
         $user = $this->getUser();
         if ($user->hasRole('ROLE_GROUP')) {
             $net = true;
@@ -50,6 +48,8 @@ class PartenerController extends Controller
             $net = false;
         }
 
+        $form = $this->createForm('FKS\CentralBundle\Form\PartenerType', $partener, array('net' => $net));
+        $form->handleRequest($request);
         $em = $this->getDoctrine()->getManager();
         $subPartenaire = $em->getRepository('FKSCentralBundle:subPartener')->findOneByUser($user);
         $group = $subPartenaire->getPartenaire()->getGroup();
@@ -91,10 +91,26 @@ class PartenerController extends Controller
     public function editAction(Request $request, Partener $partener)
     {
         $deleteForm = $this->createDeleteForm($partener);
-        $editForm = $this->createForm('FKS\CentralBundle\Form\PartenerType', $partener);
+        $user = $this->getUser();
+        if ($user->hasRole('ROLE_GROUP')) {
+            $net = true;
+        } else {
+            $net = false;
+        }
+
+        $editForm = $this->createForm('FKS\CentralBundle\Form\PartenerType', $partener, array('net' => $net));
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $subPartenaire = $em->getRepository('FKSCentralBundle:subPartener')->findOneByUser($user);
+            $group = $subPartenaire->getPartenaire()->getGroup();
+
+                if ($net == true ){
+                    $subPartenaire->setGroup($group)  ;
+                }
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('partener_edit', array('id' => $partener->getId()));
