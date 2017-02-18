@@ -10,7 +10,7 @@ class NetworkType extends AbstractType
 {
     /**
      * {@inheritdoc}
-     */
+     */ 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $sub = $options['sub'];

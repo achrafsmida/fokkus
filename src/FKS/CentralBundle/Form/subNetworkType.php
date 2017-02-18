@@ -13,7 +13,7 @@ class subNetworkType extends AbstractType
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    { 
         $builder->add('firstName')->add('lastName')->add('mail')->add('society'
         )->add('fix')->add('mobile')->add('twitter')->add('site')->add('description')->add('network')->add('file')
         ->add('user',    UserType::class , array('label'=>"Paramétre d'authentification " )) ;
