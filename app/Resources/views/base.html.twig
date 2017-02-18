@@ -43,6 +43,7 @@
    <script src="{{ asset('bundles/fokkusv1/vendor/jquery-localize-i18n/dist/jquery.localize.js') }}"></script>
    <!-- RTL demo-->
    <script src="{{ asset('bundles/fokkusv1/app/js/demo/demo-rtl.js') }}"></script>
+   <script src="//cdn.ckeditor.com/4.6.2/basic/ckeditor.js"></script>
    <!-- =============== PAGE VENDOR SCRIPTS ===============-->
    <!-- =============== APP SCRIPTS ===============-->
    <script src="{{ asset('bundles/fokkusv1/app/js/app.js') }}"></script>
@@ -1041,7 +1042,11 @@
                </div>
             </div>
                  {% endblock  %}
-
+            <script>
+                // Replace the <textarea id="editor1"> with a CKEditor
+                // instance, using default configuration.
+                CKEDITOR.replace( 'ckeditor' );
+            </script>
          </div>
       </section>
       <!-- Page footer-->

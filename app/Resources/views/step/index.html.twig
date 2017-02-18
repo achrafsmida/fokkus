@@ -18,7 +18,6 @@
                               <thead>
                                     <th>Id</th>
                                     <th>Name</th>
-                                    <th>Description</th>
                                     <th>Date created</th>
                                     <th>Date updated</th>
                                     <th>Actions</th>
@@ -28,7 +27,6 @@
             <tr>
                 <td><a href="{{ path('step_show', { 'id': step.id }) }}">{{ step.id }}</a></td>
                 <td>{{ step.name }}</td>
-                <td>{{ step.description }}</td>
                 <td>{% if step.datecreated %}{{ step.datecreated|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{% if step.dateupdated %}{{ step.dateupdated|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>

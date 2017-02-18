@@ -28,14 +28,11 @@
                 <td>{{ evenement.nom }}</td>
                 <td>{{ evenement.description }}</td>
                 <td>
-                    <ul>
-                        <li>
+                   
                             <a href="{{ path('evenement_show', { 'id': evenement.id }) }}">show</a>
-                        </li>
-                        <li>
+                      
                             <a href="{{ path('evenement_edit', { 'id': evenement.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                       
                 </td>
             </tr>
         {% endfor %}

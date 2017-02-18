@@ -1,8 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Sousstep creation</h1>
-
+          <div class="row">
+                  <div class="col-lg-12">
+                     <div class="panel panel-default">
+                        <div class="panel-heading">
+                           TIME LINE | SUB Step creation |
+                           <small>{{ app.session.get('typestring')}}</small>
+                                       <a class="btn btn-success btn-xs pull-right" href="{{ path('step_visualtion') }}">Visulation</a>
+ 
+                        </div>
+                        <div class="panel-body">
     {{ form_start(form) }}
         {{ form_widget(form) }}
         <input type="submit" value="Create" />

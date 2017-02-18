@@ -19,18 +19,16 @@
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>Description</th>
                 <th>Datecreated</th>
                 <th>Dateupdated</th>
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody> 
         {% for sousstep in soussteps %}
             <tr>
                 <td><a href="{{ path('sousstep_show', { 'id': sousstep.id }) }}">{{ sousstep.id }}</a></td>
                 <td>{{ sousstep.name }}</td>
-                <td>{{ sousstep.description }}</td>
                 <td>{% if sousstep.datecreated %}{{ sousstep.datecreated|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{% if sousstep.dateupdated %}{{ sousstep.dateupdated|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>

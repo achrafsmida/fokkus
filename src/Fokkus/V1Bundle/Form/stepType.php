@@ -5,6 +5,9 @@ namespace Fokkus\V1Bundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class stepType extends AbstractType
 {
@@ -13,7 +16,10 @@ class stepType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('description')->add('groups')      ;
+        $builder->add('name',TextType::class, array('attr' => array('class' => 'form-control')))
+                ->add('description', TextareaType::class, array(
+    'attr' => array('class' => 'form-control ckeditor' )))
+                ->add('groups', EntityType::class, array( 'attr' => array('class' => 'form-control') , 'class'    => 'FKSCentralBundle:Groups'))      ;
     }
     
     /**

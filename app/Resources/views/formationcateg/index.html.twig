@@ -26,23 +26,16 @@
                 <td><a href="{{ path('formationcateg_show', { 'id': formationcateg.id }) }}">{{ formationcateg.id }}</a></td>
                 <td>{{ formationcateg.nom }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('formationcateg_show', { 'id': formationcateg.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('formationcateg_edit', { 'id': formationcateg.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                   
+                            <a class="btn btn-info" href="{{ path('formationcateg_show', { 'id': formationcateg.id }) }}">show</a>
+                       
+                            <a class="btn btn-warning" href="{{ path('formationcateg_edit', { 'id': formationcateg.id }) }}">edit</a>
+                       
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('formationcateg_new') }}">Create a new formationcateg</a>
-        </li>
-    </ul>
+  
 {% endblock %}
