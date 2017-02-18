@@ -10,7 +10,7 @@
                         <div class="panel-heading">
                            TIME LINE |
                            <small>Sub step</small>
-                                       <a class="btn btn-success btn-xs pull-right " href="{{ path('sousstep_new') }}">Create a new sousstep</a>
+                                       <a class="btn btn-success btn-xs pull-right " href="{{ path('sousstep_new') }}"><span class="icon-plus"></span> Create a new sousstep</a>
 
                         </div>
                         <div class="panel-body">
@@ -33,7 +33,7 @@
                 <td>{% if sousstep.dateupdated %}{{ sousstep.dateupdated|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>
                     
-                            <a class="btn btn-info btn-xs" href="{{ path('sousstep_edit', { 'id': sousstep.id }) }}">edit</a>
+                            <a class="btn btn-warning btn-xs" href="{{ path('sousstep_edit', { 'id': sousstep.id }) }}"> <span class="icon-wrench"> edit</a>
                        
                 </td>
             </tr>

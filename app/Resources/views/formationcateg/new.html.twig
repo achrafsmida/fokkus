@@ -7,19 +7,16 @@
                         <div class="panel-heading">
                           Formation  Caregory | ADD  |
                            <small></small>
-                                       <a class="btn btn-success btn-xs pull-right" href="{{ path('formationcateg_index') }}">Formation list</a>
+                                       <a class="btn btn-info btn-xs pull-right" href="{{ path('formationcateg_index') }}">                            <span class="icon-list"></span>
+Formation list</a>
  
                         </div>
                         <div class="panel-body">
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+        <input type="submit" class="btn btn-success btn-xs"  style="margin-top:20px" value="Create" />
     {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('formationcateg_index') }}">Back to the list</a>
-        </li>
-    </ul>
+  
 {% endblock %}

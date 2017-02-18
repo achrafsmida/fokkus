@@ -7,7 +7,8 @@
                         <div class="panel-heading">
                           Evenement  sub category  | Edition  |
                            <small></small>
-                                       <a class="btn btn-success btn-xs pull-right" href="{{ path('evenementsubcateg_index') }}">Evenement sub category list</a>
+                                       <a class="btn btn-info btn-xs pull-right" href="{{ path('evenementsubcateg_index') }}">                            <span class="icon-list"></span>
+ Evenement sub category list</a>
  
                         </div>
                         <div class="panel-body">
@@ -15,7 +16,7 @@
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+        <input class="btn btn-warning btn-xs"  style="margin-top:20px" type="submit" value="Edit" />
     {{ form_end(edit_form) }}
 
     

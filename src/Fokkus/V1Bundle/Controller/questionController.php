@@ -4,8 +4,11 @@ namespace Fokkus\V1Bundle\Controller;
 
 use Fokkus\V1Bundle\Entity\question;
 use Fokkus\V1Bundle\Entity\response;
+use Fokkus\V1Bundle\Entity\scores;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response as Res;
+
 
 /**
  * Question controller.
@@ -21,6 +24,8 @@ class questionController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        
+        
         $questions = $em->getRepository('FokkusV1Bundle:question')->findAll();
         $response= [] ;
 foreach($questions as $row){
@@ -34,11 +39,26 @@ foreach($questions as $row){
             'res'=>$response ,
             'questions' => $questions,
         ));
+        
+        
     }
 public function visualitationAction(){
     
     $em = $this->getDoctrine()->getManager();
 
+    
+    
+                   		$user =  $this->getUser();;
+        $score = $em->getRepository('FokkusV1Bundle:scores')->findby(array('user'=>$user));
+        if(count($score)>0){
+            
+           return $this->render('question/dashboard.html.twig', array(
+            
+        ));  
+        }
+        else{
+    
+    
         $questions = $em->getRepository('FokkusV1Bundle:question')->findAll();
         $response= [] ;
 foreach($questions as $row){
@@ -52,12 +72,30 @@ foreach($questions as $row){
             'res'=>$response ,
             'questions' => $questions,
         ));
-    
+        }
 }
     /**
      * Creates a new question entity.
      *
      */
+public function addscoresAction(){
+    
+      $request = $this->get('request_stack')->getCurrentRequest()
+;
+		$scores = $request->request->get('score');
+		 $em = $this->getDoctrine()->getManager();
+     $Scores = new scores();
+           $Scores->setScore($scores) ;
+           		$user =  $this->getUser();;
+            $Scores->setUser($user) ;
+           $em->persist($Scores);
+            $em->flush($Scores); 
+             $response = new Res(json_encode(array('result'=>1)));
+		$response->headers->set('Content-Type', 'application/json');
+
+		return $response;
+    
+}
     public function add_questionAction(){
         
                 $request = $this->get('request_stack')->getCurrentRequest()
@@ -82,10 +120,10 @@ foreach($questions as $row){
             }
               
           }      
-                // $response = new Response(json_encode(array('result'=>1)));
-		//$response->headers->set('Content-Type', 'application/json');
+                $response = new Res(json_encode(array('result'=>1)));
+		$response->headers->set('Content-Type', 'application/json');
 
-		//return $response;
+		return $response;
         
     }
     public function newAction(Request $request)

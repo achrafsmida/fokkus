@@ -5,9 +5,12 @@
 <div class="row">
 <div class="col-lg-12">
 
+<div role="alert" class="alert alert-warning">
+             <strong>Warning! </strong> You can do this once .</div>
 
-
-     
+  <div style="display:none" role="alert" class="alert alert-success">
+      <strong>Well done! </strong> Your score is : <strong ><span class="totalscore"></span></strong> ,  You will redirger after 2 seconds .</div>
+   
  {% set i = 0  %}
 
         {% for question in questions %}
@@ -23,8 +26,8 @@
                              <div class="col-md-4">
                             <div class="checkbox c-checkbox">
                               <label>
-                                 <input type="checkbox" >
-                                 <span class="fa fa-check"></span> {{row.response}}  </label>
+                                 <input type="checkbox" data-score="{{row.points}}" class="reponse" >
+                                 <span class="fa fa-check " ></span> {{row.response}}  </label>
                            </div>						  
                         </div> 
                                                                
@@ -42,6 +45,40 @@
               {% endfor %}
 
       
-              <a class="btn btn-success pull-right" > Validate</a>
+              <a class="btn btn-success pull-right" OnClick="getScore()" ><span class="icon-like"></span> Validate</a>
 
+              
+              
+              
+              <script>
+                  
+                  
+                  function getScore(){
+                      var score = 0 ;
+                      $.map($("input:checkbox:checked"), function(elem, idx) {
+                   score += parseInt($(elem).attr("data-score"));
+                });
+                
+                     $.ajax({
+
+                url: "{{ path('addscores')}}",
+                type: 'POST',
+                data: {'score': score}, 
+                dataType: 'JSON',
+                success: function (result) {
+                    console.log(result.sub)
+                    
+
+                     $('.totalscore').html(score);
+                $('.alert-success').show()
+
+
+                }
+            });
+                
+                
+                
+                  }
+                  
+                  </script>
 {% endblock %}

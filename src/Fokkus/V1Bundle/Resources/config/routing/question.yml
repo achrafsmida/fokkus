@@ -12,7 +12,9 @@ question_show:
     path:     /{id}/show
     defaults: { _controller: "FokkusV1Bundle:question:show" }
     methods:  GET
-
+addscores:
+    path:     /addscores
+    defaults: { _controller: "FokkusV1Bundle:question:addscores" }
 question_new:
     path:     /new
     defaults: { _controller: "FokkusV1Bundle:question:new" }

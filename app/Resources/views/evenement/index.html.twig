@@ -7,8 +7,8 @@
                         <div class="panel-heading">
                            Evenement |
                            <small>List</small>
-                                       <a class="btn btn-success btn-xs pull-right" href="{{ path('evenement_new') }}">Create a new formation</a>
-
+                                       <a class="btn btn-success btn-xs pull-right" href="{{ path('evenement_new') }}"><span class="icon-plus"></span> Create a new formation</a>
+                                       
                         </div>
                         <div class="panel-body">
 
@@ -29,10 +29,9 @@
                 <td>{{ evenement.description }}</td>
                 <td>
                    
-                            <a class="btn btn-info"  href="{{ path('evenement_show', { 'id': evenement.id }) }}">show</a>
+                            <a class="btn btn-info"  href="{{ path('evenement_show', { 'id': evenement.id }) }}"><span class="icon-eye"></span> show</a>
                       
-                            <a class="btn btn-warning"  href="{{ path('evenement_edit', { 'id': evenement.id }) }}">edit</a>
-                       
+                            <a class="btn btn-warning"  href="{{ path('evenement_edit', { 'id': evenement.id }) }}">  <span class="icon-wrench">  edit</a>
                 </td>
             </tr>
         {% endfor %}

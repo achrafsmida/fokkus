@@ -464,7 +464,7 @@
                        
                   <li class=" ">
                      <a href="#timeline " title="timeline" data-toggle="collapse">
-                        <em class="icon-speedometer"></em>
+                        <em class="icon-layers"></em>
                         <span data-localize="sidebar.nav.TIMELINE">TIME LINE</span>
                      </a>
                     
@@ -498,7 +498,7 @@
                        
                         <li class=" ">
                      <a href="{{ path('visualitationformation') }}" title="Documentation">
-                        <em class="icon-speedometer"></em>
+                        <em class="icon-graduation"></em>
                         <span data-localize="sidebar.nav.Formation">Formation</span>
                      </a>
                   </li>
@@ -508,73 +508,21 @@
                        
                         <li class=" ">
                      <a href="{{ path('visualitationformation') }}" title="Documentation">
-                        <em class="icon-speedometer"></em>
+                        <em class="icon-calendar"></em>
                         <span data-localize="sidebar.nav.Formation">Evenement</span>
                      </a>
                   </li>
+                   </li>
                   
-                  
-                           <a href="{{ path('listSubPartener') }}" >
-                              <span>Visualation</span>
-                           </a>
-                        </li>
-                     </ul>
-                  </li>
-                  <li class=" ">
-                     <a href="#partner" title="partner" data-toggle="collapse">
-                        <em class="icon-speedometer"></em>
-                        <span data-localize="sidebar.nav.evenement">Partners</span>
-                     </a>
-
-                     <ul id="partner" class="nav sidebar-subnav collapse">
+                       <li class=" ">
+                       
+                       
                         <li class=" ">
-                           <a href="{{ path('partener_index') }}" >
-                              <span>Visualisation</span>
-                           </a>
-                        </li>
-                        {#<li class=" ">#}
-                        {#<a href="{{ path('evenementcateg_index') }}" >#}
-                        {#<span>Category</span>#}
-                        {#</a>#}
-                        {#</li>#}
-                        <li class=" ">
-                           <a href="{{ path('listPartener') }}" >
-                              <span>List of partener</span>
-                           </a>
-                        </li>
-
-                     </ul>
-                  </li>
-                  <li class=" ">
-                     <a href="{{ path('subscription_show') }}" title="subscription_show">
-                        <span>Subscription</span>
+                     <a href="{{ path('stats_show') }}" title="Documentation">
+                        <em class="icon-chart"></em>
+                        <span data-localize="sidebar.nav.Formation">Statistiques</span>
                      </a>
                   </li>
-				  <li class=" "> 
-                        <a href="{{ path('myMessages') }}" title="Dashboard v1">
-                            <span>Messages</span>
-                        </a>
-                    </li>
-                    <li class=" ">
-                        <a href="{{ path('network_index') }}" title="Message v1">
-                            <span>Reseaux</span>
-                        </a>
-                    </li>
-                     <li class=" ">
-                        <a href="{{ path('groups_index') }}" title="Message v1">
-                            <span>groups</span>
-                        </a>
-                    </li>
-                    <li class=" ">
-                        <a href="{{ path('partener_index') }}" title="Partenaire v1">
-                            <span>Partenaires</span>
-                        </a>
-                    </li>
-                    <li class=" ">
-                        <a href="{{ path('stats_show') }}" title="Statistiques v1">
-                            <span>Statistiques</span>
-                        </a>
-                    </li>
                    
                            {% endif   %}     
 

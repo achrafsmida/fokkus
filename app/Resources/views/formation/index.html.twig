@@ -7,7 +7,7 @@
                         <div class="panel-heading">
                            Formation |
                            <small>List</small>
-                                       <a class="btn btn-success btn-xs pull-right" href="{{ path('formation_new') }}">Create a new formation</a>
+                                       <a class="btn btn-success btn-xs pull-right" href="{{ path('formation_new') }}"><span class="icon-plus"></span> Create a new formation</a>
 
                         </div>
                         <div class="panel-body">
@@ -29,9 +29,9 @@
                 <td>{{ formation.prix }}</td>
                 <td>
                    
-                            <a class="btn btn-info" href="{{ path('formation_show', { 'id': formation.id }) }}">show</a>
+                            <a class="btn btn-info" href="{{ path('formation_show', { 'id': formation.id }) }}"><span class="icon-eye"></span> show</a>
                        
-                            <a class="btn btn-warning" href="{{ path('formation_edit', { 'id': formation.id }) }}">edit</a>
+                            <a class="btn btn-warning" href="{{ path('formation_edit', { 'id': formation.id }) }}"><span class="icon-wrench"> edit</a>
                         
                 </td>
             </tr>

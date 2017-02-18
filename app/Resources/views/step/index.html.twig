@@ -9,8 +9,8 @@
                         <div class="panel-heading">
                            TIME LINE |
                            <small>{{ app.session.get('typestring')}}</small>
-                                       <a class="btn btn-success btn-xs pull-right" href="{{ path('step_new') }}">Create a new step</a>
-                                       <a class="btn btn-success btn-xs pull-right" href="{{ path('step_visualtion') }}">Visulation</a>
+                                       <a class="btn btn-success btn-xs pull-right" href="{{ path('step_new') }}"><span class="icon-plus"></span> Create a new step</a>
+                                       <a style ="margin-left:10px;margin-right:10px" class="btn btn-info btn-xs pull-right" href="{{ path('step_visualtion') }}"><span class="icon-eyeglass"> Visulation</a>
 
                         </div>
                         <div class="panel-body">
@@ -32,8 +32,8 @@
                 <td>
                     
                         
-                            <a class="btn btn-info" href="{{ path('step_edit', { 'id': step.id }) }}">edit</a>
-                            <a class="btn btn-success" href="{{ path('sousstep_index', { 'step': step.id }) }}">sub step list</a>
+                            <a class="btn btn-warning" href="{{ path('step_edit', { 'id': step.id }) }}"> <span class="icon-wrench"> edit</a>
+                            <a class="btn btn-info" href="{{ path('sousstep_index', { 'step': step.id }) }}"><span class="icon-list"></span> sub step list</a>
 
                 </td>
             </tr>
