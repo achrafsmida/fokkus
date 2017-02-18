@@ -258,7 +258,7 @@
                   </li>
                   <li class=" ">
                      <a href="#timeline " title="timeline" data-toggle="collapse">
-                        <em class="icon-speedometer"></em>
+                        <em class="icon-layers"></em>
                         <span data-localize="sidebar.nav.TIMELINE">TIME LINE</span>
                      </a>
                     
@@ -288,7 +288,7 @@
                   </li>
                   <li class=" ">
                      <a href="#formation" title="formation" data-toggle="collapse">
-                        <em class="icon-speedometer"></em>
+                        <em class="icon-graduation"></em>
                         <span data-localize="sidebar.nav.formation">Formation</span>
                      </a>
                     
@@ -313,7 +313,7 @@
                   </li>
                    <li class=" ">
                      <a href="#evenement" title="evenement" data-toggle="collapse">
-                        <em class="icon-speedometer"></em>
+                        <em class="icon-calendar"></em>
                         <span data-localize="sidebar.nav.evenement">evenement</span>
                      </a>
                     
@@ -343,7 +343,7 @@
                   </li>
 				   <li class=" ">
                      <a href="#Messages" title="Messages" data-toggle="collapse">
-                        <em class="icon-speedometer"></em>
+                        <em class="icon-directions"></em>
                         <span data-localize="sidebar.nav.Messages">Messages</span>
                      </a>
                     
@@ -365,7 +365,7 @@
 				 
                   <li class=" ">
                      <a href="#group" title="group" data-toggle="collapse">
-                        <em class="icon-speedometer"></em>
+                        <em class="icon-people"></em>
                         <span data-localize="sidebar.nav.evenement">Groups</span>
                      </a>
 
@@ -384,7 +384,7 @@
                   </li>
                   <li class=" ">
                      <a href="#network" title="network" data-toggle="collapse">
-                        <em class="icon-speedometer"></em>
+                        <em class="icon-share"></em>
                         <span data-localize="sidebar.nav.evenement">Networks</span>
                      </a>
 
@@ -414,7 +414,7 @@
                 
                   <li class=" ">
                      <a href="#partner" title="partner" data-toggle="collapse">
-                        <em class="icon-speedometer"></em>
+                        <em class="icon-phone"></em>
                         <span data-localize="sidebar.nav.evenement">Partners</span>
                      </a>
 
@@ -436,14 +436,17 @@
                      </ul>
                   </li>
 				  
+                     <li class=" ">
+                       
+                       
+                        <li class=" ">
+                     <a href="{{ path('stats_show') }}" title="Documentation">
+                        <em class="icon-chart"></em>
+                        <span data-localize="sidebar.nav.Formation">Statistiques</span>
+                     </a>
+                  </li>
                    
-                   
-                    <li class=" ">
-                        <a href="{{ path('stats_show') }}" title="Statistiques v1">
-                            <span>Statistiques</span>
-                        </a>
-                    </li>
-                   
+                  
                            {% endif   %}     
 
                   {% if app.user and is_granted('ROLE_STARTUP')  %}     
@@ -511,7 +514,6 @@
                   </li>
                   
                   
-=======
                            <a href="{{ path('listSubPartener') }}" >
                               <span>Visualation</span>
                            </a>
