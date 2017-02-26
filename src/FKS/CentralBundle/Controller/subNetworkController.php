@@ -46,7 +46,13 @@ class subNetworkController extends Controller
     public function newAction(Request $request)
     {
         $subNetwork = new Subnetwork();
-        $form = $this->createForm('FKS\CentralBundle\Form\subNetworkType', $subNetwork);
+        $user = $this->getUser();
+        $group = null;
+        if ($user->hasRole('ROLE_ADMIN_GROUP')){
+            
+            $group = $user->getGroup() ;
+        }
+        $form = $this->createForm('FKS\CentralBundle\Form\subNetworkType', $subNetwork, array('group' => $group));
         $form->handleRequest($request);
 
 
@@ -56,8 +62,11 @@ class subNetworkController extends Controller
             $subNetwork->uploadProfilePicture();
             $em->persist($subNetwork);
             $user = $subNetwork->getUser();
-            $user->addRole('ROLE_NETWORK');
-            $em->persist($user);
+            if($user){
+                $user->addRole('ROLE_NETWORK');
+                $em->persist($user);
+            }
+
             $em->flush();
 
             return $this->redirectToRoute('subnetwork_show', array('id' => $subNetwork->getId()));

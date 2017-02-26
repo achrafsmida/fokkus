@@ -10,4 +10,17 @@ namespace FKS\CentralBundle\Repository;
  */
 class PartenerRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function getPartenerkByGroup($group)
+    {
+
+        $qb = $this->createQueryBuilder('c');
+        $qb->select('c')
+            //->leftJoin('c.network', 'j')
+            ->where('c.group = :group') //to do
+            ->setParameter('group', $group);
+
+        return $qb->getQuery()->getResult();
+
+    }
 }
