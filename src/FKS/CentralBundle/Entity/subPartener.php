@@ -103,6 +103,13 @@ class subPartener
      * @ORM\JoinColumn(name="partener_id", referencedColumnName="id", nullable=false)
      */
     protected $partener;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="boolean")
+     */
+    private $status;
     
     /**
      * Get id

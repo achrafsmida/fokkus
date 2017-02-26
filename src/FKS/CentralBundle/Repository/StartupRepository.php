@@ -10,4 +10,17 @@ namespace FKS\CentralBundle\Repository;
  */
 class StartupRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function getSubStartupByGroup($group)
+    {
+
+        $qb = $this->createQueryBuilder('c');
+        $qb->select('c')
+            ->leftJoin('c.network', 'j')
+            ->where('j.group = :group') //to do jurist
+            ->setParameter('group', $group);
+
+        return $qb->getQuery()->getResult();
+
+    }
 }

@@ -44,10 +44,22 @@ class Groups
     private $updatedDate;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="boolean")
+     */
+    private $status;
+    
+    /**
      * @ORM\OneToMany(targetEntity="FKS\CentralBundle\Entity\Network", mappedBy="group")
      */
     private $network;
 
+    /**
+     * @ORM\OneToMany(targetEntity="FKS\CentralBundle\Entity\User", mappedBy="group")
+     */
+    private $user;
+    
     /**
      * @ORM\OneToMany(targetEntity="FKS\CentralBundle\Entity\Partener", mappedBy="group")
      */
@@ -302,5 +314,39 @@ class Groups
     public function getPartner()
     {
         return $this->partner;
+    }
+
+    /**
+     * Add user
+     *
+     * @param \FKS\CentralBundle\Entity\User $user
+     *
+     * @return Groups
+     */
+    public function addUser(\FKS\CentralBundle\Entity\User $user)
+    {
+        $this->user[] = $user;
+
+        return $this;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param \FKS\CentralBundle\Entity\User $user
+     */
+    public function removeUser(\FKS\CentralBundle\Entity\User $user)
+    {
+        $this->user->removeElement($user);
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

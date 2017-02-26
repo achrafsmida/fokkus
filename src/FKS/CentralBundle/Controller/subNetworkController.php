@@ -25,7 +25,14 @@ class subNetworkController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $subNetworks = $em->getRepository('FKSCentralBundle:subNetwork')->findAll();
+        $user = $this->getUser();
+        if ($user->hasRole('ROLE_ADMIN_GROUP') OR $user->hasRole('ROLE_NETWORK')) {
+            $subNetworks = $em->getRepository('FKSCentralBundle:subNetwork')->getSubStartupByGroup($user->getGroup());
+        } else {
+            $subNetworks = $em->getRepository('FKSCentralBundle:subNetwork')->findAll();
+        }
+
+        //$subNetworks = $em->getRepository('FKSCentralBundle:subNetwork')->findAll();
 
         return $this->render('subnetwork/index.html.twig', array(
             'subNetworks' => $subNetworks,
@@ -42,11 +49,16 @@ class subNetworkController extends Controller
         $form = $this->createForm('FKS\CentralBundle\Form\subNetworkType', $subNetwork);
         $form->handleRequest($request);
 
+
+        //dump($this->getUser()->getGroup()->getName()); die;
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $subNetwork->uploadProfilePicture();
             $em->persist($subNetwork);
-            $em->flush($subNetwork);
+            $user = $subNetwork->getUser();
+            $user->addRole('ROLE_NETWORK');
+            $em->persist($user);
+            $em->flush();
 
             return $this->redirectToRoute('subnetwork_show', array('id' => $subNetwork->getId()));
         }
@@ -124,8 +136,7 @@ class subNetworkController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('subnetwork_delete', array('id' => $subNetwork->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 
     /**
@@ -144,7 +155,14 @@ class subNetworkController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $subs = $em->getRepository('FKSCentralBundle:subNetwork')->findAll();
+        $user = $this->getUser();
+        if ($user->hasRole('ROLE_ADMIN_GROUP') OR $user->hasRole('ROLE_NETWORK')) {
+            $subs = $em->getRepository('FKSCentralBundle:subNetwork')->getSubStartupByGroup($user->getGroup());
+        } else {
+            $subs = $em->getRepository('FKSCentralBundle:subNetwork')->findAll();
+        }
+
+       // $subs = $em->getRepository('FKSCentralBundle:subNetwork')->findAll();
 
         return $this->render('subnetwork/list.html.twig', array(
             'subs' => $subs,

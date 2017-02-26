@@ -112,4 +112,41 @@ class DefaultController extends Controller
 
         ));
     }
+
+    public function newAction(Request $request)
+    {
+        $network = new Network();
+
+        /** @var User $user */
+        $user = $this->getUser();
+        $sub = false;
+        // Check if user is manager
+        if ($user->hasRole('ROLE_ADMIN_GROUP')) {
+            $sub = true;
+        } else {
+            $sub = false;
+        }
+        //dump($sub);die;
+        $form = $this->createForm('FKS\CentralBundle\Form\NetworkType', $network, array('sub' => $sub));
+        $form->handleRequest($request);
+
+        $em = $this->getDoctrine()->getManager();
+//        $subNetwork = $em->getRepository('FKSCentralBundle:subNetwork')->findOneByUser($user);
+//        $group = $subNetwork->getNetwork()->getGroup();
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            if ($sub == true && $user->getGroup()){
+                $network->setGroup($user->getGroup())  ;
+            }
+            $em->persist($network);
+            $em->flush($network);
+
+            return $this->redirectToRoute('network_show', array('id' => $network->getId()));
+        }
+
+        return $this->render('network/new.html.twig', array(
+            'network' => $network,
+            'form' => $form->createView(),
+        ));
+    }
 }

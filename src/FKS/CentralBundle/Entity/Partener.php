@@ -52,6 +52,13 @@ class Partener
      * @ORM\JoinColumn(name="group_id", referencedColumnName="id", nullable=false)
      */
     protected $group;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="boolean")
+     */
+    private $status;
     
     /**
      * Get id

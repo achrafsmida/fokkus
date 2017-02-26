@@ -3,11 +3,13 @@
 namespace FKS\CentralBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Statistique
  *
  * @ORM\Table(name="statistique")
+ * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="FKS\CentralBundle\Repository\StatistiqueRepository")
  */
 class Statistique
@@ -240,4 +242,23 @@ class Statistique
     {
         return $this->sub;
     }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function updateDate()
+    {
+        $this->setUpdatedDate(new \Datetime());
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+
+    public function addDate()
+    {
+        $this->setCreationDate(new \Datetime());
+        $this->setUpdatedDate(new \Datetime());
+    }
+
 }

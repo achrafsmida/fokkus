@@ -4,6 +4,7 @@ namespace FKS\CentralBundle\Controller;
 
 use FKS\CentralBundle\Entity\ContactUser;
 use FKS\CentralBundle\Entity\Message;
+use FKS\CentralBundle\Entity\subNetwork;
 use FKS\CentralBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -302,28 +303,32 @@ class MessageController extends Controller
      *
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException If bookingRequest doesn't exists
      */
-    public function sendFirstContactAction(User $receiver)
+    public function sendFirstContactAction(subNetwork $subNetwork)
     {
         $em = $this->getDoctrine()->getManager();
         $currentUser = $this->getUser();
+//dump($subNetwork);die;
 
-        $contact = count($em->getRepository('FKSCentralBundle:ContactUser')->getContactUser($receiver->getId(), $currentUser->getId()));
-        // dump($contact); die;
+        $contact = count($em->getRepository('FKSCentralBundle:ContactUser')->getContactUser($subNetwork->getUser()->getId(), $currentUser->getId()));
+        $contactEntity = $em->getRepository('FKSCentralBundle:ContactUser')->getContactUser($subNetwork->getUser()->getId(), $currentUser->getId());
+        //dump($contactEntity); die;
         if ($contact == 0) {
             $contactUser = new ContactUser();
             $contactUser->setSender($currentUser);
-            $contactUser->setReceiver($receiver);
+            $contactUser->setReceiver($subNetwork->getUser());
             $contactUser->setStatus(true);
 
             $em->persist($contactUser);
-            $em->flush($contactUser);
+            $em->flush();
 
             return new JsonResponse(array('msg' => 1));
-        } elseif ($contact->getStatus == 0) {
-            return new JsonResponse(array('path' => 1));
+        }
+
+        if ($contactEntity[0]->getStatus()) {
+            return new JsonResponse(array('path' => 0));
 
         } else {
-            return new JsonResponse(array('path' => 0));
+            return new JsonResponse(array('path' => 1));
         }
 
     }
@@ -337,7 +342,7 @@ class MessageController extends Controller
      *
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException If bookingRequest doesn't exists
      */
-    public function sendAction(Request $request, User $receiver)
+    public function sendAction(Request $request, subNetwork $subNetwork)
     {
 //        $message = new Message();
 //        $form = $this->createForm('FKS\CentralBundle\Form\MessageContactType', $message);
@@ -345,21 +350,24 @@ class MessageController extends Controller
 
 //        if ($form->isSubmitted() && $form->isValid()) {
 
+        $message = new Message();
         $subject = $request->get('subject');
-        $message = $request->get('message');
+        $content = $request->get('message');
         $em = $this->getDoctrine()->getManager();
 
         $message->setSubject($subject);
-        $message->setMessage($message);
+        $message->setMessage($content);
 
         $message->setSender($this->getUser());
-        $message->addUser($receiver);
+        $message->addUser($subNetwork->getUser());
         $message->setReaded(false);
         $message->setDeleted(false);
         $em->persist($message);
         $em->flush($message);
 
-        return $this->redirectToRoute('message_show', array('id' => $message->getId()));
+        return new JsonResponse(array('msg' => $message));
+        
+        //return $this->redirectToRoute('message_show', array('id' => $message->getId()));
         // }
 
 //        return $this->render('network/send.html.twig', array(

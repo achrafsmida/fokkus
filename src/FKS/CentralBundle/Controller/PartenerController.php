@@ -27,8 +27,14 @@ class PartenerController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $parteners = $em->getRepository('FKSCentralBundle:Partener')->findAll();
-
+        $user = $this->getUser();
+        if ($user->hasRole('ROLE_ADMIN_GROUP') OR $user->hasRole('ROLE_NETWORK') ) {
+            $parteners = $em->getRepository('FKSCentralBundle:Partener')->findByGroup($user->getGroup());
+        }
+        else{
+            $parteners = $em->getRepository('FKSCentralBundle:Partener')->findAll();
+        }
+        
         return $this->render('partener/index.html.twig', array(
             'parteners' => $parteners,
         ));
@@ -42,21 +48,22 @@ class PartenerController extends Controller
     {
         $partener = new Partener();
         $user = $this->getUser();
-        if ($user->hasRole('ROLE_GROUP')) {
+        $net = false;
+        if ($user->hasRole('ROLE_ADMIN_GROUP')) {
             $net = true;
         } else {
             $net = false;
         }
-
+//dump($net);die;
         $form = $this->createForm('FKS\CentralBundle\Form\PartenerType', $partener, array('net' => $net));
         $form->handleRequest($request);
         $em = $this->getDoctrine()->getManager();
-        $subPartenaire = $em->getRepository('FKSCentralBundle:subPartener')->findOneByUser($user);
-        $group = $subPartenaire->getPartenaire()->getGroup();
+//        $subPartenaire = $em->getRepository('FKSCentralBundle:subPartener')->findOneByUser($user);
+//        $group = $subPartenaire->getPartenaire()->getGroup();
         if ($form->isSubmitted() && $form->isValid()) {
 
-            if ($net == true ){
-                $subPartenaire->setGroup($group)  ;
+            if ($net == true && $user->getGroup()){
+                $partener->setGroup($user->getGroup())  ;
             }
             $em->persist($partener);
             $em->flush($partener);
@@ -204,8 +211,14 @@ class PartenerController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $parteners = $em->getRepository('FKSCentralBundle:Partener')->findAll();
-
+        $user = $this->getUser();
+        if ($user->hasRole('ROLE_ADMIN_GROUP') OR $user->hasRole('ROLE_NETWORK') ) {
+            $parteners = $em->getRepository('FKSCentralBundle:Partener')->findByGroup($user->getGroup());
+        }
+        else{
+            $parteners = $em->getRepository('FKSCentralBundle:Partener')->findAll();
+        }
+        
         return $this->render('partener/list.html.twig', array(
             'parteners' => $parteners,
         ));

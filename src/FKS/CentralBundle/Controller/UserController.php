@@ -34,11 +34,11 @@ class UserController extends Controller
     public function newAction(Request $request)
     {
         $user = new User();
-        $form = $this->createForm('FKS\CentralBundle\Form\UserType', $user);
+        $form = $this->createForm('FKS\CentralBundle\Form\UserGroupType', $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user->uploadProfilePicture();
+            $user->addRole('ROLE_ADMIN_GROUP');
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush($user);

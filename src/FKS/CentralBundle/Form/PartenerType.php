@@ -14,22 +14,22 @@ class PartenerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $net = $options['net'];
+        //dump($net);die;
         if ($net) {
-            $builder->add('type')
-                ->add('group');
+            $builder->add('type');
         } else {
-            $builder->add('type')->add('haveUser');
-        }
-        ;
+            $builder->add('type')->add('group');
+        };
     }
-    
+
     /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'FKS\CentralBundle\Entity\Partener'
+            'data_class' => 'FKS\CentralBundle\Entity\Partener',
+            'net' => null
         ));
     }
 
