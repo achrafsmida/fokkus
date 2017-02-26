@@ -35,7 +35,12 @@ class question
      * @ORM\Column(name="question", type="string", length=255)
      */
     private $question;
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="typeofquestions", type="integer")
+     */
+    private $typeofquestions;
     /**
      * @var \DateTime
      *
@@ -223,5 +228,29 @@ class question
     public function getResponse()
     {
         return $this->response;
+    }
+
+    /**
+     * Set typeofquestions
+     *
+     * @param integer $typeofquestions
+     *
+     * @return question
+     */
+    public function setTypeofquestions($typeofquestions)
+    {
+        $this->typeofquestions = $typeofquestions;
+
+        return $this;
+    }
+
+    /**
+     * Get typeofquestions
+     *
+     * @return integer
+     */
+    public function getTypeofquestions()
+    {
+        return $this->typeofquestions;
     }
 }

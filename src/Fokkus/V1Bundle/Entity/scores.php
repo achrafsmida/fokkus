@@ -21,6 +21,14 @@ class scores
      */
     private $id;
 
+    
+      /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="integer")
+     */
+       private $type;
+    
     /**
      * @var int
      *
@@ -29,7 +37,7 @@ class scores
     private $score;
     
  /**
-     * @ORM\OneToOne(targetEntity="FKS\CentralBundle\Entity\User", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="FKS\CentralBundle\Entity\User", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
@@ -91,5 +99,29 @@ class scores
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set type
+     *
+     * @param integer $type
+     *
+     * @return scores
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return integer
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

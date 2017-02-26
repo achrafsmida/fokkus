@@ -5,6 +5,7 @@ namespace Fokkus\V1Bundle\Controller;
 use Fokkus\V1Bundle\Entity\question;
 use Fokkus\V1Bundle\Entity\response;
 use Fokkus\V1Bundle\Entity\scores;
+use Fokkus\V1Bundle\Entity\timeline;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response as Res;
@@ -82,14 +83,62 @@ public function addscoresAction(){
     
       $request = $this->get('request_stack')->getCurrentRequest()
 ;
-		$scores = $request->request->get('score');
+		$Commercialscore = $request->request->get('Commercialscore');
+                $Communicationscore = $request->request->get('Communicationscore');
+                $Financialscore = $request->request->get('Financialscore');
+                
+                
 		 $em = $this->getDoctrine()->getManager();
      $Scores = new scores();
-           $Scores->setScore($scores) ;
-           		$user =  $this->getUser();;
+           $Scores->setScore($Commercialscore) ;
+           $user =  $this->getUser();;
+            $Scores->setUser($user) ;
+            $Scores->setType(1) ;
+           $em->persist($Scores);
+            $em->flush($Scores); 
+            
+            $Scores = new scores();
+           $Scores->setScore($Communicationscore) ;
+           $user =  $this->getUser();;
+            $Scores->setUser($user) ;
+             $Scores->setType(2) ;
+           $em->persist($Scores);
+            $em->flush($Scores); 
+            
+            $Scores = new scores();
+           $Scores->setScore($Financialscore) ;
+           $user =  $this->getUser();;
+              $Scores->setType(3) ;
             $Scores->setUser($user) ;
            $em->persist($Scores);
             $em->flush($Scores); 
+            
+            
+          //  $groups = 
+          $steps = $em->getRepository('FokkusV1Bundle:step')->findall();
+
+          
+          $timeline = new timeline();
+          $i = 0 ;
+            foreach( $steps as $step){
+               //   echo $step->getPoints();
+              if($step->getPoints() > $Commercialscore ) 
+                  
+              {
+                
+                  $currectstep = $steps[$i -1] ; 
+                  $timeline->setStep($currectstep) ;
+                  $soussteps = $em->getRepository('FokkusV1Bundle:sousstep')->findOneBy(array('step'=>$currectstep));
+                    $timeline->setSousstep( $soussteps ) ;
+                           $timeline->SetUser($user) ;
+                           $em->persist($timeline);
+                            $em->flush($timeline); 
+                            break;
+              }
+              
+                $i++ ;
+            }
+            
              $response = new Res(json_encode(array('result'=>1)));
 		$response->headers->set('Content-Type', 'application/json');
 
@@ -106,6 +155,7 @@ public function addscoresAction(){
               
            $question = new Question();
            $question->setQuestion($row['question']) ;
+            $question->setTypeofquestions($row['type']) ;
            $em->persist($question);
             $em->flush($question);
             foreach($row['proposals'] as $data){

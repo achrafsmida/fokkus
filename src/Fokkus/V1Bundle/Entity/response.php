@@ -43,6 +43,9 @@ class response
      */
     private $points;
 
+    
+  
+    
     /**
      * @var \DateTime
      *
@@ -237,4 +240,6 @@ class response
     $this->setDatastatus(1);
     $this->setDataupdated(new \Datetime());
   }
+
+   
 }

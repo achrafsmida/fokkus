@@ -17,6 +17,7 @@ class stepType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('name',TextType::class, array('attr' => array('class' => 'form-control')))
+                ->add('points',TextType::class, array('attr' => array('class' => 'form-control')))
                 ->add('description', TextareaType::class, array(
     'attr' => array('class' => 'form-control ckeditor' )))
                 ->add('groups', EntityType::class, array( 'attr' => array('class' => 'form-control') , 'class'    => 'FKSCentralBundle:Groups'))      ;

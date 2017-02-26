@@ -10,7 +10,7 @@
                         <div class="panel-heading">
                            Dashboard |
                            <small>Questions</small>
-                                       <a  class="btn btn-xs btn-success pull-right" href="{{ path('question_new') }}">Create a new question</a>
+                                       <a  class="btn btn-xs btn-success pull-right" href="{{ path('question_new') }}"><span class="icon-plus"></span>  Create a new question</a>
 
                         </div>
                         <div class="panel-body">
@@ -18,7 +18,7 @@
         <thead>
             <tr>
                 <th>Question</th>
-                  <th>Response</th>
+                  <th>Answer</th>
 
                 <th>Date created</th>
                 <th>Date updated</th>
@@ -38,8 +38,8 @@
                 <td>{% if question.datecreated %}{{ question.datecreated|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{% if question.dateupdated %}{{ question.dateupdated|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>
-                            <a class="btn btn-info" href="{{ path('question_edit', { 'id': question.id }) }}">Update</a>
-                    </ul>
+                            <a class="btn btn-xs btn-warning" href="{{ path('question_edit', { 'id': question.id }) }}"><span class="icon-wrench"> Update</a>
+                  
                 </td>
             </tr>
                               {% set i = i+1  %}

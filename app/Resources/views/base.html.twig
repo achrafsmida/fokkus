@@ -60,6 +60,7 @@
             <div class="navbar-header">
                <a href="#/" class="navbar-brand">
                   <div class="brand-logo">
+                      
                      <img src="{{ asset('bundles/fokkusv1/app/img/logo.png') }}" alt="App Logo" class="img-responsive">
                   </div>
                   <div class="brand-logo-collapsed">
@@ -229,9 +230,7 @@
                   </li>
                   <!-- END user info-->
                   <!-- Iterates over all sidebar items-->
-                  <li class="nav-heading ">
-                     <span data-localize="sidebar.heading.HEADER">Main Navigation</span>
-                  </li>
+                 
                    {% if app.user and is_granted('ROLE_ADMIN')  %}     
 
                    <li class=" ">
@@ -259,13 +258,13 @@
                   <li class=" ">
                      <a href="#timeline " title="timeline" data-toggle="collapse">
                         <em class="icon-layers"></em>
-                        <span data-localize="sidebar.nav.TIMELINE">TIME LINE</span>
+                        <span data-localize="sidebar.nav.TIMELINE">Timeline</span>
                      </a>
                     
                      <ul id="timeline" class="nav sidebar-subnav collapse">
                         <li class=" ">
                            <a href="{{ path('stepsgroups', {'type' : 1}) }}" title="Dashboard v1">
-                              <span>Commerciale</span> 
+                              <span>Commercial</span> 
                            </a>
                         </li>
                         <li class=" ">
@@ -273,14 +272,10 @@
                               <span>Communication</span> 
                            </a>
                         </li>
-                        <li class=" ">
-                           <a href="{{ path('stepsgroups', {'type' : 3}) }}" title="Dashboard v1">
-                              <span>Résaux humaines</span> 
-                           </a>
-                        </li>
+                    
                         <li class=" ">
                            <a href="{{ path('stepsgroups', {'type' : 4}) }}" title="Dashboard v1">
-                              <span>Technique</span> 
+                              <span>Financial</span> 
                            </a>
                         </li>
                       
@@ -289,23 +284,23 @@
                   <li class=" ">
                      <a href="#formation" title="formation" data-toggle="collapse">
                         <em class="icon-graduation"></em>
-                        <span data-localize="sidebar.nav.formation">Formation</span>
+                        <span data-localize="sidebar.nav.formation">Training</span>
                      </a>
                     
                      <ul id="formation" class="nav sidebar-subnav collapse">
                         <li class=" ">
                            <a href="{{ path('formation_index') }}" >
-                              <span>Formation</span> 
+                              <span>Training</span> 
                            </a>
                         </li>
                         <li class=" ">
                            <a href="{{ path('formationcateg_index') }}" >
-                              <span>Catégorie</span> 
+                              <span>Categories</span> 
                            </a>
                         </li>
                         <li class=" ">
                            <a href="{{ path('visualitationformation') }}" >
-                              <span>Visualation</span> 
+                              <span>All</span> 
                            </a>
                         </li>
                        
@@ -314,28 +309,28 @@
                    <li class=" ">
                      <a href="#evenement" title="evenement" data-toggle="collapse">
                         <em class="icon-calendar"></em>
-                        <span data-localize="sidebar.nav.evenement">evenement</span>
+                        <span data-localize="sidebar.nav.evenement">Events</span>
                      </a>
                     
                      <ul id="evenement" class="nav sidebar-subnav collapse">
                         <li class=" ">
                            <a href="{{ path('evenement_index') }}" >
-                              <span>Evenement</span> 
+                              <span>Events</span> 
                            </a>
                         </li>
                         <li class=" ">
                            <a href="{{ path('evenementcateg_index') }}" >
-                              <span>Category</span> 
+                              <span>Categories</span> 
                            </a>
                         </li>
                         <li class=" ">
                            <a href="{{ path('evenementsubcateg_index') }}" >
-                              <span>SUB Category</span> 
+                              <span>Places</span> 
                            </a>
                         </li>
                         <li class=" ">
                            <a href="{{ path('visualitationevenement') }}" >
-                              <span>Visualation</span> 
+                              <span>All</span> 
                            </a>
                         </li>
                        
@@ -344,7 +339,7 @@
 				   <li class=" ">
                      <a href="#Messages" title="Messages" data-toggle="collapse">
                         <em class="icon-directions"></em>
-                        <span data-localize="sidebar.nav.Messages">Messages</span>
+                        <span data-localize="sidebar.nav.Messages">MailBox</span>
                      </a>
                     
                      <ul id="Messages" class="nav sidebar-subnav collapse">
@@ -356,7 +351,7 @@
                        
                          <li class=" ">
                      <a href="{{ path('request_contact') }}" >
-                        Demande of request
+                        Request networking
                      </a>
                   </li>
                        
@@ -385,7 +380,7 @@
                   <li class=" ">
                      <a href="#network" title="network" data-toggle="collapse">
                         <em class="icon-share"></em>
-                        <span data-localize="sidebar.nav.evenement">Networks</span>
+                        <span data-localize="sidebar.nav.evenement">Network</span>
                      </a>
 
                      <ul id="network" class="nav sidebar-subnav collapse">
@@ -393,18 +388,18 @@
                          
                          <li class=" ">
                            <a href="{{ path('list') }}" >
-                              <span>NETWORK</span>
+                              <span>Groups</span>
                            </a>
                         </li>
                         
                       <li class=" ">
                            <a href="{{ path('listSub') }}" >
-                              <span>SUB NETWORK</span>
+                              <span>Individual</span>
                            </a>
                         </li>
                         <li class=" ">
                         <a href="{{ path('network_index') }}" title="Message v1">
-                            <span>Visualtion</span>
+                            <span>All</span>
                         </a>
                     </li>
                         
@@ -421,12 +416,12 @@
                      <ul id="partner" class="nav sidebar-subnav collapse">
                         <li class=" ">
                            <a href="{{ path('listPartener') }}" >
-                              <span>Parteners</span>
+                              <span>Partners</span>
                            </a>
                         </li>
                      <li class=" ">
                            <a href="{{ path('subpartener_index') }}" >
-                              <span>Sub Parteners</span>
+                              <span>Categories</span>
 						<li class=" ">
                            <a href="{{ path('partener_index') }}" >
                               <span>Visualation</span>
@@ -442,7 +437,7 @@
                         <li class=" ">
                      <a href="{{ path('stats_show') }}" title="Documentation">
                         <em class="icon-chart"></em>
-                        <span data-localize="sidebar.nav.Formation">Statistiques</span>
+                        <span data-localize="sidebar.nav.Formation">Statistics</span>
                      </a>
                   </li>
                    

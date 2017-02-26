@@ -15,7 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
 class step
 {
     
-    /**
+  /**
    * @ORM\OneToMany(targetEntity="Fokkus\V1Bundle\Entity\sousstep", mappedBy="sousstep")
    */
   private $sousstep; 
@@ -42,6 +42,15 @@ class step
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+    
+    
+        /**
+     * @var string
+     *
+     * @ORM\Column(name="points", type="integer")
+     */
+    private $points;
+    
     /**
      * @var string
      *
@@ -287,5 +296,29 @@ class step
     public function getGroups()
     {
         return $this->groups;
+    }
+
+    /**
+     * Set points
+     *
+     * @param integer $points
+     *
+     * @return step
+     */
+    public function setPoints($points)
+    {
+        $this->points = $points;
+
+        return $this;
+    }
+
+    /**
+     * Get points
+     *
+     * @return integer
+     */
+    public function getPoints()
+    {
+        return $this->points;
     }
 }

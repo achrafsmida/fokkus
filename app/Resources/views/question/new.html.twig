@@ -31,6 +31,13 @@ Add questions          <button style="float:right;margin-left:10px" type="button
                            <div class="form-group">
                               <label>Questions</label>
                             <input class="form-control question"  class="" placeholder="question" type="text">
+                            <br>
+                            <select class="form-control type">
+                                <option value="1">Commercial</option>
+                                  <option value="2">Communication</option>
+                                    <option value="3">Financial</option>
+                            </select>
+
                            </div>
                          
                                                 <div class="form-group">
@@ -153,6 +160,7 @@ var bloc = $(this) ;
 // console.log($(".question" , bloc)) ;
 titlequestion = (bloc.find( ".question" )).val()
 
+type = (bloc.find( ".type" )).val()
 
 
 
@@ -183,7 +191,7 @@ proposals.push({proposal:($(this).find( ".proposal" )).val(), point:($(this).fin
 })
 
 question=[]
-question = {'question':titlequestion , 'proposals' :proposals}
+question = {'question':titlequestion , 'type' : type ,'proposals' :proposals}
 
 questions.push(question)
 
@@ -248,7 +256,7 @@ $(document).on('click', ".addproposal", function () {
         html+='<input class="form-control proposal" name="F1"  placeholder="proposition" type="text">'
         html+='</div>'
              html+='<div class="col-md-5">'
-           html+='<input class="form-control point" onKeypress=" if(event.keyCode < 45 || event.keyCode > 57) event.returnValue = false; if(event.which < 45 || event.which > 57) return false;"   class="" placeholder="Note" type="text"></div></div>'
+           html+='<input class="form-control point" onKeypress=" if(event.keyCode < 45 || event.keyCode > 57) event.returnValue = false; if(event.which < 45 || event.which > 57) return false;"   class="" placeholder="Point" type="text"></div></div>'
         html+='</div>' 
                                                     html+='<div class="col-md-2">'
         html+='<button type="button" class=" btn btn-danger cancledproposal" class="">X la proposition</button>'

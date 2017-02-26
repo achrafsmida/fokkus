@@ -15,18 +15,14 @@
       <table id="datatable2" class="table table-striped table-hover">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Nom</th>
-                <th>Description</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for evenement in evenements %}
             <tr>
-                <td><a href="{{ path('evenement_show', { 'id': evenement.id }) }}">{{ evenement.id }}</a></td>
                 <td>{{ evenement.nom }}</td>
-                <td>{{ evenement.description }}</td>
                 <td>
                    
                             <a class="btn btn-info"  href="{{ path('evenement_show', { 'id': evenement.id }) }}"><span class="icon-eye"></span> show</a>

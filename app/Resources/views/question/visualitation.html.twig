@@ -6,10 +6,10 @@
 <div class="col-lg-12">
 
 <div role="alert" class="alert alert-warning">
-             <strong>Warning! </strong> You can do this once .</div>
+             <strong>Warning! </strong> You can do this once!</div>
 
   <div style="display:none" role="alert" class="alert alert-success">
-      <strong>Well done! </strong> Your score is : <strong ><span class="totalscore"></span></strong> ,  You will redirger after 2 seconds .</div>
+      <strong>Well done!  ,  You will be redirected in 2 seconds</div>
    
  {% set i = 0  %}
 
@@ -26,7 +26,7 @@
                              <div class="col-md-4">
                             <div class="checkbox c-checkbox">
                               <label>
-                                 <input type="checkbox" data-score="{{row.points}}" class="reponse" >
+                                 <input data-type="{{question.typeofquestions}}" type="checkbox" data-score="{{row.points}}" class="reponse" >
                                  <span class="fa fa-check " ></span> {{row.response}}  </label>
                            </div>						  
                         </div> 
@@ -45,7 +45,7 @@
               {% endfor %}
 
       
-              <a class="btn btn-success pull-right" OnClick="getScore()" ><span class="icon-like"></span> Validate</a>
+              <a class="btn btn-success pull-right" OnClick="getScore()" ><span class="icon-like"></span> Confirm</a>
 
               
               
@@ -54,24 +54,33 @@
                   
                   
                   function getScore(){
-                      var score = 0 ;
+                      var Commercialscore = 0 ;
+                      var Communicationscore = 0 ;
+
+                      var Financialscore = 0 ;
+
                       $.map($("input:checkbox:checked"), function(elem, idx) {
-                   score += parseInt($(elem).attr("data-score"));
+                          
+                    if($(elem).attr("data-type") ==1 )   Commercialscore += parseInt($(elem).attr("data-score"));   
+                   if($(elem).attr("data-type") == 2 )   Communicationscore += parseInt($(elem).attr("data-score"));   
+                    if($(elem).attr("data-type") ==3 )   Financialscore += parseInt($(elem).attr("data-score"));   
+
                 });
                 
                      $.ajax({
 
                 url: "{{ path('addscores')}}",
                 type: 'POST',
-                data: {'score': score}, 
+                data: {'Commercialscore': Commercialscore  ,'Communicationscore' :Communicationscore , 'Financialscore':Financialscore }, 
                 dataType: 'JSON',
                 success: function (result) {
                     console.log(result.sub)
                     
 
-                     $('.totalscore').html(score);
+                    // $('.totalscore').html(score);
                 $('.alert-success').show()
 
+                $('.alert-warning').hide()
 
                 }
             });
