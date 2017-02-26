@@ -8,9 +8,25 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
- *
- * @ORM\Table(name="user")
- * @ORM\Entity(repositoryClass="FKS\CentralBundle\Repository\UserRepository")
+ * @ORM\Entity
+ * @ORM\AttributeOverrides({
+ *      @ORM\AttributeOverride(name="email",
+ *          column=@ORM\Column(
+ *              name     = "email",
+ *              type     = "string",
+ *              length   = 255,
+ *              nullable = true
+ *          )
+ *      ),
+ *      @ORM\AttributeOverride(name="emailCanonical",
+ *          column=@ORM\Column(
+ *              name     = "emailCanonical",
+ *              type     = "string",
+ *              length   = 255,
+ *              nullable = true
+ *          )
+ *      ),
+ * })
  */
 class User extends BaseUser
 {
@@ -20,6 +36,13 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+    
+//    /**
+//     * @var string
+//     *
+//     * @ORM\Column(name="email", type="string", length=255, nullable=true)
+//     */
+//    protected $email;
     
 //    /**
 //     * @ORM\OneToMany(targetEntity="FKS\CentralBundle\Entity\subNetwork", mappedBy="user")
@@ -56,6 +79,12 @@ class User extends BaseUser
      */
     private $requestReceiver;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="FKS\CentralBundle\Entity\Groups", inversedBy="user")
+     * @ORM\JoinColumn(name="group_id", referencedColumnName="id", nullable=true)
+     */
+    protected $group;
+    
     public function __construct()
     {
         parent::__construct();
@@ -371,5 +400,29 @@ class User extends BaseUser
     public function getSub()
     {
         return $this->sub;
+    }
+
+    /**
+     * Set group
+     *
+     * @param \FKS\CentralBundle\Entity\Groups $group
+     *
+     * @return User
+     */
+    public function setGroup(\FKS\CentralBundle\Entity\Groups $group)
+    {
+        $this->group = $group;
+
+        return $this;
+    }
+
+    /**
+     * Get group
+     *
+     * @return \FKS\CentralBundle\Entity\Groups
+     */
+    public function getGroup()
+    {
+        return $this->group;
     }
 }

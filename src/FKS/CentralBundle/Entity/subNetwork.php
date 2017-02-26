@@ -124,6 +124,13 @@ class subNetwork
     private $user;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="boolean")
+     */
+    private $status;
+    
+    /**
      * Get id
      *
      * @return int

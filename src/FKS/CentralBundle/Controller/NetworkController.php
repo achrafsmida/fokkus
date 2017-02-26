@@ -26,8 +26,14 @@ class NetworkController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
-        $networks = $em->getRepository('FKSCentralBundle:Network')->findAll();
+        $user = $this->getUser();
+        if ($user->hasRole('ROLE_ADMIN_GROUP') OR $user->hasRole('ROLE_NETWORK') ) {
+            $networks = $em->getRepository('FKSCentralBundle:Network')->findByGroup($user->getGroup());
+        }
+        else{
+            $networks = $em->getRepository('FKSCentralBundle:Network')->findAll();
+        }
+        //$networks = $em->getRepository('FKSCentralBundle:Network')->findAll();
 
         return $this->render('network/index.html.twig', array(
             'networks' => $networks,
@@ -46,22 +52,22 @@ class NetworkController extends Controller
         $user = $this->getUser();
         $sub = false;
         // Check if user is manager
-        if ($user->hasRole('ROLE_GROUP')) {
+        if ($user->hasRole('ROLE_ADMIN_GROUP')) {
             $sub = true;
         } else {
             $sub = false;
         }
-
+ //dump($sub);die;
         $form = $this->createForm('FKS\CentralBundle\Form\NetworkType', $network, array('sub' => $sub));
         $form->handleRequest($request);
 
         $em = $this->getDoctrine()->getManager();
-        $subNetwork = $em->getRepository('FKSCentralBundle:subNetwork')->findOneByUser($user);
-        $group = $subNetwork->getNetwork()->getGroup();
+//        $subNetwork = $em->getRepository('FKSCentralBundle:subNetwork')->findOneByUser($user);
+//        $group = $subNetwork->getNetwork()->getGroup();
         if ($form->isSubmitted() && $form->isValid()) {
 
-            if ($sub == true ){
-              $network->setGroup($group)  ;
+            if ($sub == true && $user->getGroup()){
+              $network->setGroup($user->getGroup())  ;
             }
             $em->persist($network);
             $em->flush($network);
@@ -207,7 +213,13 @@ class NetworkController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $networks = $em->getRepository('FKSCentralBundle:Network')->findAll();
+        $user = $this->getUser();
+        if ($user->hasRole('ROLE_ADMIN_GROUP') OR $user->hasRole('ROLE_NETWORK') ) {
+            $networks = $em->getRepository('FKSCentralBundle:Network')->findByGroup($user->getGroup());
+        }
+        else{
+            $networks = $em->getRepository('FKSCentralBundle:Network')->findAll();
+        }
 
         return $this->render('network/list.html.twig', array(
             'networks' => $networks,
@@ -252,4 +264,26 @@ class NetworkController extends Controller
 
         return new JsonResponse(array('response' => $response));
     }
+
+//    /**
+//     * Finds and displays a subNetwork entity.
+//     * @Route("/{id}/find", name="find_accompt")
+//     */
+//    public function findAccomptAction(Request $request, Network $network)
+//    {
+//
+//        $em = $this->getDoctrine()->getManager();
+//
+//         $have=false;
+//        if ($network->getHaveUser() == true)
+//        {
+//            $have = true;
+//        }
+//        else{
+//            $have = false;
+//        }
+//        //$networks = $em->getRepository('FKSCentralBundle:Network')->find();
+//
+//        return new JsonResponse(array('have' => $this->generateUrl($have)));
+//    }
 }

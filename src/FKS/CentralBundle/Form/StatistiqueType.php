@@ -13,7 +13,7 @@ class StatistiqueType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('income')->add('expenses')->add('month')->add('creationDate')->add('updatedDate')        ;
+        $builder->add('income')->add('expenses')->add('month')       ;
     }
     
     /**

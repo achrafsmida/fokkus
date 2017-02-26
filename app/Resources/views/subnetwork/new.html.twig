@@ -169,7 +169,7 @@
         $("#fks_centralbundle_message_users").chosen({
             width: '100%'
         });
-
+$("#fks_centralbundle_subnetwork_user").hide();
         $('.chosen-select').chosen();
         $('.wysiwyg').wysiwyg();
 
@@ -195,7 +195,9 @@
                 success: function (result) {
                     console.log(result.response)
                     if (result.response == true) {
-                        $('#user').show();
+                        $("#fks_centralbundle_subnetwork_user").show();
+                    }else{
+                        $("#fks_centralbundle_subnetwork_user").hide();
                     }
 
                 }

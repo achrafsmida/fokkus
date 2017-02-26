@@ -53,12 +53,16 @@ class StatistiqueController extends Controller
     public function newAction(Request $request)
     {
         $statistique = new Statistique();
+
         $form = $this->createForm('FKS\CentralBundle\Form\StatistiqueType', $statistique);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $statistique->setSub($this->getUser()->getSub());
+            $user = $this->getUser();
+            $subNetworks = $em->getRepository('FKSCentralBundle:subNetwork')->findOneByUser($user);
+            //dump($subNetworks);die;
+            $statistique->setSub($subNetworks);
             $em->persist($statistique);
             $em->flush($statistique);
 
