@@ -31,11 +31,11 @@
                             <td>{{ partener.createdDate|date('Y-m-d H:i') }}</td>
                             <td>
                                 <a class="btn btn-info" href="{{ path('partener_show', { 'id': partener.id }) }}">show</a>
-
+                                {% if  is_granted('ROLE_ADMIN')  %}
                                 <a class="btn btn-warning"
                                    href="{{ path('partener_edit', { 'id': partener.id }) }}">edit</a>
                                 <a class="btn btn-danger" href="{{ path('deleted_partener', { 'id': partener.id }) }}">Delete</a>
-
+                                {% endif  %}
                             </td>
                         </tr>
                     {% endfor %}

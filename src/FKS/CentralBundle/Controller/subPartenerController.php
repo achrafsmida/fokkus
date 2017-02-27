@@ -25,18 +25,12 @@ class subPartenerController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $user = $this->getUser();
-        if ($user->hasRole('ROLE_ADMIN_GROUP') OR $user->hasRole('ROLE_NETWORK') ) {
-            $subParteners = $em->getRepository('FKSCentralBundle:subPartener')->getSubPartenerByGroup($user->getGroup());
-        }
-        else{
+
             $subParteners = $em->getRepository('FKSCentralBundle:subPartener')->findAll();
-        }
-        
         //$subParteners = $em->getRepository('FKSCentralBundle:subPartener')->findAll();
 
-        return $this->render('subpartener/index.html.twig', array(
-            'subParteners' => $subParteners,
+        return $this->render('subpartener/list.html.twig', array(
+            'subs' => $subParteners,
         ));
     }
 

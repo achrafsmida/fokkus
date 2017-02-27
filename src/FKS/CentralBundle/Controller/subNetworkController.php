@@ -98,11 +98,29 @@ class subNetworkController extends Controller
      */
     public function editAction(Request $request, subNetwork $subNetwork)
     {
+
+        $user = $this->getUser();
+        $group = null;
+        if ($user->hasRole('ROLE_ADMIN_GROUP')){
+
+            $group = $user->getGroup() ;
+        }
+        $em = $this->getDoctrine()->getManager();
+        
         $deleteForm = $this->createDeleteForm($subNetwork);
-        $editForm = $this->createForm('FKS\CentralBundle\Form\subNetworkType', $subNetwork);
+        $editForm = $this->createForm('FKS\CentralBundle\Form\subNetworkType', $subNetwork, array('group' => $group));
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $subNetwork->uploadProfilePicture();
+            $em->persist($subNetwork);
+            $user = $subNetwork->getUser();
+            if($user){
+                $user->addRole('ROLE_NETWORK');
+                $em->persist($user);
+            }
+
+            $em->flush();
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('subnetwork_edit', array('id' => $subNetwork->getId()));
@@ -110,7 +128,7 @@ class subNetworkController extends Controller
 
         return $this->render('subnetwork/edit.html.twig', array(
             'subNetwork' => $subNetwork,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }

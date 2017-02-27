@@ -75,7 +75,7 @@ class StatistiqueController extends Controller
             $em->persist($statistique);
             $em->flush($statistique);
 
-            return $this->redirectToRoute('statistique_show', array('id' => $statistique->getId()));
+            return $this->redirectToRoute('statistique_index');
         }
 
         return $this->render('statistique/new.html.twig', array(

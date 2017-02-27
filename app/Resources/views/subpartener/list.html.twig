@@ -22,10 +22,10 @@
                         <th>Society</th>
                         <th>Fix</th>
                         <th>Mobile</th>
-                        <th>Twitter</th>
-                        <th>Site</th>
+                        {#<th>Twitter</th>#}
+                        {#<th>Site</th>#}
                         {#<th>Description</th>#}
-                        <th>Network</th>
+                        <th>Partener</th>
                         <th>Date</th>
                         <th>Actions</th>
                     </tr>
@@ -39,8 +39,8 @@
                             <td>{{ sub.society }}</td>
                             <td>{{ sub.fix }}</td>
                             <td>{{ sub.mobile }}</td>
-                            <td>{{ sub.twitter }}</td>
-                            <td>{{ sub.site }}</td>
+                            {#<td>{{ sub.twitter }}</td>#}
+                            {#<td>{{ sub.site }}</td>#}
                             {#<td>{{ sub.description }}</td>#}
                             <td>{{ sub.partener }}</td>
                             <td>{{ sub.createdDate|date('Y-m-d H:i') }}</td>
@@ -48,9 +48,10 @@
 
                                 <a class="btn btn-info" href="{{ path('subpartener_show', { 'id': sub.id }) }}">show</a>
 
+                                {% if  is_granted('ROLE_ADMIN')  %}
                                 <a class="btn btn-warning" href="{{ path('subpartener_edit', { 'id': sub.id }) }}">edit</a>
                                 <a class="btn btn-danger" href="{{ path('deleted_sub_partener', { 'id': sub.id }) }}">Delete</a>
-
+                                {% endif  %}
                             </td>
                         </tr>
                     {% endfor %}
