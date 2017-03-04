@@ -26,7 +26,7 @@ class subPartenerController extends Controller
         $em = $this->getDoctrine()->getManager();
 
 
-            $subParteners = $em->getRepository('FKSCentralBundle:subPartener')->findAll();
+        $subParteners = $em->getRepository('FKSCentralBundle:subPartener')->findAll();
         //$subParteners = $em->getRepository('FKSCentralBundle:subPartener')->findAll();
 
         return $this->render('subpartener/list.html.twig', array(
@@ -41,12 +41,22 @@ class subPartenerController extends Controller
     public function newAction(Request $request)
     {
         $subPartener = new Subpartener();
-        $form = $this->createForm('FKS\CentralBundle\Form\subPartenerType', $subPartener);
+        $user = $this->getUser();
+        $group = null;
+        if ($user->hasRole('ROLE_ADMIN_GROUP')) {
+
+            $group = $user->getGroup();
+            $form = $this->createForm('FKS\CentralBundle\Form\subPartenerType', $subPartener, array('group' => $group));
+        } else {
+            $form = $this->createForm('FKS\CentralBundle\Form\subPartenerType', $subPartener, array('group' => $group));
+        }
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $subPartener->uploadProfilePicture();
+
             $em->persist($subPartener);
             $em->flush($subPartener);
 
@@ -80,10 +90,20 @@ class subPartenerController extends Controller
     public function editAction(Request $request, subPartener $subPartener)
     {
         $deleteForm = $this->createDeleteForm($subPartener);
-        $editForm = $this->createForm('FKS\CentralBundle\Form\subPartenerType', $subPartener);
+        $user = $this->getUser();
+        $group = null;
+        if ($user->hasRole('ROLE_ADMIN_GROUP')) {
+
+            $group = $user->getGroup();
+            $editForm = $this->createForm('FKS\CentralBundle\Form\subPartenerType', $subPartener, array('group' => $group));
+        } else {
+            $editForm = $this->createForm('FKS\CentralBundle\Form\subPartenerType', $subPartener, array('group' => $group));
+        }
+
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('subpartener_edit', array('id' => $subPartener->getId()));
@@ -126,8 +146,7 @@ class subPartenerController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('subpartener_delete', array('id' => $subPartener->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 
     /**
@@ -146,12 +165,11 @@ class subPartenerController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-         $user = $this->getUser();
-        
-        if ($user->hasRole('ROLE_ADMIN_GROUP') OR $user->hasRole('ROLE_NETWORK') ) {
+        $user = $this->getUser();
+
+        if ($user->hasRole('ROLE_ADMIN_GROUP') OR $user->hasRole('ROLE_NETWORK')) {
             $subs = $em->getRepository('FKSCentralBundle:subPartener')->getSubPartenerByGroup($user->getGroup());
-        }
-        else{
+        } else {
             $subs = $em->getRepository('FKSCentralBundle:subPartener')->findAll();
         }
 

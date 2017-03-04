@@ -21,43 +21,60 @@ class subNetworkType extends AbstractType
 
         $group = $options['group'];
         //dump($group); die;
-        $builder->add('firstName')->add('lastName')->add('mail')->add('society'
-        )->add('fix')->add('mobile')->add('twitter')->add('site')->add('description')
-            ->add('network' , EntityType::class, array(
-                'class' => 'FKSCentralBundle:Network',
-                // 'choice_label' => 'article',
-                'multiple' => false,
-                'placeholder' => '--choisir une option--',
-                //'expanded' => true,
-                //'by_reference' => false,
-                'query_builder' => function (EntityRepository $er) use ( $group )  {
-                    return $er->createQueryBuilder('u')->where('u.group = :group')->setParameter('group', $group);
-                },
-            ))
 
-        ->add('file')
-        ->add('user',    UserType::class , array('label'=>"Paramétre d'authentification " , 'required' => false)) ;
+        if ($options['group']) {
+            $builder->add('firstName')->add('lastName')->add('mail')->add('society'
+            )->add('fix')->add('mobile')->add('twitter')->add('site')->add('description')
+                ->add('network', EntityType::class, array(
+                    'class' => 'FKSCentralBundle:Network',
+                    // 'choice_label' => 'article',
+                    'multiple' => false,
+                    'placeholder' => '--choisir une option--',
+                    //'expanded' => true,
+                    //'by_reference' => false,
+                    'query_builder' => function (EntityRepository $er) use ($group) {
+                        return $er->createQueryBuilder('u')->where('u.group = :group')->setParameter('group', $group);
+                    },
+                ))
+                ->add('file')
+                ->add('user', UserType::class, array('label' => "Paramétre d'authentification ", 'required' => false));
+
+        } else {
+
+            $builder->add('firstName')->add('lastName')->add('mail')->add('society'
+            )->add('fix')->add('mobile')->add('twitter')->add('site')->add('description')
+                ->add('network', EntityType::class, array(
+                    'class' => 'FKSCentralBundle:Network',
+                    // 'choice_label' => 'article',
+                    'multiple' => false,
+                    'placeholder' => '--choisir une option--',
+                    //'expanded' => true,
+                    //'by_reference' => false,
+                ))
+                ->add('file')
+                ->add('user', UserType::class, array('label' => "Paramétre d'authentification ", 'required' => false));}
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public
+        function configureOptions(OptionsResolver $resolver)
+        {
+            $resolver->setDefaults(array(
+                'data_class' => 'FKS\CentralBundle\Entity\subNetwork',
+                'group' => null
+            ));
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public
+        function getBlockPrefix()
+        {
+            return 'fks_centralbundle_subnetwork';
+        }
+
 
     }
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults(array(
-            'data_class' => 'FKS\CentralBundle\Entity\subNetwork',
-            'group' => null
-        ));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getBlockPrefix()
-    {
-        return 'fks_centralbundle_subnetwork';
-    }
-
-
-}

@@ -51,8 +51,12 @@ class subNetworkController extends Controller
         if ($user->hasRole('ROLE_ADMIN_GROUP')){
             
             $group = $user->getGroup() ;
+            $form = $this->createForm('FKS\CentralBundle\Form\subNetworkType', $subNetwork, array('group' => $group));
         }
-        $form = $this->createForm('FKS\CentralBundle\Form\subNetworkType', $subNetwork, array('group' => $group));
+        else{
+            $form = $this->createForm('FKS\CentralBundle\Form\subNetworkType', $subNetwork);
+        }
+       
         $form->handleRequest($request);
 
 
@@ -61,10 +65,12 @@ class subNetworkController extends Controller
             $em = $this->getDoctrine()->getManager();
             $subNetwork->uploadProfilePicture();
             $em->persist($subNetwork);
-            $user = $subNetwork->getUser();
-            if($user){
-                $user->addRole('ROLE_NETWORK');
-                $em->persist($user);
+            //dump($subNetwork->getUser());die;
+            //$user = $subNetwork->getUser();
+            if($subNetwork->getUser()){
+                $subNetwork->getUser()->setEnabled(true);
+                $subNetwork->getUser()->addRole('ROLE_NETWORK');
+                $em->persist($subNetwork->getUser());
             }
 
             $em->flush();
@@ -104,24 +110,29 @@ class subNetworkController extends Controller
         if ($user->hasRole('ROLE_ADMIN_GROUP')){
 
             $group = $user->getGroup() ;
+            $editForm = $this->createForm('FKS\CentralBundle\Form\subNetworkType', $subNetwork, array('group' => $group));
+        }
+        else{
+            $editForm = $this->createForm('FKS\CentralBundle\Form\subNetworkType', $subNetwork);
         }
         $em = $this->getDoctrine()->getManager();
         
         $deleteForm = $this->createDeleteForm($subNetwork);
-        $editForm = $this->createForm('FKS\CentralBundle\Form\subNetworkType', $subNetwork, array('group' => $group));
+
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $subNetwork->uploadProfilePicture();
             $em->persist($subNetwork);
-            $user = $subNetwork->getUser();
-            if($user){
-                $user->addRole('ROLE_NETWORK');
-                $em->persist($user);
+            //$user = $subNetwork->getUser();
+            if($subNetwork->getUser()){
+                $subNetwork->getUser()->setEnabled(true);
+                $subNetwork->getUser()->addRole('ROLE_NETWORK');
+                $em->persist($subNetwork->getUser());
             }
 
             $em->flush();
-            $this->getDoctrine()->getManager()->flush();
+           // $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('subnetwork_edit', array('id' => $subNetwork->getId()));
         }

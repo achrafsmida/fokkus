@@ -28,7 +28,7 @@ class PartenerController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $user = $this->getUser();
-        if ($user->hasRole('ROLE_ADMIN_GROUP') OR $user->hasRole('ROLE_NETWORK') ) {
+        if ($user->hasRole('ROLE_ADMIN_GROUP') ) {
             $parteners = $em->getRepository('FKSCentralBundle:Partener')->findByGroup($user->getGroup());
         }
         else{

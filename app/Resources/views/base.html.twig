@@ -449,6 +449,15 @@
                            </li>
 
                         {% endif %}
+                        {% if is_granted('ROLE_ADMIN_GROUP')  %}
+
+                           <li class=" ">
+                              <a href="{{ path('subpartener_new') }}" >
+                                 <span>add Partener</span>
+                              </a>
+                           </li>
+
+                        {% endif %}
                         <li class=" ">
                            <a href="{{ path('subpartener_index') }}" >
                               <span>list sub partener</span>
