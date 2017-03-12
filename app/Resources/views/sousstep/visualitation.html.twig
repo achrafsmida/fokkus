@@ -35,17 +35,17 @@
 				
 				                            {% for sousstep in soussteps %}
 
-                <li class=" {% if loop.index == 1  %} current {% endif  %} ">
-                   {% if loop.index == 1  %}  <span> {% endif  %} 
-					         {% if loop.index != 1  %}  <a href="#0">{% endif  %} 
+                <li class="{% if sousstep.id <= timeline.sousstep.id  %} current {% endif  %} ">
+                   {% if sousstep.id <= timeline.sousstep.id  %} <span> {% endif  %} 
+					        {% if sousstep.id > timeline.sousstep.id  %}  <a href="#0">{% endif  %} 
 
                         <span class="number" style="line-height: 35px;">{{loop.index }}</span>
                         <span class="desc">
                             <label>{{ sousstep.name }}</label>
-							                            <span>Basic account info</span>
+                                   <span>Basic account info</span>
 						</span>
-                         {% if loop.index == 1  %}</span>{% endif  %} 
-						 {% if loop.index != 1  %} </a>{% endif  %} 
+                        {% if sousstep.id <= timeline.sousstep.id  %}</span>{% endif  %} 
+						 {% if sousstep.id > timeline.sousstep.id  %} </a>{% endif  %} 
                     
                 </li>
                                           {% endfor %}
@@ -55,9 +55,9 @@
 			   </section>
 			   
 			   
-                  <div id="example-vertical">
+                  <div id="example2">
                             {% for sousstep in soussteps %}
- 
+  
                      <h4>{{ sousstep.name }}</h4>
                      <section>
                         <p>{{ sousstep.description }}</p>
@@ -70,5 +70,29 @@
          </div>
          
       </section>
-      
+                             <script>
+                             $("#example2").steps({
+        headerTag: "h4",
+        bodyTag: "section",
+        transitionEffect: "slideLeft",
+        stepsOrientation: "vertical" ,
+            onStepChanging: function (event, currentIndex, newIndex) {
+            
+    
+    
+    return true ;
+},
+
+          labels: {
+        cancel: "Cancel",
+        current: "current step:",
+        pagination: "Pagination",
+        finish: "Finish",
+        next: "confirm",
+        previous: "Previous",
+        loading: "Loading ..."
+    }
+        
+    });
+                                 </script>
     {% endblock %}

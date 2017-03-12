@@ -53,8 +53,15 @@ public function visualitationAction(){
         $score = $em->getRepository('FokkusV1Bundle:scores')->findby(array('user'=>$user));
         if(count($score)>0){
             
-           return $this->render('question/dashboard.html.twig', array(
+           $timelineCommercial = $em->getRepository('FokkusV1Bundle:timeline')->findOneBy(array("user"=>$user , "type" =>1));
+           $timelineCommunication = $em->getRepository('FokkusV1Bundle:timeline')->findOneBy(array("user"=>$user , "type" =>2));
+           $timelineFinancial = $em->getRepository('FokkusV1Bundle:timeline')->findOneBy(array("user"=>$user , "type" =>3));
+
             
+            
+            
+           return $this->render('question/dashboard.html.twig', array(
+             'Commercialtimeline'=> $timelineCommercial , 'Communicationtimeline'=> $timelineCommunication, 'Financialtimeline'=> $timelineFinancial
         ));  
         }
         else{
@@ -115,22 +122,25 @@ public function addscoresAction(){
             
             
           //  $groups = 
-          $steps = $em->getRepository('FokkusV1Bundle:step')->findall();
+          $steps = $em->getRepository('FokkusV1Bundle:step')->findByType(1);
 
           
           $timeline = new timeline();
           $i = 0 ;
             foreach( $steps as $step){
                //   echo $step->getPoints();
-              if($step->getPoints() > $Commercialscore ) 
+              if($step->getPoints() > $Commercialscore  or $i ==  count($steps ) -1 ) 
                   
               {
-                
-                  $currectstep = $steps[$i -1] ; 
+                                $currectstep = $steps[$i] ;
+
+                if($i>1)  $currectstep = $steps[$i -1] ; 
                   $timeline->setStep($currectstep) ;
                   $soussteps = $em->getRepository('FokkusV1Bundle:sousstep')->findOneBy(array('step'=>$currectstep));
                     $timeline->setSousstep( $soussteps ) ;
                            $timeline->SetUser($user) ;
+                            $timeline->SetType(1) ;
+
                            $em->persist($timeline);
                             $em->flush($timeline); 
                             break;
@@ -138,6 +148,64 @@ public function addscoresAction(){
               
                 $i++ ;
             }
+            
+             $steps = $em->getRepository('FokkusV1Bundle:step')->findByType(2);
+
+          
+          $timeline = new timeline();
+                    $i = 0 ;
+
+             foreach( $steps as $step){
+               //   echo $step->getPoints();
+              if($step->getPoints() > $Communicationscore  or $i ==  count($steps ) -1 ) 
+                  
+              {
+                                $currectstep = $steps[$i] ;
+
+                if($i>1)  $currectstep = $steps[$i -1] ; 
+                  $timeline->setStep($currectstep) ;
+                  $soussteps = $em->getRepository('FokkusV1Bundle:sousstep')->findOneBy(array('step'=>$currectstep));
+                    $timeline->setSousstep( $soussteps ) ;
+                           $timeline->SetUser($user) ;
+                           $em->persist($timeline);
+                                                       $timeline->SetType(2) ;
+
+                            $em->flush($timeline); 
+                            break;
+              }
+              
+                $i++ ;
+            }
+            
+              $steps = $em->getRepository('FokkusV1Bundle:step')->findByType(3);
+
+          
+          $timeline = new timeline();
+                      $i = 0 ;
+
+             foreach( $steps as $step){
+               //   echo $step->getPoints();
+              if($step->getPoints() > $Financialscore  or $i ==  count($steps ) -1 ) 
+                  
+              {
+                $currectstep = $steps[$i] ;
+             if($i>1)     $currectstep = $steps[$i -1] ; 
+                  $timeline->setStep($currectstep) ;
+                  $soussteps = $em->getRepository('FokkusV1Bundle:sousstep')->findOneBy(array('step'=>$currectstep));
+                    $timeline->setSousstep( $soussteps ) ;
+                           $timeline->SetUser($user) ;
+                            $timeline->SetType(3) ;
+                           $em->persist($timeline);
+                            $em->flush($timeline); 
+                            break;
+              }
+              
+                $i++ ;
+            }
+            
+            
+            
+            
             
              $response = new Res(json_encode(array('result'=>1)));
 		$response->headers->set('Content-Type', 'application/json');

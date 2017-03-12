@@ -35,12 +35,21 @@ public function sousstepvisualitationAction($step)
         $em = $this->getDoctrine()->getManager();
         $session = new Session();
         $session->set('step', $step);
+        
+         $type= $session->get('type');
+        $group= $session->get('group');
+        
+         $user =  $this->getUser();;
+ 
+        $timeline = $em->getRepository('FokkusV1Bundle:timeline')->findOneBy(array("user"=>$user , "type" =>$type ));
+       
+        
               $step = $em->getRepository('FokkusV1Bundle:step')->find($step );
 
         $soussteps = $em->getRepository('FokkusV1Bundle:sousstep')->findByStep($step);
 
         return $this->render('sousstep/visualitation.html.twig', array(
-            'soussteps' => $soussteps,
+            'soussteps' => $soussteps , 'timeline'=>$timeline,
         ));
     }
     /**

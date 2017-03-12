@@ -39,7 +39,7 @@
 			
 			  {% for step in steps %}
 
-                <li class="{% if loop.index == 1  %} current {% endif  %}">
+                <li class="{% if step.id <= timeline.step.id  %} current {% endif  %}">
                     <a href="">
                         <span style = "line-height: 35px;" class="number">{{ loop.index }}</span>
                         <span class="desc">
@@ -64,7 +64,7 @@
 
                         <div class="list-group ">
 						  {% for step in steps %}
-						<a href="#{{step.id}}" data-toggle="tab" class="list-group-item {% if loop.index == 1  %} active {% endif  %}">{{step.name}}</a>
+						<a href="#{{step.id}}" data-toggle="tab" class="list-group-item {% if step.id == timeline.step.id  %} active {% endif  %}">{{step.name}}</a>
 						                                         
  {% endfor  %}
                         </div>
@@ -74,9 +74,9 @@
                   <div class="col-md-9">
                      <div class="tab-content p0 b0">
 					 
-					 									  {% for step in steps %}
+					 	  {% for step in steps %}
 
-                        <div id="{{step.id}}" class="tab-pane {% if loop.index == 1  %} active {% endif  %} ">
+                        <div id="{{step.id}}" class="tab-pane {% if step.id == timeline.step.id  %} active {% endif  %} ">
                            <div class="panel b">
                               <div class="panel-heading bg-gray-lighter text-bold">{{step.name}} <a  style="margin-bottom:5px" class="btn btn-xs btn-info pull-right " href="{{ path('sousstep_visualitation', { 'step': step.id }) }}">Sub Step  List</a></div>
                               <div class="panel-body">

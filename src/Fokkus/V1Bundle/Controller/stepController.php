@@ -23,10 +23,9 @@ class stepController extends Controller
         $session = new Session();
         $session->set('type', $type);
         
-        if($type == 1) $session->set('typestring', "Commerciale");
+        if($type == 1) $session->set('typestring', "Commercial");
         if($type == 2)$session->set('typestring', "Communication");
-        if($type == 3)$session->set('typestring', "Résaux humaines");
-        if($type == 4)$session->set('typestring', "Technique");
+        if($type == 3)$session->set('typestring', "Financial");
         
         
         
@@ -61,6 +60,18 @@ class stepController extends Controller
         ));
         
     }
+    
+    public function timelineAction(){
+                $em = $this->getDoctrine()->getManager();
+
+            $timelineCommercial = $em->getRepository('FokkusV1Bundle:timeline')->findBy(array( "type" =>1));
+           $timelineCommunication = $em->getRepository('FokkusV1Bundle:timeline')->findBy(array( "type" =>2));
+           $timelineFinancial = $em->getRepository('FokkusV1Bundle:timeline')->findBy(array( "type" =>3));
+        return $this->render('step/timeline.html.twig', array(
+             'Commercialtimelines'=> $timelineCommercial , 'Communicationtimelines'=> $timelineCommunication, 'Financialtimelines'=> $timelineFinancial
+        )); 
+        
+    }
     public function indexAction($type , $group)
     {
         $em = $this->getDoctrine()->getManager();
@@ -70,10 +81,9 @@ class stepController extends Controller
          $session->set('group', $group);
        
         
-        if($type == 1) $session->set('typestring', "Commerciale");
+     if($type == 1) $session->set('typestring', "Commercial");
         if($type == 2)$session->set('typestring', "Communication");
-        if($type == 3)$session->set('typestring', "Résaux humaines");
-        if($type == 4)$session->set('typestring', "Technique");
+        if($type == 3)$session->set('typestring', "Financial");
         
         $group = $em->getRepository('FokkusV1Bundle:step')->find($group);
         $steps = $em->getRepository('FokkusV1Bundle:step')->findBy(array('type'=>$type , 'groups'=>$group));
@@ -88,9 +98,16 @@ class stepController extends Controller
         $session = new Session();
         $type= $session->get('type');
         $group= $session->get('group');
+                   $user =  $this->getUser();;
+ 
+        $timeline = $em->getRepository('FokkusV1Bundle:timeline')->findOneBy(array("user"=>$user , "type" =>$type ));
+       
+        //return var_dump(count($timeline))
+        
+        
         $steps = $em->getRepository('FokkusV1Bundle:step')->findByType($type);
         return $this->render('step/visualion.html.twig', array(
-            'steps' => $steps,$type => $type
+            'steps' => $steps,$type => $type , 'timeline'=>$timeline
         ));
         
     }

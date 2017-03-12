@@ -2,6 +2,10 @@ step_index:
     path:     /index/{type}/{group}/
     defaults: { _controller: "FokkusV1Bundle:step:index" }
     methods:  GET
+timeline:
+    path:     /timeline
+    defaults: { _controller: "FokkusV1Bundle:step:timeline" }
+    methods:  GET
 stepsgroups:
     path:     /stepsgroups/{type}
     defaults: { _controller: "FokkusV1Bundle:step:stepsgroups" }
