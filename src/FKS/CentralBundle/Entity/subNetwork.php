@@ -119,14 +119,14 @@ class subNetwork
 
     /**
      * @ORM\OneToOne(targetEntity="FKS\CentralBundle\Entity\User", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $user;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="status", type="boolean")
+     * @ORM\Column(name="status", type="boolean", nullable=true)
      */
     private $status;
     

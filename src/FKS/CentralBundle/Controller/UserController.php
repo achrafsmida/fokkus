@@ -39,6 +39,7 @@ class UserController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user->addRole('ROLE_ADMIN_GROUP');
+            $user->setEnabled(true);
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush($user);

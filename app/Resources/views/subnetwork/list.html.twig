@@ -21,8 +21,8 @@
                         <th>Society</th>
                         <th>Fix</th>
                         <th>Mobile</th>
-                        <th>Twitter</th>
-                        <th>Site</th>
+                        {#<th>Twitter</th>#}
+                        {#<th>Site</th>#}
                         {#<th>Description</th>#}
                         <th>Network</th>
                         {#<th>Date</th>#}
@@ -34,25 +34,31 @@
                         <tr>
                             <td>{{ sub.firstName }}</td>
                             <td>{{ sub.lastName }}</td>
-                            {% if sub.user.username %}
+                            {% if sub.user %}
                                 <td>{{ sub.user.userName }}</td>
                             {% else %}
-                                <td><span class="label label-success">No</span></td>
+                                <td><span class="label label-success">pas de compte</span></td>
                             {% endif %}
                             <td>{{ sub.mail }}</td>
                             <td>{{ sub.society }}</td>
                             <td>{{ sub.fix }}</td>
                             <td>{{ sub.mobile }}</td>
-                            <td>{{ sub.twitter }}</td>
-                            <td>{{ sub.site }}</td>
+                            {#<td>{{ sub.twitter }}</td>#}
+                            {#<td>{{ sub.site }}</td>#}
                             {#<td>{{ sub.description }}</td>#}
                             <td>{{ sub.network }}</td>
                             {#<td>{{ sub.createdDate|date('Y-m-d H:i') }}</td>#}
                             <td>
 
                                 <a class="btn btn-info" href="{{ path('subnetwork_show', { 'id': sub.id }) }}">show</a>
+                                {% if  is_granted('ROLE_ADMIN_GROUP')  %}
                                 <a class="btn btn-warning" href="{{ path('subnetwork_edit', { 'id': sub.id }) }}">edit</a>
                                 <a class="btn btn-danger" href="{{ path('deleted_sub', { 'id': sub.id }) }}">Delete</a>
+                                {% endif %}
+                                {% if  is_granted('ROLE_ADMIN')  %}
+                                    <a class="btn btn-warning" href="{{ path('subnetwork_edit', { 'id': sub.id }) }}">edit</a>
+                                    <a class="btn btn-danger" href="{{ path('deleted_sub', { 'id': sub.id }) }}">Delete</a>
+                                {% endif %}
                             </td>
                         </tr>
                     {% endfor %}

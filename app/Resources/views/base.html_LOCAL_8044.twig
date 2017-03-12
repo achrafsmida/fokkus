@@ -61,7 +61,7 @@
                <a href="#/" class="navbar-brand">
                   <div class="brand-logo">
                       
-                     <img src="{{ asset('bundles/fokkusv1/app/img/logo.png') }}" alt="App Logo" class="img-responsive">
+                     <img src="{{ asset('bundles/fokkusv1/app/img/logo_fokkus_fond_blanc_rvb.png') }}" alt="App Logo" class="img-responsive">
                   </div>
                   <div class="brand-logo-collapsed">
                      <img src="{{ asset('bundles/fokkusv1/app/img/logo-single.png') }}" alt="App Logo" class="img-responsive">
@@ -231,10 +231,10 @@
                   <!-- END user info-->
                   <!-- Iterates over all sidebar items-->
                  
-                   {% if app.user and is_granted('ROLE_ADMIN')  %}
+                   {% if app.user and is_granted('ROLE_ADMIN')  %}     
 
                    <li class=" ">
-
+                                          
                      <a href="#dashboard" title="Dashboard" data-toggle="collapse">
                         <em class="icon-speedometer"></em>
                         <span data-localize="sidebar.nav.DASHBOARD">Dashboard</span>
@@ -243,16 +243,16 @@
                      <ul id="dashboard" class="nav sidebar-subnav collapse">
                         <li class=" ">
                            <a href="{{ path('question_index') }}" >
-                              <span>Questions</span>
+                              <span>Questions</span> 
                            </a>
                         </li>
-
+                        
                         <li class=" ">
                            <a href="{{ path('visualitation') }}" >
-                              <span>Visualation</span>
+                              <span>Visualation</span> 
                            </a>
                         </li>
-
+                       
                      </ul>
                   </li>
                   <li class=" ">
@@ -260,105 +260,110 @@
                         <em class="icon-layers"></em>
                         <span data-localize="sidebar.nav.TIMELINE">Timeline</span>
                      </a>
-
+                    
                      <ul id="timeline" class="nav sidebar-subnav collapse">
                         <li class=" ">
                            <a href="{{ path('stepsgroups', {'type' : 1}) }}" title="Dashboard v1">
-                              <span>Commercial</span>
+                              <span>Commercial</span> 
                            </a>
                         </li>
                         <li class=" ">
                            <a href="{{ path('stepsgroups', {'type' : 2}) }}" title="Dashboard v1">
-                              <span>Communication</span>
+                              <span>Communication</span> 
                            </a>
                         </li>
-
+                    
                         <li class=" ">
-                           <a href="{{ path('stepsgroups', {'type' : 4}) }}" title="Dashboard v1">
-                              <span>Financial</span>
+                           <a href="{{ path('stepsgroups', {'type' : 3}) }}" title="Dashboard v1">
+                              <span>Financial</span> 
                            </a>
                         </li>
-
+                       <li class=" ">
+                           <a href="{{ path('timeline') }}" title="Dashboard v1">
+                              <span>Time Line</span> 
+                           </a>
+                        </li>
+                        
+                        
                      </ul>
                   </li>
                   <li class=" ">
                      <a href="#formation" title="formation" data-toggle="collapse">
                         <em class="icon-graduation"></em>
-                        <span data-localize="sidebar.nav.formation">Training</span>
+                        <span data-localize="sidebar.nav.formation">Consulting</span>
                      </a>
-
+                    
                      <ul id="formation" class="nav sidebar-subnav collapse">
                         <li class=" ">
                            <a href="{{ path('formation_index') }}" >
-                              <span>Training</span>
+                              <span>Consulting</span> 
                            </a>
                         </li>
                         <li class=" ">
                            <a href="{{ path('formationcateg_index') }}" >
-                              <span>Categories</span>
+                              <span>Categories</span> 
                            </a>
                         </li>
                         <li class=" ">
                            <a href="{{ path('visualitationformation') }}" >
-                              <span>All</span>
+                              <span>All</span> 
                            </a>
                         </li>
-
-                     </ul>
+                       
+                     </ul> 
                   </li>
                    <li class=" ">
                      <a href="#evenement" title="evenement" data-toggle="collapse">
                         <em class="icon-calendar"></em>
                         <span data-localize="sidebar.nav.evenement">Events</span>
                      </a>
-
+                    
                      <ul id="evenement" class="nav sidebar-subnav collapse">
                         <li class=" ">
                            <a href="{{ path('evenement_index') }}" >
-                              <span>Events</span>
+                              <span>Events</span> 
                            </a>
                         </li>
                         <li class=" ">
                            <a href="{{ path('evenementcateg_index') }}" >
-                              <span>Categories</span>
+                              <span>Categories</span> 
                            </a>
                         </li>
                         <li class=" ">
                            <a href="{{ path('evenementsubcateg_index') }}" >
-                              <span>Places</span>
+                              <span>Places</span> 
                            </a>
                         </li>
                         <li class=" ">
                            <a href="{{ path('visualitationevenement') }}" >
-                              <span>All</span>
+                              <span>All</span> 
                            </a>
                         </li>
-
+                       
                      </ul>
                   </li>
-                   {% endif   %}
-                  <li class=" ">
+				   <li class=" ">
                      <a href="#Messages" title="Messages" data-toggle="collapse">
                         <em class="icon-directions"></em>
-                        <span data-localize="sidebar.nav.Messages">MailBox</span>
+                        <span data-localize="sidebar.nav.Messages">Mailbox</span>
                      </a>
-
+                    
                      <ul id="Messages" class="nav sidebar-subnav collapse">
                         <li class=" ">
                            <a href="{{ path('myMessages') }}" >
-                              <span>Messages</span>
+                              <span>Messages</span> 
                            </a>
                         </li>
-
+                       
                          <li class=" ">
                      <a href="{{ path('request_contact') }}" >
                         Request networking
                      </a>
                   </li>
-
+                       
                      </ul>
                   </li>
-                  {% if app.user and is_granted('ROLE_ADMIN')  %}
+				 
                   <li class=" ">
                      <a href="#group" title="group" data-toggle="collapse">
                         <em class="icon-people"></em>
@@ -378,41 +383,21 @@
                         {#</li>#}
                      </ul>
                   </li>
-                  {% endif  %}
                   <li class=" ">
                      <a href="#network" title="network" data-toggle="collapse">
                         <em class="icon-share"></em>
-                        <span data-localize="sidebar.nav.evenement">Network</span>
+                        <span data-localize="sidebar.nav.evenement">Networking</span>
                      </a>
 
                      <ul id="network" class="nav sidebar-subnav collapse">
-
-
+                         
+                         
                          <li class=" ">
                            <a href="{{ path('list') }}" >
                               <span>Groups</span>
                            </a>
                         </li>
-                        {% if is_granted('ROLE_ADMIN_GROUP')  %}
-
-                        <li class=" ">
-                           <a href="{{ path('network_new') }}" >
-                              <span>add network</span>
-                           </a>
-                        </li>
-
-                        {% endif %}
-
-                        {% if is_granted('ROLE_ADMIN')  %}
-
-                           <li class=" ">
-                              <a href="{{ path('network_new') }}" >
-                                 <span>add network</span>
-                              </a>
-                           </li>
-
-                        {% endif %}
-
+                        
                       <li class=" ">
                            <a href="{{ path('listSub') }}" >
                               <span>Individual</span>
@@ -423,11 +408,11 @@
                             <span>All</span>
                         </a>
                     </li>
-
+                        
                      </ul>
                   </li>
-
-
+                  
+                
                   <li class=" ">
                      <a href="#partner" title="partner" data-toggle="collapse">
                         <em class="icon-phone"></em>
@@ -437,30 +422,7 @@
                      <ul id="partner" class="nav sidebar-subnav collapse">
                         <li class=" ">
                            <a href="{{ path('listPartener') }}" >
-                              <span>Partners</span>
-                           </a>
-                        </li>
-                        {% if is_granted('ROLE_ADMIN')  %}
-
-                           <li class=" ">
-                              <a href="{{ path('subpartener_new') }}" >
-                                 <span>add sub partener</span>
-                              </a>
-                           </li>
-
-                        {% endif %}
-                        {% if is_granted('ROLE_ADMIN_GROUP')  %}
-
-                           <li class=" ">
-                              <a href="{{ path('subpartener_new') }}" >
-                                 <span>add Partener</span>
-                              </a>
-                           </li>
-
-                        {% endif %}
-                        <li class=" ">
-                           <a href="{{ path('subpartener_index') }}" >
-                              <span>list sub partener</span>
+                              <span>Partnership</span>
                            </a>
                         </li>
                      <li class=" ">
@@ -471,43 +433,22 @@
                               <span>Visualation</span>
                            </a>
                         </li>
-
+                    
                      </ul>
                   </li>
-
+				  
                      <li class=" ">
-
-
+                       
+                       
                         <li class=" ">
                      <a href="{{ path('stats_show') }}" title="Documentation">
                         <em class="icon-chart"></em>
                         <span data-localize="sidebar.nav.Formation">Statistics</span>
                      </a>
                   </li>
-
-                  {% if is_granted('ROLE_NETWORK')  %}
-
-                     <li class=" ">
-                        <a href="{{ path('statistique_new') }}" >
-                           <span>add statistique</span>
-                        </a>
-                     </li>
-
-                  {% endif %}
-
-                  {% if app.user and is_granted('ROLE_ADMIN')  %}
-
-
-
-                     <li class=" ">
-                        <a href="{{ path('user_new') }}" title="Documentation">
-                           <em class="icon-speedometer"></em>
-                           <span data-localize="sidebar.nav.DOCUMENTATION">Add admin Group</span>
-                        </a>
-                     </li>
-
-                  {% endif  %}
-
+                   
+                  
+                           {% endif   %}     
 
                   {% if app.user and is_granted('ROLE_STARTUP')  %}     
 
@@ -525,13 +466,13 @@
                   <li class=" ">
                      <a href="#timeline " title="timeline" data-toggle="collapse">
                         <em class="icon-layers"></em>
-                        <span data-localize="sidebar.nav.TIMELINE">TIME LINE</span>
+                        <span data-localize="sidebar.nav.TIMELINE">Timeline</span>
                      </a>
                     
-                     <ul id="timeline" class="nav sidebar-subnav collapse">
+                    <ul id="timeline" class="nav sidebar-subnav collapse">
                         <li class=" ">
                            <a href="{{ path('stepsgroups', {'type' : 1}) }}" title="Dashboard v1">
-                              <span>Commerciale</span> 
+                              <span>Commercial</span> 
                            </a>
                         </li>
                         <li class=" ">
@@ -539,14 +480,10 @@
                               <span>Communication</span> 
                            </a>
                         </li>
+                    
                         <li class=" ">
                            <a href="{{ path('stepsgroups', {'type' : 3}) }}" title="Dashboard v1">
-                              <span>Résaux humaines</span> 
-                           </a>
-                        </li>
-                        <li class=" ">
-                           <a href="{{ path('stepsgroups', {'type' : 4}) }}" title="Dashboard v1">
-                              <span>Technique</span> 
+                              <span>Financial</span> 
                            </a>
                         </li>
                       
@@ -559,7 +496,7 @@
                         <li class=" ">
                      <a href="{{ path('visualitationformation') }}" title="Documentation">
                         <em class="icon-graduation"></em>
-                        <span data-localize="sidebar.nav.Formation">Formation</span>
+                        <span data-localize="sidebar.nav.Formation">Consulting</span>
                      </a>
                   </li>
                   
@@ -569,7 +506,7 @@
                         <li class=" ">
                      <a href="{{ path('visualitationformation') }}" title="Documentation">
                         <em class="icon-calendar"></em>
-                        <span data-localize="sidebar.nav.Formation">Evenement</span>
+                        <span data-localize="sidebar.nav.Formation">Events</span>
                      </a>
                   </li>
                    </li>

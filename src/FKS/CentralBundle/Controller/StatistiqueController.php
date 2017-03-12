@@ -28,10 +28,19 @@ class StatistiqueController extends Controller
     {
         /** @var EntityManager $em */
         $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
 
-        $stats = $em->getRepository('FKSCentralBundle:Statistique')->findAll();
+        $sub = $em->getRepository('FKSCentralBundle:SubNetwork')->findOneByUser($user);
+        $group = $sub->getNetwork()->getGroup();
+        if ($user->hasRole('ROLE_NETWORK')) {
 
+            $stats = $em->getRepository('FKSCentralBundle:Statistique')->findBySub($sub);
 
+        } elseif ($user->hasRole('ROLE_ADMIN_GROUP')) {
+            $stats = $em->getRepository('FKSCentralBundle:Statistique')->getStatistiqueByGroup($group);
+        } else {
+            $stats = $em->getRepository('FKSCentralBundle:Statistique')->findAll();
+        }
 
         //dump($result);die;
 
@@ -42,7 +51,7 @@ class StatistiqueController extends Controller
         ));
 
         //return new Response(json_encode($result));
-}
+    }
 
     /**
      * Creates a new statistique entity.
@@ -66,7 +75,7 @@ class StatistiqueController extends Controller
             $em->persist($statistique);
             $em->flush($statistique);
 
-            return $this->redirectToRoute('statistique_show', array('id' => $statistique->getId()));
+            return $this->redirectToRoute('statistique_index');
         }
 
         return $this->render('statistique/new.html.twig', array(
@@ -148,8 +157,7 @@ class StatistiqueController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('statistique_delete', array('id' => $statistique->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 
 //    /**

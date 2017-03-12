@@ -10,4 +10,18 @@ namespace FKS\CentralBundle\Repository;
  */
 class StatistiqueRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function getStatistiqueByGroup($group)
+    {
+
+        $qb = $this->createQueryBuilder('c');
+        $qb->select('c')
+            ->leftJoin('c.sub', 'j')
+            ->leftJoin('j.network', 'n')
+            ->where('n.group = :group') //to do jurist
+            ->setParameter('group', $group);
+
+        return $qb->getQuery()->getResult();
+
+    }
 }

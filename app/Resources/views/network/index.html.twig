@@ -330,7 +330,6 @@
                var url = '{{ path("send_form_message", {'id': 'id' }) }}';
                url = url.replace("id", id);
 
-
                //alert  (content);
                $.ajax({
                            url: url,
@@ -339,7 +338,7 @@
                            dataType: 'JSON',
                            success: function (result) {
 
-                               $('#myModal22').hide();
+                               $('#myModal22').hide()
 
                            }
 

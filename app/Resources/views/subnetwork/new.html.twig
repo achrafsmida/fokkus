@@ -114,7 +114,7 @@
                             <div class="formSep" id="user">
                                 <div class="row">
                                     <div class="col-sm-6 col-md-6">
-                                       {#formtype register#}
+                                        {#formtype register#}
                                     </div>
                                 </div>
                             </div>
@@ -127,7 +127,7 @@
                                     </div>
                                 </div>
                             </div>
-							 <div class="formSep">
+                            <div class="formSep">
                                 <div class="row">
                                     <div class="col-sm-6 col-md-6">
                                         file
@@ -169,7 +169,7 @@
         $("#fks_centralbundle_message_users").chosen({
             width: '100%'
         });
-$("#fks_centralbundle_subnetwork_user").hide();
+        $("#fks_centralbundle_subnetwork_user").hide();
         $('.chosen-select').chosen();
         $('.wysiwyg').wysiwyg();
 
@@ -181,29 +181,32 @@ $("#fks_centralbundle_subnetwork_user").hide();
             var id = selected;
             console.log('---', id);
             // var content = $('#test'+id).val();
+            if (id) {
+                var url = '{{ path("find_network", {'id': 'id' }) }}';
+                url = url.replace("id", id);
 
-            var url = '{{ path("find_network", {'id': 'id' }) }}';
-            url = url.replace("id", id);
+                //alert  (content);
+                $.ajax({
 
-            //alert  (content);
-            $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: {'id': id},
+                    dataType: 'JSON',
+                    success: function (result) {
+                        console.log(result.response)
+                        if (result.response == true) {
+                            $("#fks_centralbundle_subnetwork_user").show();
+                        } else {
+                            $("#fks_centralbundle_subnetwork_user").hide();
+                        }
 
-                url: url,
-                type: 'POST',
-                data: {'id': id},
-                dataType: 'JSON',
-                success: function (result) {
-                    console.log(result.response)
-                    if (result.response == true) {
-                        $("#fks_centralbundle_subnetwork_user").show();
-                    }else{
-                        $("#fks_centralbundle_subnetwork_user").hide();
                     }
+                });
 
-                }
-            });
-
-
+            }
+            else {
+                $("#fks_centralbundle_subnetwork_user").hide();
+            }
         });
     </script>
     {% endblock %}

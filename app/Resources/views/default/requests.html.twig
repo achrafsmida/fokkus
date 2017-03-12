@@ -22,8 +22,9 @@
                     </thead>
                     <tbody>
                     {% for request in requests %}
+                    {% if request %}
                         <tr>
-                            <td>{{ request.sender.username }} </td>
+                            <td>  {% if request.sender %}{{ request.sender.username }} {% endif %} </td>
                             <td>{{ request.receiver.username }} </td>
                             <td>{{ request.createdAt|date('Y-m-d H:i') }}</td>
                             {% if request.status %}
@@ -40,6 +41,7 @@
                                 {#{% endif  %}#}
                             {#</td>#}
                         </tr>
+                    {% endif %}
                     {% endfor %}
                     </tbody>
                 </table>

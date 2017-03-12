@@ -46,7 +46,17 @@ class subNetworkController extends Controller
     public function newAction(Request $request)
     {
         $subNetwork = new Subnetwork();
-        $form = $this->createForm('FKS\CentralBundle\Form\subNetworkType', $subNetwork);
+        $user = $this->getUser();
+        $group = null;
+        if ($user->hasRole('ROLE_ADMIN_GROUP')){
+            
+            $group = $user->getGroup() ;
+            $form = $this->createForm('FKS\CentralBundle\Form\subNetworkType', $subNetwork, array('group' => $group));
+        }
+        else{
+            $form = $this->createForm('FKS\CentralBundle\Form\subNetworkType', $subNetwork);
+        }
+       
         $form->handleRequest($request);
 
 
@@ -55,9 +65,14 @@ class subNetworkController extends Controller
             $em = $this->getDoctrine()->getManager();
             $subNetwork->uploadProfilePicture();
             $em->persist($subNetwork);
-            $user = $subNetwork->getUser();
-            $user->addRole('ROLE_NETWORK');
-            $em->persist($user);
+            //dump($subNetwork->getUser());die;
+            //$user = $subNetwork->getUser();
+            if($subNetwork->getUser()){
+                $subNetwork->getUser()->setEnabled(true);
+                $subNetwork->getUser()->addRole('ROLE_NETWORK');
+                $em->persist($subNetwork->getUser());
+            }
+
             $em->flush();
 
             return $this->redirectToRoute('subnetwork_show', array('id' => $subNetwork->getId()));
@@ -89,19 +104,42 @@ class subNetworkController extends Controller
      */
     public function editAction(Request $request, subNetwork $subNetwork)
     {
+
+        $user = $this->getUser();
+        $group = null;
+        if ($user->hasRole('ROLE_ADMIN_GROUP')){
+
+            $group = $user->getGroup() ;
+            $editForm = $this->createForm('FKS\CentralBundle\Form\subNetworkType', $subNetwork, array('group' => $group));
+        }
+        else{
+            $editForm = $this->createForm('FKS\CentralBundle\Form\subNetworkType', $subNetwork);
+        }
+        $em = $this->getDoctrine()->getManager();
+        
         $deleteForm = $this->createDeleteForm($subNetwork);
-        $editForm = $this->createForm('FKS\CentralBundle\Form\subNetworkType', $subNetwork);
+
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $subNetwork->uploadProfilePicture();
+            $em->persist($subNetwork);
+            //$user = $subNetwork->getUser();
+            if($subNetwork->getUser()){
+                $subNetwork->getUser()->setEnabled(true);
+                $subNetwork->getUser()->addRole('ROLE_NETWORK');
+                $em->persist($subNetwork->getUser());
+            }
+
+            $em->flush();
+           // $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('subnetwork_edit', array('id' => $subNetwork->getId()));
         }
 
         return $this->render('subnetwork/edit.html.twig', array(
             'subNetwork' => $subNetwork,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }

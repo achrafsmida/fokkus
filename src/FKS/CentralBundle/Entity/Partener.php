@@ -56,7 +56,7 @@ class Partener
     /**
      * @var string
      *
-     * @ORM\Column(name="status", type="boolean")
+     * @ORM\Column(name="status", type="boolean", nullable=true)
      */
     private $status;
     

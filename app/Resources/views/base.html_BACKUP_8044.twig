@@ -61,7 +61,7 @@
                <a href="#/" class="navbar-brand">
                   <div class="brand-logo">
                       
-                     <img src="{{ asset('bundles/fokkusv1/app/img/logo.png') }}" alt="App Logo" class="img-responsive">
+                     <img src="{{ asset('bundles/fokkusv1/app/img/logo_fokkus_fond_blanc_rvb.png') }}" alt="App Logo" class="img-responsive">
                   </div>
                   <div class="brand-logo-collapsed">
                      <img src="{{ asset('bundles/fokkusv1/app/img/logo-single.png') }}" alt="App Logo" class="img-responsive">
@@ -274,23 +274,41 @@
                         </li>
 
                         <li class=" ">
+<<<<<<< HEAD
+                           <a href="{{ path('stepsgroups', {'type' : 3}) }}" title="Dashboard v1">
+                              <span>Financial</span> 
+                           </a>
+                        </li>
+                       <li class=" ">
+                           <a href="{{ path('timeline') }}" title="Dashboard v1">
+                              <span>Time Line</span> 
+                           </a>
+                        </li>
+                        
+                        
+=======
                            <a href="{{ path('stepsgroups', {'type' : 4}) }}" title="Dashboard v1">
                               <span>Financial</span>
                            </a>
                         </li>
 
+>>>>>>> 51cae4da6a05a8a53311f81990b5ef1e2f0eda32
                      </ul>
                   </li>
                   <li class=" ">
                      <a href="#formation" title="formation" data-toggle="collapse">
                         <em class="icon-graduation"></em>
-                        <span data-localize="sidebar.nav.formation">Training</span>
+                        <span data-localize="sidebar.nav.formation">Consulting</span>
                      </a>
 
                      <ul id="formation" class="nav sidebar-subnav collapse">
                         <li class=" ">
                            <a href="{{ path('formation_index') }}" >
+<<<<<<< HEAD
+                              <span>Consulting</span> 
+=======
                               <span>Training</span>
+>>>>>>> 51cae4da6a05a8a53311f81990b5ef1e2f0eda32
                            </a>
                         </li>
                         <li class=" ">
@@ -340,7 +358,7 @@
                   <li class=" ">
                      <a href="#Messages" title="Messages" data-toggle="collapse">
                         <em class="icon-directions"></em>
-                        <span data-localize="sidebar.nav.Messages">MailBox</span>
+                        <span data-localize="sidebar.nav.Messages">Mailbox</span>
                      </a>
 
                      <ul id="Messages" class="nav sidebar-subnav collapse">
@@ -382,7 +400,7 @@
                   <li class=" ">
                      <a href="#network" title="network" data-toggle="collapse">
                         <em class="icon-share"></em>
-                        <span data-localize="sidebar.nav.evenement">Network</span>
+                        <span data-localize="sidebar.nav.evenement">Networking</span>
                      </a>
 
                      <ul id="network" class="nav sidebar-subnav collapse">
@@ -437,7 +455,7 @@
                      <ul id="partner" class="nav sidebar-subnav collapse">
                         <li class=" ">
                            <a href="{{ path('listPartener') }}" >
-                              <span>Partners</span>
+                              <span>Partnership</span>
                            </a>
                         </li>
                         {% if is_granted('ROLE_ADMIN')  %}
@@ -525,13 +543,13 @@
                   <li class=" ">
                      <a href="#timeline " title="timeline" data-toggle="collapse">
                         <em class="icon-layers"></em>
-                        <span data-localize="sidebar.nav.TIMELINE">TIME LINE</span>
+                        <span data-localize="sidebar.nav.TIMELINE">Timeline</span>
                      </a>
                     
-                     <ul id="timeline" class="nav sidebar-subnav collapse">
+                    <ul id="timeline" class="nav sidebar-subnav collapse">
                         <li class=" ">
                            <a href="{{ path('stepsgroups', {'type' : 1}) }}" title="Dashboard v1">
-                              <span>Commerciale</span> 
+                              <span>Commercial</span> 
                            </a>
                         </li>
                         <li class=" ">
@@ -539,14 +557,10 @@
                               <span>Communication</span> 
                            </a>
                         </li>
+                    
                         <li class=" ">
                            <a href="{{ path('stepsgroups', {'type' : 3}) }}" title="Dashboard v1">
-                              <span>Résaux humaines</span> 
-                           </a>
-                        </li>
-                        <li class=" ">
-                           <a href="{{ path('stepsgroups', {'type' : 4}) }}" title="Dashboard v1">
-                              <span>Technique</span> 
+                              <span>Financial</span> 
                            </a>
                         </li>
                       
@@ -559,7 +573,7 @@
                         <li class=" ">
                      <a href="{{ path('visualitationformation') }}" title="Documentation">
                         <em class="icon-graduation"></em>
-                        <span data-localize="sidebar.nav.Formation">Formation</span>
+                        <span data-localize="sidebar.nav.Formation">Consulting</span>
                      </a>
                   </li>
                   
@@ -569,7 +583,7 @@
                         <li class=" ">
                      <a href="{{ path('visualitationformation') }}" title="Documentation">
                         <em class="icon-calendar"></em>
-                        <span data-localize="sidebar.nav.Formation">Evenement</span>
+                        <span data-localize="sidebar.nav.Formation">Events</span>
                      </a>
                   </li>
                    </li>

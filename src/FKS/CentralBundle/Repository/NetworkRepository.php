@@ -10,4 +10,18 @@ namespace FKS\CentralBundle\Repository;
  */
 class NetworkRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function getNetworkByGroup($group)
+    {
+
+        $qb = $this->createQueryBuilder('c');
+        $qb->select('c')
+            //->leftJoin('c.network', 'j')
+            ->where('c.group = :group') //to do 
+            ->setParameter('group', $group);
+
+        return $qb->getQuery()->getResult();
+
+    }
+    
 }
